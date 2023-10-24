@@ -1,5 +1,5 @@
 # My First Eldritch Evil
-My First Eldritch Evil (may also be reffered to as MFEE in the following document) is designed to be the worst possible Tamagatchi-style game — in the best possible way. MFEE takes all of the joy out of pet care and puts in all of the frustration of doing your taxes. 
+My First Eldritch Evil (may also be referred to as MFEE in the following document) is designed to be the worst possible Tamagatchi-style game — in the best possible way. MFEE takes all of the joy out of pet care and puts in all of the frustration of doing your taxes. 
 
 ## Description
 MFEE is a text-based program where you raise the worst pet ever imaginable.
@@ -12,21 +12,21 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 Powershell
 
 ### Installing
-Extract the "program with powershell script to run.7z" zip folder.
+Extract the "program with PowerShell script to run.7z" zip folder.
 
 ### Executing Program
-Right click the ".RUN THIS IN POWERSHELL TO PLAY.ps1" file and press "Run with Powershell"
+Right-click the ".RUN THIS IN POWERSHELL TO PLAY.ps1" file and press "Run with Powershell"
 If you know what you are doing I have also included the .jar file.
+
 ## Help
-Bla bla bla
+This is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
 
 ## Authors
 Kline Shimp  
 Aidan Young
 
 ## Version History
-We still busy making history
-<!-- nothin yet -->
+1.0  - Release of the first version
 
 ## License
 <!-- TODO: Figure out license -->
