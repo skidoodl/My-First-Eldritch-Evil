@@ -12,11 +12,11 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 Powershell
 
 ### Installing
-Bla bla bla
+Extract the "program with powershell script to run.7z" zip folder.
 
 ### Executing Program
-Bla bla bla
-
+Right click the ".RUN THIS IN POWERSHELL TO PLAY.ps1" file and press "Run with Powershell"
+If you know what you are doing I have also included the .jar file.
 ## Help
 Bla bla bla
 
