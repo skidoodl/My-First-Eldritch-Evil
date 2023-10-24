@@ -9,8 +9,7 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 
 ## Getting Started
 ### Dependencies
-None so far
-<!-- None so far -->
+Powershell
 
 ### Installing
 Bla bla bla
