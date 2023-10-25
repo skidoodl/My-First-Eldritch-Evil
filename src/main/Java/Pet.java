@@ -8,7 +8,6 @@ public class Pet{
     public int exercised = 4; //determines how fit pet is
     public double satiety, energy; //satiety, or fullness. Range is between 0 and 1, with 0 being starving to death. Energy's range is 0 to 2, 1 being normal and anything above being insanity.
     public double health=1.0;
-    public String mood="Neutral"; //idk how we'll handle this maybe it'll just be pissed all the time (i agree)
     public String name, difficultyName, relationshipName;
     public boolean isHealthy=true;
     public boolean isEvil;
