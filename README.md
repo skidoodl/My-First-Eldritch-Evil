@@ -23,7 +23,7 @@ Mac release (maybe) coming soon.
 </p>If you know what you are doing, we have also included the [.jar file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.jar).
 
 ## Help
-If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. \nThis is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
+If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. This is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
 
 ## Authors
 * Kline Shimp  
