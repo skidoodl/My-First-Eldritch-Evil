@@ -85,7 +85,7 @@ public class Evil{
         }
         System.out.println("   {MENU}   "+name+" HP: "+petHP+"\n-------------------------------------------------------"); //main menu display
         //Pet health bar?
-        System.out.println("  1. Inventory\n  2. Shop\n  3. Stats\n  4. Attack"); //menu options
+        System.out.print("  1. Inventory\n  2. Shop\n  3. Stats\n  4. Attack\nSELECT: "); //menu options
         int input = scan.nextInt();
         switch(input){
             case 1: 
@@ -163,7 +163,7 @@ public class Evil{
                     return;
                 }else if(rando<50){ //fail
                     System.out.println("You failed to block "+name+"'s attack.");
-                }else{ //halfs damage
+                }else{ //halves damage
                     System.out.println("Most of "+name+"'s attack was blocked!");
                     atk = atk/2;
                 }
