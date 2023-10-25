@@ -24,8 +24,8 @@ public class main {
       if (hatchinput == 1 && isHatch[0] == 0) {
         isHatch[0]++;
       }else{
-        System.out.println("Input does not equal 1. Please try again \nEnter 1 to Hatch");
-        hatchinput = scan.nextInt();
+      System.out.println("Input does not equal 1. Please try again \nEnter 1 to Hatch :egg:");
+      hatchinput = scan.nextInt();
       }
       
       if (isHatch[0] == 1){
@@ -44,9 +44,9 @@ public class main {
         isHatch[0]++;
         System.out.println("Welcome to the world, " + name + "!");
         if(name.equals("evil")){
-          pet.isEvil = true;
-        }
-        
+          Evil.main(pet);
+        }        
+
         while (true){
           if(pet.isEvil){Evil.main(pet);}
           while(action<2){ //two actions will perform before moving on to cycle.
@@ -64,3 +64,5 @@ public class main {
     }
   }
 }
+
+
