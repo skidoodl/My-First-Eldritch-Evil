@@ -7,7 +7,7 @@ public class Evil{
     public static int prot = 0; //prot = protection level - 0 is not, 1 is a little, 2 is great, 3 is 100%, 4 is parry
     public static String activeWeapon = "none";
     public static String activeShield = "none";
-    public static int armor = 0; //may change to a String later - YET TO IMPLEMENT
+    public static int armor = 0; //may change to a String later
     private static int action=0;
     
     public static void main(Pet pet){
@@ -66,7 +66,7 @@ public class Evil{
                 crisisMenu(pet);
             }
         }
-        while(pet.isEvil){
+        while(pet.isEvil){ //Evil pet loop
             while(action<1){
                 crisisMenu(pet);
             }
@@ -79,13 +79,13 @@ public class Evil{
     public static void crisisMenu(Pet pet) { //evil pet menu
         String name = pet.name;
         Scanner scan = new Scanner(System.in);
-        System.out.print("\n\nPLAYER HP: "+(playerHP-bonusHP));
+        System.out.print("\n\nPLAYER HP: "+(playerHP-bonusHP)); //display player hp
         if (bonusHP>0){
-            System.out.print(" + "+bonusHP);
+            System.out.print(" + "+bonusHP); // + bonus hp
         }
-        System.out.println("   {MENU}   "+name+" HP: "+petHP+"\n-------------------------------------------------------");
+        System.out.println("   {MENU}   "+name+" HP: "+petHP+"\n-------------------------------------------------------"); //main menu display
         //Pet health bar?
-        System.out.println("  1. Inventory\n  2. Shop\n  3. Stats\n  4. Attack");
+        System.out.println("  1. Inventory\n  2. Shop\n  3. Stats\n  4. Attack"); //menu options
         int input = scan.nextInt();
         switch(input){
             case 1: 
@@ -112,13 +112,13 @@ public class Evil{
         System.out.println("The attack dealt "+damage+" damage.");
         playerHP -= damage;
         Lazy.waitForEnter();
-        if (playerHP <= 0){
+        if (playerHP <= 0){ //if player DIES
             grave.playerDeath(name,name);
         }
     }
 
     private static void petAttack(Pet pet){
-        Grave grave = new Grave();
+        Grave grave = new Grave(); //create grave
         String name = pet.name; //get pet name
         Random ran = new Random();
         int atk = ran.nextInt(11)+20; //pet attack value
@@ -128,7 +128,6 @@ public class Evil{
         int rando = ran.nextInt(100); //random num for protect calculations
         System.out.println(name+" attacked!");
         switch (armor){
-            //TO DO
             case 1: //lv1 armor
                 atk = (int) (atk*0.85);
                 break;
@@ -208,21 +207,18 @@ public class Evil{
     private static void attack(Pet pet){
         Random ran = new Random();
         Scanner scan = new Scanner(System.in);
-        String[] attackOpts = {"Punch","Block","Strong Slash","Guarded Slash","Sword Block","Shield Gaurd","Shield Parry","Shield Bash","Cancel"};
-        String[] attacks = new String[9];
+        String[] attackOpts = {"Punch","Block","Strong Slash","Guarded Slash","Sword Block","Shield Gaurd","Shield Parry","Shield Bash"};
+        String[] attacks = new String[8];
         int mCnt = 0;
         System.out.println("--------[ATTACK]--------\nActive Weapon: "+activeWeapon+"\nActive Shield: "+activeShield);
         for (int i = 0; i < attackOpts.length; i++) { //print the menu, determine available attack options
-            /* if (pet.name.equals("evil")){
-                System.out.println("i = "+i+"\nAttackOpts Entry: "+attackOpts[i]);
-            } */
             if(activeWeapon.equalsIgnoreCase("none")){ //if no weapon equipped
-                if(i>1 && i<5){continue;} //...and i != punch or use item, continue - also prevents from skipping shield-related items
+                if(i>1 && i<5){continue;} //...and i != punch, continue - also prevents from skipping shield-related items
             }else{ //if there is an active weapon...
                 if(i<2){continue;}//...skip punch and block
             }
             if(activeShield.equalsIgnoreCase("none")){//if no shield equipped
-                if(i>4 && i!=8){continue;} //..and i != block or use item, continue - doesn't skip sword-conditional itmes
+                if(i>4){continue;} //..and i != block, continue - doesn't skip sword-conditional itmes
             }else{ //if there is an active shield
                 if(i<2){continue;}//...skip punch and block
             }
@@ -232,6 +228,10 @@ public class Evil{
         }
         System.out.print("[Press 0 to Cancel]\nSelect Attack: ");
         int input = scan.nextInt();
+        while (input < 0 || input > 7){
+            System.out.print("Not a valid option. Try again: ");
+            input = scan.nextInt();
+        }
         if(input==0){
             return;
         }
@@ -340,7 +340,7 @@ public class Evil{
                     damage = (int) (damage*1.35);
                 }
             }
-        }else{ //use item
+        }else{ //something went wrong lol
             return;
         }
         if(damage != 0){System.out.println("Damage: "+damage);}
@@ -383,17 +383,6 @@ public class Evil{
             pet.isEvil = false;
         }
         action++; //increment action
-        
-        /*---TO DO---
-            System to determine which attack options are available depending on weapon equipped:
-            - If no weapon equipped: Punch, Block, Use Item
-            - If Sword equipped: Slashes, Sword Block, Use Item
-            - If Shield equipped: Punch, Shield Guard/Parry/Bash, Use Item
-            - If Sword & Shield equipped: Slashes, Shield Guard/Parry, Use Item
-
-            Use a similar system to the inventory to display the correct attack options then allow the user to use them. (Aidan can you do this idk how to use the inventory you built)
-            Include "return to blablabla" at the bottom
-        */
     }
 
     public static void foodBribe(Pet pet){
