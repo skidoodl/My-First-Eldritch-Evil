@@ -1,325 +1,264 @@
-import java.util.Scanner;
-public class Menu{
-  //-----NORMAL INVENTORY-----//
-  public static String[] invItems = new String[10];
-  public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins"};
-  public static int[] itemStock = {100,20,5,25,0,0,0,0,0,0};
-  public static int[] itemInvAmount = new int[10];
-  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 500,/*strong meds*/ 1200,/*vitamins*/650}; // load item prices
-  //-----CRISIS INVENTORY-----//
-  public static String[] crisisInvItems = new String[10];
-  public static String[] crisisShopItems = {"Armor (lv1)", "Armour (lv2)", "Armoure (lv3)","Wood Sword","Iron Sword","Shield","Food Bundle","Sedatives","Magic Juice","Magic Super Juice"};
-  public static int[] crisisItemStock = {1,1,1,1,1,1,20,20,15,10};
-  public static int[] crisisInvAmount = new int[10];
-  public static int[] crisisPrice = {/*Armor*/ 600,/*Armour*/ 950,/*Armoure*/ 1800,/*Wood Sword*/350,/*iron sword*/ 999,/*Shield*/420,/*food bundle*/ 100, /*sedatives*/350, /*Magic Juice*/450, /*Magic Super Juice*/775}; // load item prices
+import java.util.Random;
 
-  public static void displayMenu(Pet pet) { //Main Game Menu
-    if(!pet.isEvil){
-      Scanner scan = new Scanner(System.in);
-      String name = pet.name; 
-      //Lazy.clearConsole();
-      System.out.print("\n--------[MY FIRST ELDRITCH EVIL]--------\n  1. Inventory\n  2. Go to the store\n  3. Check "+name+"'s Stats\n  4. Feed " + name + "\n  5. Sleep "+name+"\n  6. Exercise "+name+"\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");
-      int input = scan.nextInt();
-      switch(input){
-        case 1: //inventory
-        Menu.openInventory(pet);
-        break;
-        case 2: //store
-          Menu.openShop(pet);
-          break;
-        case 3: //Check Stats
-          pet.checkStats();
-          break;
-        case 4: //feed
-          pet.feed();
-          break;
-        case 5: // sleep
-          System.out.print("How many hours do you want "+pet.name+" to sleep? ");
-          int hours = scan.nextInt();
-          pet.sleep(hours);
-          break;
-        case 6: //Exercise
-          pet.exercise();
-          break;
-        case 7: //cuddle pet
-          pet.cuddlePet();
-          break;
-        case 8:
-          main.action = 3;
-          break;
-        default:
-          System.out.println("Option "+input+" is not available.");
-          break;
-      }
-    }else{
-      Evil.crisisMenu(pet);
-    }
-  }
-
-
-  public static void openInventory(Pet pet){
-    System.out.println("\n-------{INVENTORY}-------\n-------------------------\nPRESS 0 TO EXIT");
-    if(!pet.isEvil){ //if pet isn't evil, display this inventory
-      for (int i = 0; i < invItems.length; i++) {
-        if(itemInvAmount[i] == 0){
-          invItems[i] = null;
-        }
-        if (invItems[i] != null) {
-          System.out.println("  "+(i + 1) + ". " + invItems[i]+" x"+itemInvAmount[i]);
-        }
-      }
-      System.out.print("SELECT: ");
-      Scanner scan = new Scanner(System.in);
-      int input = scan.nextInt(); 
-      
-      if(input == 0){return;} //return
-      String sel = (invItems[(input-1)]);
-      switch(sel){
-        case "Food":
-          pet.feed();
-          break;
-        case "Medication":
-          pet.medicate(false);
-          break;
-        case "Strong Medication":
-          pet.medicate(true);
-          break;
-        case "Vitamins":
-          pet.vitamins();
-          break;
-        default:
-          System.out.println("Unavailable");
-          break;
-      }
-    }else{ //---CRISIS INVENTORY---//
-      for (int i = 0; i < invItems.length; i++) {
-        if(crisisInvAmount[i] == 0){
-          crisisInvItems[i] = null;
-        }
-        if (crisisInvItems[i] != null) {
-          System.out.println("  "+(i + 1) + ". " + crisisInvItems[i]+" x"+crisisInvAmount[i]);
-        }
-      }
-      System.out.print("SELECT: ");
-      Scanner scan = new Scanner(System.in);
-      int input = scan.nextInt();
-      if(input == 0){
-        return;
-      }
-      String sel = crisisInvItems[(input-1)];
-
-      switch (sel){ 
-        case "Armor (lv1)":
-          if(Evil.armor == 1){ //if already equipped
-            System.out.println("Unequipped Armor");
-            Evil.armor = 0;
-          }else{
-            System.out.println("Equipped Armor");
-            Evil.armor = 1;
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Armour (lv2)":
-          if(Evil.armor == 2){ //if already equipped
-            System.out.println("Unequipped Armour");
-            Evil.armor = 0;
-          }else{
-            System.out.println("Equipped Armour");
-            Evil.armor = 2;
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Armoure (lv3)":
-          if(Evil.armor == 3){ //if already equipped
-            System.out.println("Unequipped Armoure");
-            Evil.armor = 0;
-          }else{
-            System.out.println("Equipped Armoure");
-            Evil.armor = 3;
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Wood Sword":
-          if(Evil.activeWeapon.equals("Wood Sword")){ //if already equipped
-            System.out.println("Unequipped Wood Sword");
-            Evil.activeWeapon = "none";
-          }else{
-            System.out.println("Equipped Wood Sword");
-            Evil.activeWeapon = "Wood Sword";
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Iron Sword":
-          if(Evil.activeWeapon.equals("Iron Sword")){ //if already equipped
-            System.out.println("Unequipped Iron Sword");
-            Evil.activeWeapon = "none";
-          }else{
-            System.out.println("Equipped Iron Sword");
-            Evil.activeWeapon = "Iron Sword";
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Shield":
-          if(Evil.activeShield.equals("Shield")){
-            System.out.println("Unequipped Shield.");
-            Evil.activeShield = "none";
-          }else{
-            System.out.println("Equipped Shield");
-            Evil.activeShield = "Shield";
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Food Bundle":
-          Evil.foodBribe(pet);
-          break;
-        case "Sedatives":
-          Evil.sedate(pet);
-          break;
-        case "Magic Juice":
-          if(Evil.bonusHP>0){
-            System.out.println("You cannot recover any more health");
-            Lazy.waitForEnter();
-          }else{
-            Evil.magicJuice(false);
-          }
-          break;
-        case "Magic Super Juice":
-          if(Evil.bonusHP>0){
-            System.out.println("You cannot recover any more health");
-            Lazy.waitForEnter();
-          }else{
-            Evil.magicJuice(true);
-          }
-          break;
-        default:
-          System.out.println("Unavailable"); //Yet to implement: magic juices
-      }
-    }
-  }
-
-  public static void openShop(Pet pet){
-    Scanner scan = new Scanner(System.in);
-    if(pet.name.trim().equals("ferg")){
-      System.out.println("dev mode");
-      int max = Integer.MAX_VALUE;
-      pet.money = max;
-    }
-    if(!pet.isEvil){ //if pet is not evil...
-      System.out.println("\n\n     [{SHOP}]          Wallet: "+pet.money+" mon\n------------------------------------------");
-      for (int i = 0; i < shopItems.length; i++){ //load the item list
-        if(itemStock[i] > 0){
-          System.out.println("  "+(i+1)+". "+shopItems[i]+ " x" + itemStock[i]+"  -  Price: "+itemPrice[i]);
-        }
-      }
-      System.out.print("  0. Return to Menu\nSELECT: ");
-      int sel = scan.nextInt(); //allow user to select item to purchase
-      while (sel>11 || sel<0){ //ensure the user makes a selection within the correct range
-       sel = scan.nextInt();
-      }
-      if (sel == 0){
-        return;
-      }else{
-        System.out.print("How many? ");
-        int quant = scan.nextInt();
-        if(itemStock[(sel - 1)] < quant){
-          System.out.println("Not enough stock.");
-          Lazy.waitForEnter();
-          Menu.openShop(pet);
-        }
-        if (quant<1){ //if user inputs a quantity less than 1, return them back to the main shopping thing or smth idk
-          Menu.openShop(pet);
-        }
-        int cost = itemPrice[(sel-1)]*quant; //calculate purchase cost
+public class Cycle{
+    public static int cycle,cyclesSinceEvil;
+    public static void nextCycle(Pet pet){
+        cycle++; //cycle counter increase
+        System.out.println("\n\n------------------[Cycle "+cycle+"]-----------------");
+        String name = pet.name;
+        String langs[] = {"Hebrew","Ancient Egyptian","Mandarin","Japanese","English","Pig Latin","Klingon","C++","Breadlish","Japanese","French","Amharic","Russian","Arabic","Giraffe","Sarati","the language of LOVE","to the manager","Vulcan","Sindarin","Newspeak","Hindi","Spanish","Portugese","Turkish","Urdu","Italian","Sign Language","Sugondese"};
+        String petActions[] = {name+" cleans its... tentacles.",name+" is growing a third eye.",name+" is growing a fourth eye.","You catch "+name+" plotting an assasination.","You tripped over "+name+" walking down the stairs last night... again...",name+" was named a suspect in murder.",name+"'s teeth are looking extra sharp today!","You got banned from your local PetCo... and dog park... and elementary school.",name+" seems to have taken a liking to ketchup... but where is "+name+" getting it?",name+" fails another DNA test. Maybe it should study next time.",name+"'s BAC is found to be well over the legal limit.",name+" learns to speak "+Lazy.ranStringArray(langs)+".",name+" is learning to speak "+Lazy.ranStringArray(langs)+".",name+"'s new lawyer immediately quits.",name+" quits its job at Spirit Halloween after one day.",name+" thinks MatLab is a real programming language.",name+" put semicolons after all your if statements.",name+" ate your left sock.",name+" ate your right sock.",name+" joined Twitter.",name+" didn't return its shopping cart.",name+" trapped you at an Amy Schumer show.",name+" is running for president. It'll probably win."};
+        Random ran = new Random();
         
-        if (cost>pet.money){
-          System.out.println("You don't have enough money.");
-          Lazy.waitForEnter();
-        }else{
-          pet.money -= cost; //subtract cost from wallet
-          int emptySlot = -1;
-          itemStock[(sel-1)] = itemStock[(sel-1)] - quant;
-          boolean duplicate = false;
-          for(int i = 0; i < invItems.length;i++){ //search for duplicates with invItems and your selection
-            if(invItems[i] == shopItems[(sel-1)]){
-              duplicate = true;
-              emptySlot = i;
-              break;
+        int rando = ran.nextInt(99);
+        int evilchance;
+        if (!pet.isEvil){ //evil pet chances
+            cyclesSinceEvil++; //cycles since evil counter
+            if (cyclesSinceEvil<=5){
+                evilchance = 8;
+            }else if (cyclesSinceEvil<=8){
+                evilchance = 15;
+            }else if (cyclesSinceEvil<=14){
+                evilchance = 25;
+            }else{
+                evilchance = 35;
             }
-          }
-          if(!duplicate){
-            for (int i = 0; i < invItems.length; i++) {
-              if (invItems[i] == null) {
-                emptySlot = i;
-                break;
-              }
+            if (pet.evilCount<4){
+                evilchance += 5;
+            }else if(pet.evilCount<8){
+                evilchance += 12;
+            }else if(pet.evilCount<14){
+                evilchance += 20;
+            }else{
+                evilchance += 35;
             }
-          }
-          if(emptySlot != -1){
-            invItems[emptySlot] = shopItems[(sel-1)];
-          }
-          itemInvAmount[emptySlot] = itemInvAmount[emptySlot] + quant;
+            if (pet.energy>1.5){
+                evilchance+=12;
+            }else if (pet.energy>1.3){
+                evilchance+=17;
+            }
+            if(pet.name.equals("ferg") || pet.name.equals("evil")){System.out.println("Evil Chance: "+evilchance);}
+            if (rando<evilchance || pet.name.equals("evil")){
+                pet.isEvil=true;
+                return;
+            }
         }
-        return;
-      }
-    }else{ //----CRISIS SHOP----/
-      System.out.println("     [{SHOP}]          Wallet: "+pet.money+" mon\n------------------------------------------");
-      for (int i = 0; i < crisisShopItems.length; i++){ //load the item list
-        if(crisisItemStock[i]>0){
-          System.out.println("  "+(i+1)+". "+crisisShopItems[i]+ " x" + crisisItemStock[i]+"  -  Price: "+crisisPrice[i]);
+        while (pet.exercised>-12 && pet.energy>0 && pet.satiety>0 && pet.health>0){
+            pet.exercised--;
+            if (pet.exercised<=-4){ //pet fatness
+                System.out.println(name+" is obese.");
+            }else if(pet.exercised < 0){
+                System.out.println(name+" is getting kinda fat.");
+            }
+            
+            if (cycle % 3 == 0 && cycle != 0){pet.birthday();} //age pet up, if necessary
+
+            rando = ran.nextInt(99);
+            switch(pet.difficulty){ //various cycle functions, vary by difficulty
+                case 0: //easy
+                    if (rando < 20){ //pet hunger
+                        pet.satiety -= .08;
+                        }else if(rando > 70){
+                        pet.satiety -= .02;
+                        }else{
+                        pet.satiety -= .05;
+                    }
+                    pet.energy -= .06; //energy
+                    pet.money += 100; //earn money
+                    if (rando <4){ //player lose money
+                        pet.money = (int) (pet.money*.85);
+                        System.out.println(name+" ate some of your money.");
+                    }
+                    break;
+                case 1: //normal
+                    if (rando < 30){ //pet hunger
+                        pet.satiety -= .18;
+                        }else if(rando > 75){
+                        pet.satiety -= .06;
+                        }else{
+                        pet.satiety -= .10;
+                    }
+                    pet.energy -= (.06 + (rando*.003)); //energy
+                    pet.money += 75; //earn money
+                    if (rando <10){//player loses money
+                        pet.money = (int) (pet.money*.80);
+                        System.out.println(name+" ate some of your money.");
+                    }
+                    break;
+                case 2: //hard
+                    if (rando < 35){ //pet hunger
+                        pet.satiety -= .28;
+                        }else if(rando > 80){
+                        pet.satiety -= .10;
+                        }else{
+                        pet.satiety -= .18;
+                    }
+                    pet.energy -= (.02 + (rando*.006)); //energy
+                    pet.money += 50; //earn money
+                    if (rando <15){//player loses money
+                        pet.money = (int) (pet.money*.75);
+                        System.out.println(name+" ate some of your money.");
+                    }
+                    break;
+                case 3: //impossible
+                    if (rando < 45){ //pet hunger
+                            pet.satiety -= .28;
+                            }else if(rando > 90){
+                            pet.satiety -= .10;
+                            }else{
+                            pet.satiety -= .18;
+                        }
+                    pet.energy -= (.02 + (rando*.01)); //energy
+                    pet.money += 30; //earn money
+                    if (rando <25){//player loses money
+                        pet.money = (int) (pet.money*.70);
+                        System.out.println(name+" ate some of your money.");
+                    }
+                    break;
+                default:
+            }
+            
+            
+
+            System.out.println(Lazy.ranStringArray(petActions)); //fun little pet actions
+            if (pet.isHealthy){ //health check
+                rando = ran.nextInt(99); //get new random num
+                if (pet.health<1.0 && rando <=80){ //chance for pet to heal
+                    pet.health+=0.16;
+                    System.out.println(name+" has been feeling a little better.");
+                    if(pet.health>1){pet.health=1;} //pet cannot be healthier than 1
+                }
+                switch(pet.difficulty){ //pet has a chance of getting sick
+                    case 0: //easy
+                        if (pet.energy<0.2 || pet.satiety<0.2 || pet.exercised<=-4){
+                            if (rando < 25){pet.isHealthy = false;}
+                        }else{
+                            if (rando<4){pet.isHealthy = false;}
+                        }
+                        break;
+                    case 1: //norm
+                        if (pet.energy<0.2 || pet.satiety<0.2 || pet.exercised<=-4){
+                            if (rando < 35){pet.isHealthy = false;}
+                        }else{
+                            if (rando<6){pet.isHealthy = false;}
+                        }
+                        break;
+                    case 2: //hard
+                        if (pet.energy<0.4 || pet.satiety<0.3 || pet.exercised<=-4){
+                            if (rando < 45){pet.isHealthy = false;}
+                        }else{
+                            if (rando<10){pet.isHealthy = false;}
+                        }
+                        break;
+                    case 3: //impossible
+                        if (pet.energy<0.4 || pet.satiety<0.4 || pet.exercised<=-4){
+                            if (rando < 60){pet.isHealthy = false;}
+                        }else{
+                            if (rando<20){pet.isHealthy = false;}
+                        }
+                        break;
+                }
+                if (!pet.isHealthy){System.out.println(name+" is no longer healthy.");}
+            }else{ //if pet is sick
+                rando = ran.nextInt(45);
+                if (rando <= 30 && rando != 0){
+                    pet.health -= (Double.valueOf(rando)/100);
+                }
+            }
+            if (pet.health < 0.1){ //how pet is feeling
+                    System.out.println(name+" is literally about to die.");
+                }else if (pet.health <= 0.3){
+                    System.out.println(name+" is in the hospital.");
+                }else if (pet.health<0.6){
+                    System.out.println(name+" is feeling really sick");
+            }else if (pet.health<1 && !pet.isHealthy){
+                    System.out.println(name+" has a tummyache.");
+            }
+            break;
         }
-      }
-      System.out.print("  0. Return to Menu\nSELECT: ");
-      int sel = scan.nextInt(); //allow user to select item to purchase
-  
-      while (sel>11 || sel<0){ //ensure the user makes a selection within the correct range
-        System.out.print("This input is NO BUENO. Try again fella or gal: ");
-        sel = scan.nextInt();
-      }
-      if (sel == 0){
-        return;
-      }else{
-        System.out.print("How many? ");
-        int quant = scan.nextInt();
-        if(crisisItemStock[(sel - 1)] < quant){
-          System.out.println("Not enough stock.");
-          Lazy.waitForEnter();
-          Menu.openShop(pet);
-        }
-        if (quant<1){ //if user inputs a quantity less than 1, return them back to the main shopping thing or smth idk
-          Evil.crisisMenu(pet);
-        }
-        int cost = crisisPrice[(sel-1)]*quant; //calculate purchase cost
+
+        if (pet.exercised<-12){pet.killPet("morbid obesity");}
+        if (pet.health <= 0){pet.killPet("the plague.");}
+        if (pet.satiety <=0){pet.killPet("starvation");}
+        if (pet.energy <= 0){pet.killPet("wasted away");}
         
-        if (cost>pet.money){
-          System.out.println("You don't have enough money.");
-          Lazy.waitForEnter();
-          Evil.crisisMenu(pet);
-        }else{
-          pet.money -= cost; //subtract cost from wallet
-          int emptySlot = -1;
-          boolean duplicate = false;
-          for(int i = 0; i < crisisInvItems.length;i++){ //search for duplicates with invItems and your selection
-            if(crisisInvItems[i] == crisisShopItems[(sel-1)]){
-              duplicate = true;
-              emptySlot = i;
-              break;
-            }
-          }
-          if(!duplicate){
-            for (int i = 0; i < crisisInvItems.length; i++) {
-              if (crisisInvItems[i] == null) {
-                  emptySlot = i;
-                  break;
-              }
-            }
-          }
-          if(emptySlot != -1){
-            crisisInvItems[emptySlot] = crisisShopItems[(sel-1)];
-          }
-          crisisInvAmount[emptySlot] = crisisInvAmount[emptySlot] + quant;
+        //---Pet hunger alerts:---//
+        double hng = pet.satiety;
+        if(hng <0.2){
+            System.out.println(name+" is starving...");
+        }else if(hng<=0.45){
+            System.out.println(name+" wants to know when dinner is");
+        }else if(pet.satiety<0.75){
+            System.out.println(name+" wants a snack.");
         }
-        return;
-      }
+
+        //---Pet Energy Alerts---//
+        double en = pet.energy;
+        if(en<0.2){
+            System.out.println(name+" is dragging itself along the floor");
+        }else if(en<=0.45){
+            System.out.println(name+" can barely keep its eyes open");
+            Lazy.hold(1000);
+            System.out.println("...not that you're complaining, or anything");
+        }else if(en<=0.75){
+            System.out.println(name+" needs a nap.");
+        }
+
+        //pet find thing//
+        double randomValue = ran.nextDouble();
+        double probability = .3;
+        if (randomValue < probability) {
+            int ifFoundItem = ran.nextInt(5);
+            int amountFound = 0;
+            String[] itemFound = {"Food", "Medication", "Strong Medication", "Vitamins", "money"};
+            switch (ifFoundItem) {
+                case 0:
+                    amountFound = ran.nextInt(11);
+                    break;
+                case 1:
+                    amountFound = ran.nextInt(3);
+                    break;
+                case 2:
+                    amountFound = ran.nextInt(2);
+                    break;
+                case 3:
+                    amountFound = ran.nextInt(3);
+                    break;
+                case 4:
+                    amountFound = ran.nextInt(351);
+                    pet.money += amountFound;
+                    break;
+            }
+            if (amountFound <= 0) {
+                System.out.println(pet.name + " found nothing!");
+            }else{
+                System.out.println(pet.name + " found " + amountFound + " " + itemFound[ifFoundItem] + "!");
+                if (!itemFound[ifFoundItem].equals("money")) {
+                    boolean duplicate = false;
+                    int emptySlot = -1;
+                    for (int i = 0; i < Menu.invItems.length; i++) {
+                        if (Menu.invItems[i] != null && Menu.invItems[i].equals(itemFound[ifFoundItem])) {
+                            duplicate = true;
+                            emptySlot = i;
+                            break;
+                        }
+                    }
+                    if (!duplicate) {
+                        for (int i = 0; i < Menu.invItems.length; i++) {
+                            if (Menu.invItems[i] == null) {
+                                emptySlot = i;
+                                break;
+                            }
+                        }
+                    }
+                    Menu.invItems[emptySlot] = itemFound[ifFoundItem];
+                    Menu.itemInvAmount[emptySlot] += amountFound;
+                }
+            }
+        } else {
+            System.out.println(pet.name + " found nothing!");
+        }
+        System.out.println("\n");
+        Lazy.waitForEnter();
     }
-  }
 }
