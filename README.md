@@ -12,10 +12,8 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 Powershell
 
 ### Installing
-#### Windows
-Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.with.ps.script.7z), then extract its contents.
-#### Mac
-Mac release (maybe) coming soon.
+* Windows: Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.with.ps.script.7z), then extract its contents.
+* Mac: Mac release (maybe) coming soon.
 
 ### Executing Program
 * Windows: Run the file ps1 file named ".RUN THIS IN POWERSHELL TO PLAY.ps1" with Powershell to play.
