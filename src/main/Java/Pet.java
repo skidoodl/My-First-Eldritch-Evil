@@ -2,21 +2,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Pet{
-    public int age, difficulty, money, relationship; //I just put in some placeholders - we may want some to be Double type variables
+    public int age, difficulty, money, relationship;
     public int evilCount = 0;
     public int petDefeats = 0;
     public int exercised = 4; //determines how fit pet is
     public double satiety, energy; //satiety, or fullness. Range is between 0 and 1, with 0 being starving to death. Energy's range is 0 to 2, 1 being normal and anything above being insanity.
     public double health=1.0;
-    public String mood="Neutral"; //idk how we'll handle this maybe it'll just be pissed all the time (i agree)
     public String name, difficultyName, relationshipName;
     public boolean isHealthy=true;
     public boolean isEvil;
 
 
     Random ran = new Random();
-    //Scanner scan = new Scanner(System.in);
-
     public Pet(){ //default constructor
        //gyguyg
     }
@@ -36,7 +33,6 @@ public class Pet{
             difficultyName = "Normal";
         }else if (difficulty == 2){ //hard
             this.satiety = 0.70;
-            this.mood = "Upset";
             this.money = 500;
             this.relationship = 45;
             difficultyName = "Hard";
@@ -45,7 +41,6 @@ public class Pet{
                 this.killPet("miscarriage");
             }else{ //if it doesn't die...
                 this.satiety = 0.4;
-                this.mood = "Angry";
                 this.relationship = 21;
                 if (ran.nextInt(4) == 0){ // 25% chance of starting with an Evil pet
                     this.isEvil = true;
@@ -124,7 +119,7 @@ public class Pet{
         Scanner scan = new Scanner(System.in);
         String[] invItems = Menu.invItems;
         if (this.satiety>1.0){ //too full to eat
-            System.out.println("\n"+name+"is too full to eat.");
+            System.out.println("\n"+name+" is too full to eat.");
             Lazy.waitForEnter();
             return;
         }
@@ -142,7 +137,7 @@ public class Pet{
                     return;
                 }
                 if (amount > Menu.itemInvAmount[i]){ //more than inv amount
-                    System.out.println("You ain't got that much food");
+                    System.out.println("You ain't got that much food.");
                     Lazy.waitForEnter();
                     return;
                 }
@@ -154,6 +149,7 @@ public class Pet{
                         break;
                     case 1: //norm
                         this.satiety += (0.1*amount);
+                        if(this.satiety>1.8){this.killPet("gastrointestinal perforation");}
                         break;
                     case 2: //hard
                         this.satiety += (0.04*amount);
@@ -165,7 +161,7 @@ public class Pet{
                         break;
                 }
                 main.action++;
-                Lazy.waitForEnter();
+                //Lazy.waitForEnter();
                 return;
             }
         }
@@ -207,7 +203,7 @@ public class Pet{
             System.out.print("Poke "+name+"? (y/n): ");
             String yn = scan.nextLine();
             while (!yn.equalsIgnoreCase("y") && !yn.equalsIgnoreCase("n")) {
-                System.out.print("Poke " + name + "? (y/n): ");
+                System.out.print("Poke "+name+"? (y/n): ");
                 yn = scan.nextLine();
             }
             Lazy.hold(900);//pause for .9 sec
@@ -255,7 +251,12 @@ public class Pet{
             System.out.println(" is sick.");
         }
         System.out.println("Health: "+health);
-        // System.out.println("\nMood: "+this.mood+"\nRelationship: "+this.relationship); -- removed due to lack of use
+        if(evilCount>0){
+            int cSE = Cycle.cyclesSinceEvil;
+            String ecPlural = Lazy.autoPlural(evilCount);
+            String dsePlural = Lazy.autoPlural(cSE);
+            System.out.println(name+" has turned evil "+evilCount+"time"+ecPlural+".\nIt has been "+cSE+" cycle"+dsePlural+" since "+name+" was evil.");
+        }
         Lazy.waitForEnter();
         return;
     }
@@ -264,10 +265,6 @@ public class Pet{
         this.age++;
         System.out.println("Happy Birthday! "+this.name+" is "+this.age+" years old! (+300 mon)"); //idea: gift feature
         this.money += 300;
-    }
-
-    public void printMood(){
-        System.out.println(this.mood);
     }
 
     // TO DO - if pet is already healthy...
@@ -387,7 +384,5 @@ public class Pet{
             System.out.println("You have no vitamins");
             Lazy.waitForEnter();
         }
-
-
     }
 }

@@ -18,7 +18,7 @@ public class Menu{
       Scanner scan = new Scanner(System.in);
       String name = pet.name; 
       //Lazy.clearConsole();
-      System.out.print("\n--------[*MY FIRST ELDRITCH EVIL*]--------\n  1. Inventory\n  2. Go to the store\n  3. Check "+name+"'s Stats\n  4. Feed " + name + "\n  5. Sleep "+name+"\n  6. Exercise "+name+"\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");
+      System.out.print("\n--------[MY FIRST ELDRITCH EVIL]--------\n  1. Inventory\n  2. Go to the store\n  3. Check "+name+"'s Stats\n  4. Feed " + name + "\n  5. Sleep "+name+"\n  6. Exercise "+name+"\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");
       int input = scan.nextInt();
       switch(input){
         case 1: //inventory
@@ -45,7 +45,7 @@ public class Menu{
           pet.cuddlePet();
           break;
         case 8:
-          Cycle.nextCycle(pet);
+          main.action = 3;
           break;
         default:
           System.out.println("Option "+input+" is not available.");
@@ -54,7 +54,6 @@ public class Menu{
     }else{
       Evil.crisisMenu(pet);
     }
-    //scan.close();
   }
 
 
@@ -73,10 +72,7 @@ public class Menu{
       Scanner scan = new Scanner(System.in);
       int input = scan.nextInt(); 
       
-      if(input == 0){
-        return;
-        //displayMenu(pet);
-      } //return
+      if(input == 0){return;} //return
       String sel = (invItems[(input-1)]);
       switch(sel){
         case "Food":
@@ -202,7 +198,6 @@ public class Menu{
   }
 
   public static void openShop(Pet pet){
-    boolean shopping = true;
     Scanner scan = new Scanner(System.in);
     if(pet.name.trim().equals("ferg")){
       System.out.println("dev mode");
@@ -210,7 +205,6 @@ public class Menu{
       pet.money = max;
     }
     if(!pet.isEvil){ //if pet is not evil...
-      Lazy.clearConsole();
       System.out.println("\n\n     [{SHOP}]          Wallet: "+pet.money+" mon\n------------------------------------------");
       for (int i = 0; i < shopItems.length; i++){ //load the item list
         if(itemStock[i] > 0){
@@ -226,17 +220,17 @@ public class Menu{
         return;
       }else{
         System.out.print("How many? ");
-        int quant;
-        quant = scan.nextInt();
+        int quant = scan.nextInt();
         if(itemStock[(sel - 1)] < quant){
           System.out.println("Not enough stock.");
           Lazy.waitForEnter();
           Menu.openShop(pet);
-        }else if (quant<1){ //if user inputs a quantity less than 1, return them back to the main shopping thing or smth idk
+        }
+        if (quant<1){ //if user inputs a quantity less than 1, return them back to the main shopping thing or smth idk
           Menu.openShop(pet);
         }
-        
         int cost = itemPrice[(sel-1)]*quant; //calculate purchase cost
+        
         if (cost>pet.money){
           System.out.println("You don't have enough money.");
           Lazy.waitForEnter();
@@ -271,7 +265,7 @@ public class Menu{
       System.out.println("     [{SHOP}]          Wallet: "+pet.money+" mon\n------------------------------------------");
       for (int i = 0; i < crisisShopItems.length; i++){ //load the item list
         if(crisisItemStock[i]>0){
-        System.out.println("  "+(i+1)+". "+crisisShopItems[i]+ " x" + crisisItemStock[i]+"  -  Price: "+crisisPrice[i]);
+          System.out.println("  "+(i+1)+". "+crisisShopItems[i]+ " x" + crisisItemStock[i]+"  -  Price: "+crisisPrice[i]);
         }
       }
       System.out.print("  0. Return to Menu\nSELECT: ");
@@ -286,44 +280,46 @@ public class Menu{
       }else{
         System.out.print("How many? ");
         int quant = scan.nextInt();
+        if(crisisItemStock[(sel - 1)] < quant){
+          System.out.println("Not enough stock.");
+          Lazy.waitForEnter();
+          Menu.openShop(pet);
+        }
         if (quant<1){ //if user inputs a quantity less than 1, return them back to the main shopping thing or smth idk
           Evil.crisisMenu(pet);
         }
         int cost = crisisPrice[(sel-1)]*quant; //calculate purchase cost
+        
         if (cost>pet.money){
-          System.out.println("TOO POOR.");
+          System.out.println("You don't have enough money.");
           Lazy.waitForEnter();
           Evil.crisisMenu(pet);
-        }
-        pet.money -= cost; //subtract cost from wallet
-        int emptySlot = -1;
-        boolean duplicate = false;
-        for(int i = 0; i < crisisInvItems.length;i++){ //search for duplicates with invItems and your selection
+        }else{
+          pet.money -= cost; //subtract cost from wallet
+          int emptySlot = -1;
+          boolean duplicate = false;
+          for(int i = 0; i < crisisInvItems.length;i++){ //search for duplicates with invItems and your selection
             if(crisisInvItems[i] == crisisShopItems[(sel-1)]){
               duplicate = true;
               emptySlot = i;
               break;
-          }
-        }
-        if(!duplicate){
-          for (int i = 0; i < crisisInvItems.length; i++) {
-            if (crisisInvItems[i] == null) {
-                emptySlot = i;
-                break;
             }
           }
+          if(!duplicate){
+            for (int i = 0; i < crisisInvItems.length; i++) {
+              if (crisisInvItems[i] == null) {
+                  emptySlot = i;
+                  break;
+              }
+            }
+          }
+          if(emptySlot != -1){
+            crisisInvItems[emptySlot] = crisisShopItems[(sel-1)];
+          }
+          crisisInvAmount[emptySlot] = crisisInvAmount[emptySlot] + quant;
         }
-        if(emptySlot != -1){
-        crisisInvItems[emptySlot] = crisisShopItems[(sel-1)];
-        }
-        int amountgiven = 0;
-        while(amountgiven != quant){ //why while loop
-          crisisInvAmount[emptySlot]++;
-          crisisItemStock[(sel-1)]--; //subtract item stock
-          amountgiven++;
-        }
+        return;
       }
     }
-    scan.close();
   }
 }

@@ -3,17 +3,17 @@ import java.util.Random;
 public class Cycle{
     public static int cycle,cyclesSinceEvil;
     public static void nextCycle(Pet pet){
-        System.out.println("\n\n-----------------------------------");
+        cycle++; //cycle counter increase
+        System.out.println("\n\n------------------[Cycle "+cycle+"]-----------------");
         String name = pet.name;
         String langs[] = {"Hebrew","Ancient Egyptian","Mandarin","Japanese","English","Pig Latin","Klingon","C++","Breadlish","Japanese","French","Amharic","Russian","Arabic","Giraffe","Sarati","the language of LOVE","to the manager","Vulcan","Sindarin","Newspeak","Hindi","Spanish","Portugese","Turkish","Urdu","Italian","Sign Language","Sugondese"};
-        String petActions[] = {name+" cleans its... tentacles.",name+" is growing a third eye.",name+" is growing a fourth eye.","You catch "+name+" plotting an assasination.","You tripped over "+name+" walking down the stairs last night... again...",name+" was named a suspect in murder.",name+"'s teeth are looking extra sharp today!","You got banned from your local PetCo... and dog park... and elementary school.",name+" seems to have taken a liking to ketchup... but where is "+name+" getting it?",name+" fails another DNA test. Maybe it should study next time.",name+"'s BAC is found to be well over the legal limit.",name+" learns to speak "+Lazy.ranStringArray(langs),name+"'s lawyer immediately quits",name+" quits its job at Spirit Halloween after one day.",name+" thinks MatLab is a real programming language.",name+" put a semicolon after all your if statement.",name+" ate your left sock.",name+" joined Twitter.",name+" didn't return its shopping cart.",name+" trapped you at an Amy Schumer show."};
+        String petActions[] = {name+" cleans its... tentacles.",name+" is growing a third eye.",name+" is growing a fourth eye.","You catch "+name+" plotting an assasination.","You tripped over "+name+" walking down the stairs last night... again...",name+" was named a suspect in murder.",name+"'s teeth are looking extra sharp today!","You got banned from your local PetCo... and dog park... and elementary school.",name+" seems to have taken a liking to ketchup... but where is "+name+" getting it?",name+" fails another DNA test. Maybe it should study next time.",name+"'s BAC is found to be well over the legal limit.",name+" learns to speak "+Lazy.ranStringArray(langs)+".",name+" is learning to speak "+Lazy.ranStringArray(langs)+".",name+"'s new lawyer immediately quits.",name+" quits its job at Spirit Halloween after one day.",name+" thinks MatLab is a real programming language.",name+" put semicolons after all your if statements.",name+" ate your left sock.",name+" ate your right sock.",name+" joined Twitter.",name+" didn't return its shopping cart.",name+" trapped you at an Amy Schumer show.",name+" is running for president. It'll probably win."};
         Random ran = new Random();
-        cycle++; //cycle counter increase
         
         int rando = ran.nextInt(99);
-        if (!pet.isEvil){cyclesSinceEvil++;} //cycles since evil counter
         int evilchance;
         if (!pet.isEvil){ //evil pet chances
+            cyclesSinceEvil++; //cycles since evil counter
             if (cyclesSinceEvil<=5){
                 evilchance = 8;
             }else if (cyclesSinceEvil<=8){
@@ -38,7 +38,7 @@ public class Cycle{
                 evilchance+=17;
             }
             if(pet.name.equals("ferg") || pet.name.equals("evil")){System.out.println("Evil Chance: "+evilchance);}
-            if (rando<evilchance){
+            if (rando<evilchance || pet.name.equals("evil")){
                 pet.isEvil=true;
                 return;
             }
@@ -189,7 +189,7 @@ public class Cycle{
         }else if(hng<=0.45){
             System.out.println(name+" wants to know when dinner is");
         }else if(pet.satiety<0.75){
-            System.out.println(pet.name+" wants a snack.");
+            System.out.println(name+" wants a snack.");
         }
 
         //---Pet Energy Alerts---//
@@ -258,6 +258,7 @@ public class Cycle{
         } else {
             System.out.println(pet.name + " found nothing!");
         }
+        System.out.println("\n");
         Lazy.waitForEnter();
     }
 }
