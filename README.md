@@ -13,11 +13,11 @@ Powershell
 
 ### Installing
 Download [this file](<!-- Link -->).
-\nExtract the ["program with PowerShell script to run.7z"](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.with.powershell.script.to.run.7z) zip folder.
+</p>Extract the ["program with PowerShell script to run.7z"](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.with.powershell.script.to.run.7z) zip folder.
 
 ### Executing Program
-Right-click the ".RUN THIS IN POWERSHELL TO PLAY.ps1" file and press "Run with Powershell"
-If you know what you are doing I have also included the [.jar file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.jar).
+Right-click the ".RUN THIS IN POWERSHELL TO PLAY.ps1" file and press "Run with Powershell."
+</p>If you know what you are doing, we have also included the [.jar file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.jar).
 
 ## Help
 If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. \nThis is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
