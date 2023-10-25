@@ -13,7 +13,7 @@ Powershell
 
 ### Installing
 #### Windows
-Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.with.ps.script.7z), then extract the files.
+Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.with.ps.script.7z), then extract its contents.
 #### Mac
 Mac release (maybe) coming soon.
 
