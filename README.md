@@ -12,8 +12,7 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 Powershell
 
 ### Installing
-Download [this file](<!-- Link -->).
-</p>Extract the ["program with PowerShell script to run.7z"](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.with.powershell.script.to.run.7z) zip folder.
+Download [this file](<!-- Link -->), then extract the ["program with PowerShell script to run.7z"](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.with.powershell.script.to.run.7z) zip folder.
 
 ### Executing Program
 Right-click the ".RUN THIS IN POWERSHELL TO PLAY.ps1" file and press "Run with Powershell."
