@@ -1,5 +1,5 @@
 # My First Eldritch Evil
-My First Eldritch Evil (may also be referred to as MFEE in the following document) is designed to be the worst possible Tamagatchi-style game — in the best possible way. MFEE takes all of the joy out of pet care and puts in all of the frustration of doing your taxes. 
+My First Eldritch Evil (may be referred to as MFEE in the following document) is designed to be the worst possible Tamagatchi-style game — in the best possible way. MFEE takes all of the joy out of pet care and puts in all of the frustration of doing your taxes. 
 
 ## Description
 MFEE is a text-based program where you raise the worst pet ever imaginable.
@@ -12,21 +12,29 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 Powershell
 
 ### Installing
-Download [this file](<!-- Link -->), then extract the ["program with PowerShell script to run.7z"](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.with.powershell.script.to.run.7z) zip folder.
+#### Windows
+Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.with.ps.script.7z), then extract the files.
+#### Mac
+Mac release (maybe) coming soon.
 
 ### Executing Program
-Right-click the ".RUN THIS IN POWERSHELL TO PLAY.ps1" file and press "Run with Powershell."
-</p>If you know what you are doing, we have also included the [.jar file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/java/program.jar).
+* Windows: Run the file ps1 file named ".RUN THIS IN POWERSHELL TO PLAY.ps1" with Powershell to play.
+* Mac: No release yet
+</p>If you know what you are doing, we have also included the [.jar file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.jar).
 
 ## Help
 If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. \nThis is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
 
 ## Authors
-Kline Shimp  
-Aidan Young
+* Kline Shimp  
+* Aidan Young
 
 ## Version History
-1.0  - Release of the first version
+* 1.0  - Release of the first version
+* 1.1 - Evil Fix
+    * Fixed initiation bug when pet turned Evil
+    * Other bugfixes
+    * Minor optimizations
 
 ## License
 <!-- TODO: Figure out license -->
