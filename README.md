@@ -2,7 +2,12 @@
 My First Eldritch Evil (may be referred to as MFEE in the following document) is designed to be the worst possible Tamagatchi-style game — in the best possible way. MFEE takes all of the joy out of pet care and puts in all of the frustration of doing your taxes. 
 
 ## Description
-MFEE is a text-based program where you raise the worst pet ever imaginable.
+MFEE is a text-based program where you raise the worst pet ever imaginable. It was created as a submission for the Congressional App Challenge by two idiots in about a month. Players embark on a console-based... experience where they can raise their very own Lovecraftian creature! Some of the things the player can do include:
+* Naming their pet
+* Feeding their pet
+* Exercising their pet
+* Cuddling their pet (Note: This option is highly discouraged).
+* Healing their pet if it gets sick
 
 ## Storyline
 You have been forcefully tasked with taking care of your aunt's horrible pet of unknown origin. 
