@@ -23,7 +23,7 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 * Bash
 
 ### Installing
-* Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.2.1/MyFirstEldritchEvil.zip), then extract its contents.
+* Download the MyFirstEldritchEvil.zip file from the release page, then extract its contents.
 
 ### Executing Program
 * Windows: Right-click the .ps1 file named "Run This File With Powershell to Play.ps1" and run it with Powershell to play.
@@ -58,6 +58,8 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
     * Guarded slash now works
     * Food bundles now work
     * Cycles since evil should now reset
+ * 1.2.2
+    * Fixed pet death display error
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
