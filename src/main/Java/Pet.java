@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Pet{
     public int age, difficulty, money, relationship;
     public int evilCount = 0;
+    public int calming = 0; //calming is an effect that reduces pet's evil likelihood. Number corresponds to rounds until calming affect wears off.
     public int petDefeats = 0;
     public int exercised = 4; //determines how fit pet is
     public double satiety, energy; //satiety, or fullness. Range is between 0 and 1, with 0 being starving to death. Energy's range is 0 to 2, 1 being normal and anything above being insanity.
@@ -11,6 +12,7 @@ public class Pet{
     public String name, difficultyName, relationshipName;
     public boolean isHealthy=true;
     public boolean isEvil;
+    public boolean isEnergized=false; //when pet is energized, it loses little to no energy.
 
 
     Random ran = new Random();
@@ -23,7 +25,7 @@ public class Pet{
         this.energy = 1.00;
         if (difficulty == 0 ){ //easy
             this.satiety = 1.00;
-            this.money = 1000; // all difficulties get 100 money to start - change later
+            this.money = 1000;
             this.relationship = 80;
             difficultyName = "Easy";
         }else if (difficulty == 1){ //normal
@@ -40,7 +42,7 @@ public class Pet{
             if (ran.nextInt(50)==0){ //2% chance of starting with a dead pet.
                 this.killPet("miscarriage");
             }else{ //if it doesn't die...
-                this.satiety = 0.4;
+                this.satiety = 0.6;
                 this.relationship = 21;
                 if (ran.nextInt(4) == 0){ // 25% chance of starting with an Evil pet
                     this.isEvil = true;
@@ -48,7 +50,7 @@ public class Pet{
                 if (ran.nextBoolean()){ //33% chance of starting with a sick pet
                     this.isHealthy = false;
                 }
-                this.money = 200;
+                this.money = 500;
                 difficultyName = "Impossible";
             }
         }
@@ -244,13 +246,28 @@ public class Pet{
     
     public void checkStats(){ 
         System.out.println(this.name+"'s Stats:\n------------------------------------------");
-        System.out.print("Age: "+this.age+"\nDifficulty: "+difficultyName+"\nEnergy: "+energy+"\nSatiation: "+satiety+"\n"+name);
+        String yrs = Lazy.autoPlural(age);
+        System.out.print(name+" is "+age+"year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+energy+"\nSatiation: "+satiety+"\n"+name);
         if(isHealthy){
             System.out.println(" is healthy.");
         }else{
             System.out.println(" is sick.");
         }
         System.out.println("Health: "+health);
+        if(isEnergized){
+            System.out.println(name+" is energized.");
+        }
+        if (exercised<1){
+            System.out.println(name+" is looking kinda chubby. Might wanna hit the gym...");
+        }else if (exercised < 7){
+            System.out.println(name+" is looking nice and fit.");
+        }else{
+            System.out.println(name +" is looking crazy buff.");
+        }
+        if(calming>0){
+            String calmin = Lazy.autoPlural(calming);
+            System.out.println("Incense is calming "+name+" and reducing its chance of\nturning evil. The incense will last for "+calming+" more cycle"+calmin+".");
+        }
         if(evilCount>0){
             int cSE = Cycle.cyclesSinceEvil;
             String ecPlural = Lazy.autoPlural(evilCount);
@@ -293,7 +310,7 @@ public class Pet{
                     System.out.println("looking...");
                     Lazy.hold(1100);
                     System.out.println(this.name+" is no longer sick.");
-                    addMoney();
+                    //addMoney();
                 }else{
                     System.out.println("You gave "+this.name+" some medication.");
                     Lazy.waitForEnter();
@@ -320,7 +337,7 @@ public class Pet{
                     System.out.println("looking...");
                     Lazy.hold(1100);
                     System.out.println(this.name+" is no longer sick.");
-                    addMoney();
+                    //addMoney();
                 }else{
                     System.out.println("You gave "+this.name+" some medication.");
                     Lazy.waitForEnter();
@@ -384,5 +401,72 @@ public class Pet{
             System.out.println("You have no vitamins");
             Lazy.waitForEnter();
         }
+    }
+
+    public void energyDrink(){
+        if (energy >= 1.6){
+            System.out.println(name+" is too energized.");
+            return;
+        }
+        boolean foundED = false;
+        for(int j=0; j<Menu.itemInvAmount.length; j++){ //locate Energy Drink
+            if(Menu.invItems[j] == null){continue;} //skip the nulls
+            if(Menu.invItems[j].equalsIgnoreCase("Energy Drink")){ //once it finds incense
+                foundED = true;
+                Menu.itemInvAmount[j] -= 1;
+                break;
+            }
+        }
+        if(foundED == true){
+            System.out.println(name+" drinks the energy drink!");
+            energy += 0.6;
+            if (energy <= 1.0 && energy >= 0.75){
+                System.out.println(name+" got its strength back!");
+            }else if (energy > 1.0 && energy <= 1.5){
+                System.out.println(name+" is super energized!");
+            }else if (energy > 1.5){
+                System.out.println(name+" is jittering in a concerning way...");
+            }else{
+                System.out.println("The energy drink worked.");
+            }
+            if (energy>=2.0){
+                killPet("a heart attack");
+            }
+            System.out.println("Energy: "+energy);
+            isEnergized = true;
+            main.action++;
+        }else{
+            System.out.println("You have no Energy Drinks.");
+        }
+        Lazy.waitForEnter();
+    }
+
+    public void incense(){
+        if(calming > 10){
+            System.out.println("The amount of incense in "+name+"'s room is overwhelming. You\nwalk in to place a few more, but lose\nyour vision as your eyes tear up. The scent is overwhelming.\nThrough the thick haze of burning incense, you spot\n"+name+"'s form lying still on the floor...");
+            Lazy.waitForEnter();
+            killPet("incense asphyxiation");
+        }
+        boolean foundIncense = false;
+        for(int j=0; j<Menu.itemInvAmount.length; j++){ //locate Incense
+            if(Menu.invItems[j] == null){continue;} //skip the nulls
+            if(Menu.invItems[j].equalsIgnoreCase("Incense")){ //once it finds incense
+                foundIncense = true;
+                Menu.itemInvAmount[j] -= 1;
+                break;
+            }
+        }
+        if (foundIncense == true){
+            System.out.println("You place incense in "+name+"'s room.\n"+name+" is feeling calmer now.");
+            calming += 4;
+        }else{
+            System.out.println("You have no incense.");
+        }
+        Lazy.waitForEnter();
+        if(calming >= 8){
+            System.out.println("You have placed a dangerously excessive amount of incense in "+name+"'s room...");
+            Lazy.waitForEnter();
+        }
+        main.action++;
     }
 }
