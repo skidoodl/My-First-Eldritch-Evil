@@ -23,12 +23,11 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 * Bash
 
 ### Installing
-* Windows: Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.2.0/MyFirstEldritchEvil-Windows.zip), then extract its contents.
-* Mac: Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.2.0/MyFirstEldritchEvil-Mac.zip), then extract its contents.
+* Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.2.1/MyFirstEldritchEvil.zip), then extract its contents.
 
 ### Executing Program
-* Windows: Run the .ps1 file named "Run This File With Powershell to Play.ps1" with Powershell to play.
-* Mac: Double-click the "Run My First Eldritch Evil" file to run with Terminal.
+* Windows: Right-click the .ps1 file named "Run This File With Powershell to Play.ps1" and run it with Powershell to play.
+* Mac: Double-click the "Run My First Eldritch Evil - Mac" file to run with Terminal.
 
 ## Help
 If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. This is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
