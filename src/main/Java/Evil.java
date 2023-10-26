@@ -73,6 +73,7 @@ public class Evil{
             action=0;
             if(!pet.isEvil){ //if pet isn't evil...
                 System.out.println(name+" is no longer evil.\nYou have recieved "+reward+" mon as a reward.");
+                Cycle.cyclesSinceEvil = 0;
                 Lazy.waitForEnter();
                 pet.money += reward;
                 break;
