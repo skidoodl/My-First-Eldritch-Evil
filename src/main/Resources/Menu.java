@@ -2,10 +2,10 @@ import java.util.Scanner;
 public class Menu{
   //-----NORMAL INVENTORY-----//
   public static String[] invItems = new String[10];
-  public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins"};
-  public static int[] itemStock = {100,20,5,25,0,0,0,0,0,0};
+  public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
+  public static int[] itemStock = {100,20,5,25,35,16,0,0,0,0};
   public static int[] itemInvAmount = new int[10];
-  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 500,/*strong meds*/ 1200,/*vitamins*/650}; // load item prices
+  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 500,/*strong meds*/ 1200,/*vitamins*/650,/*Energy Drink*/120,/*Incense*/370}; // load item prices
   //-----CRISIS INVENTORY-----//
   public static String[] crisisInvItems = new String[10];
   public static String[] crisisShopItems = {"Armor (lv1)", "Armour (lv2)", "Armoure (lv3)","Wood Sword","Iron Sword","Shield","Food Bundle","Sedatives","Magic Juice","Magic Super Juice"};
@@ -58,7 +58,7 @@ public class Menu{
 
 
   public static void openInventory(Pet pet){
-    System.out.println("\n-------{INVENTORY}-------\n-------------------------\nPRESS 0 TO EXIT");
+    System.out.println("\n-------{INVENTORY}-------\nPRESS 0 TO EXIT");
     if(!pet.isEvil){ //if pet isn't evil, display this inventory
       for (int i = 0; i < invItems.length; i++) {
         if(itemInvAmount[i] == 0){
@@ -87,6 +87,11 @@ public class Menu{
         case "Vitamins":
           pet.vitamins();
           break;
+        case "Energy Drink":
+          pet.energyDrink();
+          break;
+        case "Incense":
+          pet.incense();
         default:
           System.out.println("Unavailable");
           break;
@@ -204,14 +209,14 @@ public class Menu{
       int max = Integer.MAX_VALUE;
       pet.money = max;
     }
+    System.out.println("\n\n-----------{SHOP}-----------\nWallet: "+pet.money+" mon\n----------------------------\nPRESS 0 TO EXIT");
     if(!pet.isEvil){ //if pet is not evil...
-      System.out.println("\n\n     [{SHOP}]          Wallet: "+pet.money+" mon\n------------------------------------------");
       for (int i = 0; i < shopItems.length; i++){ //load the item list
         if(itemStock[i] > 0){
           System.out.println("  "+(i+1)+". "+shopItems[i]+ " x" + itemStock[i]+"  -  Price: "+itemPrice[i]);
         }
       }
-      System.out.print("  0. Return to Menu\nSELECT: ");
+      System.out.print("SELECT: ");
       int sel = scan.nextInt(); //allow user to select item to purchase
       while (sel>11 || sel<0){ //ensure the user makes a selection within the correct range
        sel = scan.nextInt();
@@ -262,7 +267,6 @@ public class Menu{
         return;
       }
     }else{ //----CRISIS SHOP----/
-      System.out.println("     [{SHOP}]          Wallet: "+pet.money+" mon\n------------------------------------------");
       for (int i = 0; i < crisisShopItems.length; i++){ //load the item list
         if(crisisItemStock[i]>0){
           System.out.println("  "+(i+1)+". "+crisisShopItems[i]+ " x" + crisisItemStock[i]+"  -  Price: "+crisisPrice[i]);
