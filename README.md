@@ -52,6 +52,13 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
     * Pet now ages up after 4 cycles
     * Cleaned up some UI elements
     * Optimizations
+* 1.2.1
+    * Critical hits are now possible
+    * Adjusted success rates for attacks
+    * You can now get rewards in Evil Cycle
+    * Guarded slash now works
+    * Food bundles now work
+    * Cycles since evil should now reset
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
