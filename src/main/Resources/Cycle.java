@@ -37,6 +37,11 @@ public class Cycle{
             }else if (pet.energy>1.3){
                 evilchance+=17;
             }
+            if (pet.calming > 0){
+                System.out.println(name+" is feeling calmer lately...");
+                pet.calming--;
+                evilchance = (int) (evilchance*0.66);
+            }
             if(pet.name.equals("ferg") || pet.name.equals("evil")){System.out.println("Evil Chance: "+evilchance);}
             if (rando<evilchance || pet.name.equals("evil")){
                 pet.isEvil=true;
@@ -51,7 +56,7 @@ public class Cycle{
                 System.out.println(name+" is getting kinda fat.");
             }
             
-            if (cycle % 3 == 0 && cycle != 0){pet.birthday();} //age pet up, if necessary
+            if (cycle % 4 == 0 && cycle != 0){pet.birthday();} //age pet up, if necessary
 
             rando = ran.nextInt(99);
             switch(pet.difficulty){ //various cycle functions, vary by difficulty
@@ -63,7 +68,8 @@ public class Cycle{
                         }else{
                         pet.satiety -= .05;
                     }
-                    pet.energy -= .06; //energy
+                    
+                    if(!pet.isEnergized){pet.energy -= .08;} //energy
                     pet.money += 100; //earn money
                     if (rando <4){ //player lose money
                         pet.money = (int) (pet.money*.85);
@@ -78,7 +84,11 @@ public class Cycle{
                         }else{
                         pet.satiety -= .10;
                     }
-                    pet.energy -= (.06 + (rando*.003)); //energy
+                    if(pet.isEnergized){ //energy
+                        pet.energy -= .08;
+                    }else{
+                        pet.energy -= (.08 + (rando*.004));
+                    }
                     pet.money += 75; //earn money
                     if (rando <10){//player loses money
                         pet.money = (int) (pet.money*.80);
@@ -93,7 +103,11 @@ public class Cycle{
                         }else{
                         pet.satiety -= .18;
                     }
-                    pet.energy -= (.02 + (rando*.006)); //energy
+                    if(pet.isEnergized){ //energy
+                        pet.energy -= .13;
+                    }else{
+                        pet.energy -= (.14 + (rando*.005));
+                    }
                     pet.money += 50; //earn money
                     if (rando <15){//player loses money
                         pet.money = (int) (pet.money*.75);
@@ -108,7 +122,11 @@ public class Cycle{
                             }else{
                             pet.satiety -= .18;
                         }
-                    pet.energy -= (.02 + (rando*.01)); //energy
+                    if(pet.isEnergized){ //energy
+                        pet.energy -= .12;
+                    }else{
+                        pet.energy -= (.19 + (rando*.004));
+                    }
                     pet.money += 30; //earn money
                     if (rando <25){//player loses money
                         pet.money = (int) (pet.money*.70);
@@ -181,6 +199,13 @@ public class Cycle{
         if (pet.health <= 0){pet.killPet("the plague.");}
         if (pet.satiety <=0){pet.killPet("starvation");}
         if (pet.energy <= 0){pet.killPet("wasted away");}
+
+        if(pet.isEnergized){ //chance to lose energized status
+            rando = ran.nextInt(5);
+            if(rando==0){ //1/5 chance of no longer being energized
+                System.out.println(name+" is no longer energized");
+            }
+        }
         
         //---Pet hunger alerts:---//
         double hng = pet.satiety;
