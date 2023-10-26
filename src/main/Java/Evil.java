@@ -292,7 +292,7 @@ public class Evil{
                     }
                 }
                 break;
-            case "Gaurded Slash":
+            case "Guarded Slash":
                 if(rando<35){ //35% chance of missing
                     System.out.println("Your swing missed!");
                 }else{
@@ -356,7 +356,7 @@ public class Evil{
                 }
                 break;
             default: //this shouldn't happen but just in case
-                System.out.println("Error");
+                System.out.println("Error - Selection Missing");
                 return;
         }
         
@@ -408,7 +408,7 @@ public class Evil{
         boolean foundBribe = false;
         for(int i=0; i<Menu.crisisInvAmount.length; i++){
             if(Menu.crisisInvItems[i]==null){continue;} //skip nulls
-            if(Menu.crisisInvItems[i].equalsIgnoreCase("Food Bribe")){
+            if(Menu.crisisInvItems[i].equalsIgnoreCase("Food Bundle")){
                 foundBribe = true;
                 Menu.crisisInvAmount[i] -= 1;
                 break;
@@ -441,7 +441,7 @@ public class Evil{
             }
             action++;
         }else{
-            System.out.println("You have no bribes.");
+            System.out.println("You have no food bundle.");
         }
         Lazy.waitForEnter();
     }
