@@ -5,7 +5,7 @@ public class Menu{
   public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
   public static int[] itemStock = {100,20,5,25,35,16,0,0,0,0};
   public static int[] itemInvAmount = new int[10];
-  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 500,/*strong meds*/ 1200,/*vitamins*/650,/*Energy Drink*/120,/*Incense*/370}; // load item prices
+  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 500,/*strong meds*/ 1200,/*vitamins*/200,/*Energy Drink*/120,/*Incense*/370}; // load item prices
   //-----CRISIS INVENTORY-----//
   public static String[] crisisInvItems = new String[10];
   public static String[] crisisShopItems = {"Armor (lv1)", "Armour (lv2)", "Armoure (lv3)","Wood Sword","Iron Sword","Shield","Food Bundle","Sedatives","Magic Juice","Magic Super Juice"};
