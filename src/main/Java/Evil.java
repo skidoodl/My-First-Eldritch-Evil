@@ -79,6 +79,8 @@ public class Evil{
                 break;
             }
             petAttack(pet);
+            ecReward(pet); //reward
+            
         }
     }
 
@@ -251,19 +253,19 @@ public class Evil{
         int rando = ran.nextInt(100);
         switch(sel){
             case "Punch":
-                if(rando<40){ //40% chance of missing
+                if(rando<18){ //18% chance of missing
                     System.out.print("You swung at "+name);
                     Lazy.hold(1000);
                     System.out.println("... and missed!");
                 }else{
                     System.out.println("You punched "+name+"!");
                     Lazy.hold(800);
-                    damage = ran.nextInt(6)+20;
+                    damage = ran.nextInt(8)+21;
                 }
                 break;
             case "Block":
                 System.out.println("You raise your wrists to block "+name+"'s next attack!");
-                if(rando<40){//40% chance of failure
+                if(rando<20){//20% chance of failure
                     Lazy.hold(1000);
                     System.out.println("You have terrible form!");
                 }else{
@@ -271,57 +273,52 @@ public class Evil{
                 }
                 break;
             case "Strong Slash":
-                if(rando<15){ //15% chance of missing
+                if(rando<12){ //12% chance of missing
                     System.out.println("You swung... but your sword bounced off "+name+"'s skin!");
                 }else{
                     System.out.println("You landed hit on "+name+"!");
-                    damage = ran.nextInt(26)+40;
+                    damage = ran.nextInt(31)+42;
                     if (activeWeapon.equalsIgnoreCase("Wood Sword")){                
-                        if(rando<8){
-                            System.out.println("It's a critical hit!");
-                            damage = (int) (damage*1.35);
-                        }
-                    }else{
-                        damage += 5;
-                        if(rando<13){
+                        if(rando<22){ //10%
                             System.out.println("It's a critical hit!");
                             damage = (int) (damage*1.5);
-                        }else if (rando<30){
-                            damage+=5;
+                        }
+                    }else{
+                        damage += 6;
+                        if(rando<30){ //18%
+                            System.out.println("It's a critical hit!");
+                            damage = (int) (damage*1.7);
+                        }else if (rando<65){ //35%
+                            damage+=7;
                         }
                     }
                 }
                 break;
             case "Guarded Slash":
-                if(rando<35){ //35% chance of missing
+                if(rando<16){ //16% chance of missing
                     System.out.println("Your swing missed!");
                 }else{
                     System.out.println("You carefully slash "+name+"!");
-                    damage = ran.nextInt(36)+15;
+                    damage = ran.nextInt(36)+30;
                     if (activeWeapon.equalsIgnoreCase("Wood Sword")){                
-                        if(rando<5){
+                        if(rando<25){ //7%
                             System.out.println("It's a critical hit!");
-                            damage = (int) (damage*1.2);
+                            damage = (int) (damage*1.35);
                         }
                     }else{
-                        damage += 5;
-                        if(rando<9){
+                        damage += 6;
+                        if(rando<30){ //12% chance
                             System.out.println("It's a critical hit!");
-                            damage = (int) (damage*1.4);
-                        }else if (rando<30){
-                            damage+=5;
-                        }
-                    
-                        if(rando<6){
-                        System.out.println("It's a critical hit!");
-                        damage = (int) (damage*1.2);
+                            damage = (int) (damage*1.5);
+                        }else if (rando<65){ //35% chance
+                            damage+=7;
                         }
                     }
                 }
                 break;
             case "Sword Block":
                 System.out.println("You raise your sword in a defensive position");
-                if(rando<20){//20% chance of failure
+                if(rando<16){//16% chance of failure
                     System.out.println("If you intended to block, you should have put your sword in front of you.");
                 }else{
                     prot=1;
@@ -329,7 +326,7 @@ public class Evil{
                 break;
             case "Shield Guard":
                 System.out.println("You use your shield... like a shield!");
-                if(rando<20){//20% chance of failure
+                if(rando<4){//4% chance of failure
                     System.out.println("...Although if you wanted it to work you would have faced TOWARDS "+name+"...");
                 }else{
                     prot=3;
@@ -337,19 +334,19 @@ public class Evil{
                 break;
             case "Shield Parry":
                 System.out.println("You prepare to parry "+name+"'s attack back at it");
-                if(rando<30){//30% chance of failure
+                if(rando<25){//25% chance of failure
                     System.out.println("You dropped your shield! You silly goose!");
                 }else{
                     prot=4; //parry value
                 }
                 break;
             case "Shield Bash":
-                if(rando<50){ //50% chance of missing
+                if(rando<30){ //30% chance of missing
                     System.out.println("You failed your bash and landed on your face like a LOSER!\nPride: -15");
                 }else{
                     System.out.println("You bonk "+name+" with the edge your shield!");
                     damage = ran.nextInt(11)+18;
-                    if(rando<4){
+                    if(rando<36){ //6% chance
                         System.out.println("It's a critical hit!");
                         damage = (int) (damage*1.35);
                     }
@@ -441,7 +438,7 @@ public class Evil{
             }
             action++;
         }else{
-            System.out.println("You have no food bundle.");
+            System.out.println("You have no food bundles.");
         }
         Lazy.waitForEnter();
     }
@@ -547,6 +544,57 @@ public class Evil{
             }
         }
         Lazy.waitForEnter();
+    }
+
+    public static void ecReward(Pet pet){
+        Random ran = new Random();
+        int reward = ran.nextInt(100);
+            int amount=0;
+            String rewName;
+            if(reward < 62){ //73%
+                rewName = "none";
+            }else if(reward >= 62 && reward < 82){ //20%
+                rewName = "Money";
+                amount = ran.nextInt(60)+50;
+            }else if(reward >= 82 && reward < 92){ //10%
+                rewName = "Food Bundle";
+                amount = ran.nextInt(4)+1;
+            }else if(reward >= 92 && reward <98){ //6%
+                rewName = "Magic Juice";
+                amount = ran.nextInt(2)+1;
+            }else{ //2%
+                rewName = "Magic Super Juice";
+                amount = 1;
+            }
+            switch(rewName){
+                case "none":
+                    break;
+                case "Money":
+                    pet.money += amount;
+                    break;
+                default:
+                    boolean duplicate = false;
+                    int emptySlot = -1;
+                    for (int i = 0; i < Menu.invItems.length; i++) {
+                        if (Menu.crisisInvItems[i] != null && Menu.crisisInvItems[i].equals(rewName)) {
+                            duplicate = true;
+                            emptySlot = i;
+                            break;
+                        }
+                    }
+                    if (!duplicate) {
+                        for (int i = 0; i < Menu.crisisInvItems.length; i++) {
+                            if (Menu.crisisInvItems[i] == null) {
+                                emptySlot = i;
+                                break;
+                            }
+                        }
+                    }
+                    Menu.crisisInvItems[emptySlot] = rewName;
+                    Menu.crisisInvAmount[emptySlot] += amount;
+                    break;
+
+            }
     }
 
     public static void stats(Pet pet){
