@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Evil{
-    public static int playerHP, petHP, maxHP;
+    public static int playerHP, petHP, maxHP,reward;
     public static int bonusHP = 0;
     public static int prot = 0; //prot = protection level - 0 is not, 1 is a little, 2 is great, 3 is 100%, 4 is parry
     public static String activeWeapon = "none";
@@ -71,7 +71,12 @@ public class Evil{
                 crisisMenu(pet);
             }
             action=0;
-            if(!pet.isEvil){break;} //if pet isn't evil...
+            if(!pet.isEvil){ //if pet isn't evil...
+                System.out.println(name+" is no longer evil.\nYou have recieved "+reward+" mon as a reward.");
+                Lazy.waitForEnter();
+                pet.money += reward;
+                break;
+            }
             petAttack(pet);
         }
     }
@@ -243,106 +248,117 @@ public class Evil{
         System.out.println(); //spacer
         /*--ATTACKS--*/
         int rando = ran.nextInt(100);
-        if(sel.equalsIgnoreCase("Punch")){
-            if(rando<40){ //40% chance of missing
-                System.out.print("You swung at "+name);
-                Lazy.hold(1000);
-                System.out.println("... and missed!");
-            }else{
-                System.out.println("You punched "+name+"!");
-                Lazy.hold(800);
-                damage = ran.nextInt(6)+20;
-            }
-        }else if(sel.equalsIgnoreCase("Block")){
-            System.out.println("You raise your wrists to block "+name+"'s next attack!");
-            if(rando<40){//40% chance of failure
-                Lazy.hold(1000);
-                System.out.println("You have terrible form!");
-            }else{
-                prot=1;
-            }
-        }else if(sel.equalsIgnoreCase("Strong Slash")){
-            if(rando<15){ //15% chance of missing
-                System.out.println("You swung... but your sword bounced off "+name+"'s skin!");
-            }else{
-                System.out.println("You landed hit on "+name+"!");
-                damage = ran.nextInt(26)+40;
-                if (activeWeapon.equalsIgnoreCase("Wood Sword")){                
-                    if(rando<8){
+        switch(sel){
+            case "Punch":
+                if(rando<40){ //40% chance of missing
+                    System.out.print("You swung at "+name);
+                    Lazy.hold(1000);
+                    System.out.println("... and missed!");
+                }else{
+                    System.out.println("You punched "+name+"!");
+                    Lazy.hold(800);
+                    damage = ran.nextInt(6)+20;
+                }
+                break;
+            case "Block":
+                System.out.println("You raise your wrists to block "+name+"'s next attack!");
+                if(rando<40){//40% chance of failure
+                    Lazy.hold(1000);
+                    System.out.println("You have terrible form!");
+                }else{
+                    prot=1;
+                }
+                break;
+            case "Strong Slash":
+                if(rando<15){ //15% chance of missing
+                    System.out.println("You swung... but your sword bounced off "+name+"'s skin!");
+                }else{
+                    System.out.println("You landed hit on "+name+"!");
+                    damage = ran.nextInt(26)+40;
+                    if (activeWeapon.equalsIgnoreCase("Wood Sword")){                
+                        if(rando<8){
+                            System.out.println("It's a critical hit!");
+                            damage = (int) (damage*1.35);
+                        }
+                    }else{
+                        damage += 5;
+                        if(rando<13){
+                            System.out.println("It's a critical hit!");
+                            damage = (int) (damage*1.5);
+                        }else if (rando<30){
+                            damage+=5;
+                        }
+                    }
+                }
+                break;
+            case "Gaurded Slash":
+                if(rando<35){ //35% chance of missing
+                    System.out.println("Your swing missed!");
+                }else{
+                    System.out.println("You carefully slash "+name+"!");
+                    damage = ran.nextInt(36)+15;
+                    if (activeWeapon.equalsIgnoreCase("Wood Sword")){                
+                        if(rando<5){
+                            System.out.println("It's a critical hit!");
+                            damage = (int) (damage*1.2);
+                        }
+                    }else{
+                        damage += 5;
+                        if(rando<9){
+                            System.out.println("It's a critical hit!");
+                            damage = (int) (damage*1.4);
+                        }else if (rando<30){
+                            damage+=5;
+                        }
+                    
+                        if(rando<6){
+                        System.out.println("It's a critical hit!");
+                        damage = (int) (damage*1.2);
+                        }
+                    }
+                }
+                break;
+            case "Sword Block":
+                System.out.println("You raise your sword in a defensive position");
+                if(rando<20){//20% chance of failure
+                    System.out.println("If you intended to block, you should have put your sword in front of you.");
+                }else{
+                    prot=1;
+                }
+                break;
+            case "Shield Guard":
+                System.out.println("You use your shield... like a shield!");
+                if(rando<20){//20% chance of failure
+                    System.out.println("...Although if you wanted it to work you would have faced TOWARDS "+name+"...");
+                }else{
+                    prot=3;
+                }
+                break;
+            case "Shield Parry":
+                System.out.println("You prepare to parry "+name+"'s attack back at it");
+                if(rando<30){//30% chance of failure
+                    System.out.println("You dropped your shield! You silly goose!");
+                }else{
+                    prot=4; //parry value
+                }
+                break;
+            case "Shield Bash":
+                if(rando<50){ //50% chance of missing
+                    System.out.println("You failed your bash and landed on your face like a LOSER!\nPride: -15");
+                }else{
+                    System.out.println("You bonk "+name+" with the edge your shield!");
+                    damage = ran.nextInt(11)+18;
+                    if(rando<4){
                         System.out.println("It's a critical hit!");
                         damage = (int) (damage*1.35);
                     }
-                }else{
-                    damage += 5;
-                    if(rando<13){
-                        System.out.println("It's a critical hit!");
-                        damage = (int) (damage*1.5);
-                    }else if (rando<30){
-                        damage+=5;
-                    }
                 }
-            }
-        }else if(sel.equalsIgnoreCase("Guarded Slash")){
-            if(rando<35){ //35% chance of missing
-                System.out.println("Your swing missed!");
-            }else{
-                System.out.println("You carefully slash "+name+"!");
-                damage = ran.nextInt(36)+15;
-                if (activeWeapon.equalsIgnoreCase("Wood Sword")){                
-                    if(rando<5){
-                        System.out.println("It's a critical hit!");
-                        damage = (int) (damage*1.2);
-                    }
-                }else{
-                    damage += 5;
-                    if(rando<9){
-                        System.out.println("It's a critical hit!");
-                        damage = (int) (damage*1.4);
-                    }else if (rando<30){
-                        damage+=5;
-                    }
-                
-                    if(rando<6){
-                    System.out.println("It's a critical hit!");
-                    damage = (int) (damage*1.2);
-                    }
-                }
-            }
-        }else if(sel.equalsIgnoreCase("Sword Block")){
-            System.out.println("You raise your sword in a defensive position");
-            if(rando<20){//20% chance of failure
-                System.out.println("If you intended to block, you should have put your sword in front of you.");
-            }else{
-                prot=1;
-            }
-        }else if(sel.equalsIgnoreCase("Shield Guard")){
-            System.out.println("You use your shield... like a shield!");
-            if(rando<20){//20% chance of failure
-                System.out.println("...Although if you wanted it to work you would have faced TOWARDS "+name+"...");
-            }else{
-                prot=3;
-            }
-        }else if(sel.equalsIgnoreCase("Shield Parry")){
-            System.out.println("You prepare to parry "+name+"'s attack back at it");
-            if(rando<30){//30% chance of failure
-                System.out.println("You dropped your shield! You silly goose!");
-            }else{
-                prot=4; //parry value
-            }
-        }else if(sel.equalsIgnoreCase("Shield Bash")){
-            if(rando<50){ //50% chance of missing
-                System.out.println("You failed your bash and landed on your face like a LOSER!\nPride: -15");
-            }else{
-                System.out.println("You bonk "+name+" with the edge your shield!");
-                damage = ran.nextInt(11)+18;
-                if(rando<4){
-                    System.out.println("It's a critical hit!");
-                    damage = (int) (damage*1.35);
-                }
-            }
-        }else{ //something went wrong lol
-            return;
+                break;
+            default: //this shouldn't happen but just in case
+                System.out.println("Error");
+                return;
         }
+        
         if(damage != 0){System.out.println("Damage: "+damage);}
         petHP -= damage;
         Lazy.waitForEnter();
@@ -381,6 +397,7 @@ public class Evil{
             System.out.println("...For now");
             Lazy.waitForEnter();
             pet.isEvil = false;
+            reward = 500 + petHP + playerHP;
         }
         action++; //increment action
     }
@@ -412,6 +429,12 @@ public class Evil{
                 Lazy.waitForEnter();
                 System.out.println(pet.name+" is no longer evil!");
                 pet.isEvil = false;
+                //-- reward --//
+                if (petHP <= 200){
+                    reward = 275 - petHP + (playerHP/10);
+                }else{
+                    reward = 75 - (playerHP/10);
+                }
             }else{
                 System.out.println("The bribe FAILED.");
             }
@@ -448,6 +471,12 @@ public class Evil{
                 Lazy.waitForEnter();
                 System.out.println(name+" was successfully sedated");
                 pet.isEvil = false;
+                //-- reward --//
+                if (petHP <= 200){
+                    reward = 275 - petHP + (playerHP/10);
+                }else{
+                    reward = 75 - (playerHP/10);
+                }
             }else{
                 System.out.println("The sedatives have no effect.");
             }
