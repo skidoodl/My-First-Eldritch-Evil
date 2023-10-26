@@ -7,6 +7,7 @@ public class main {
   public static int action;
 
   public static void main(String[] args) {
+    System.out.println("\n"); //spacer
     Scanner scan = new Scanner(System.in);
     try{
       final int[] isHatch = {0};
@@ -64,5 +65,3 @@ public class main {
     }
   }
 }
-
-
