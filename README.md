@@ -11,21 +11,24 @@ MFEE is a text-based program where you raise the worst pet ever imaginable. It w
 
 Due to your pet's... sinister nature, there is a possibility that it may turn evil. You must endeavor to calm down your pet before it destroys you (and the world). However, you must not kill it because killing animals is bad (even if your's definitely isn't innocent).
 
+[Section Unfinished]
+<!-- TO DO: FINISH WRITING THIS SECTION -->
+
 ## Storyline
 You have been forcefully tasked with taking care of your aunt's horrible pet of unknown origin. Apparently, she bought the egg from Facebook Marketplace?
 
 ## Getting Started
 ### Dependencies
-Powershell
+* Powershell
+* Bash
 
 ### Installing
-* Windows: Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.with.ps.script.7z), then extract its contents.
-* Mac: Mac release (maybe) coming soon.
+* Windows: Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.2.0/MyFirstEldritchEvil-Windows.zip), then extract its contents.
+* Mac: Download [this file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.2.0/MyFirstEldritchEvil-Mac.zip), then extract its contents.
 
 ### Executing Program
-* Windows: Run the file ps1 file named ".RUN THIS IN POWERSHELL TO PLAY.ps1" with Powershell to play.
-* Mac: No release yet
-</p>If you know what you are doing, we have also included the [.jar file](https://github.com/skidoodl/My-First-Eldritch-Evil/releases/download/v1.1/eldritch.jar).
+* Windows: Run the .ps1 file named "Run This File With Powershell to Play.ps1" with Powershell to play.
+* Mac: Double-click the "Run My First Eldritch Evil" file to run with Terminal.
 
 ## Help
 If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. This is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
@@ -40,9 +43,17 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
     * Fixed initiation bug when pet turned Evil
     * Other bugfixes
     * Minor optimizations
+* 1.2 - Mac Release
+    * Created Mac release
+    * Minor Windows release changes
+    * Added Energy Drink and Incense
+    * Calming pet now rewards money
+    * Improved stats menu
+    * Pet now ages up after 4 cycles
+    * Cleaned up some UI elements
+    * Optimizations
 
 ## License
-<!-- TODO: Figure out license -->
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgments
