@@ -247,7 +247,7 @@ public class Pet{
     public void checkStats(){ 
         System.out.println(this.name+"'s Stats:\n------------------------------------------");
         String yrs = Lazy.autoPlural(age);
-        System.out.print(name+" is "+age+"year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+energy+"\nSatiation: "+satiety+"\n"+name);
+        System.out.print(name+" is "+age+" year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+energy+"\nSatiation: "+satiety+"\n"+name);
         if(isHealthy){
             System.out.println(" is healthy.");
         }else{
