@@ -604,7 +604,7 @@ public class Evil{
         }else{
             checkShield = "equipped";
         }
-        System.out.print("-----------STATS-----------\nYour Health: "+(playerHP-bonusHP));
+        System.out.print("\n-----------STATS-----------\nYour Health: "+(playerHP-bonusHP));
         if(bonusHP>0){System.out.print(" + "+bonusHP);} //if bonus hp, display
         System.out.println("\nActive Weapon: "+activeWeapon+"\nShield: "+checkShield+"\nArmor Equipped: "+armor+"\n----------"+pet.name+" STATS----------\nHealth: "+petHP+"\n"+pet.name+" has turned evil "+pet.evilCount+" time"+Lazy.autoPlural(pet.evilCount)+".\nTimes Defeated: "+pet.petDefeats);
         Lazy.waitForEnter();
