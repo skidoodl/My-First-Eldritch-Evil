@@ -5,7 +5,7 @@ public class Menu{
   public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
   public static int[] itemStock = {100,20,5,25,35,16,0,0,0,0};
   public static int[] itemInvAmount = new int[10];
-  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 500,/*strong meds*/ 1200,/*vitamins*/200,/*Energy Drink*/120,/*Incense*/370}; // load item prices
+  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 450,/*strong meds*/ 900,/*vitamins*/200,/*Energy Drink*/120,/*Incense*/370}; // load item prices
   //-----CRISIS INVENTORY-----//
   public static String[] crisisInvItems = new String[10];
   public static String[] crisisShopItems = {"Armor (lv1)", "Armour (lv2)", "Armoure (lv3)","Wood Sword","Iron Sword","Shield","Food Bundle","Sedatives","Magic Juice","Magic Super Juice"};
@@ -18,7 +18,27 @@ public class Menu{
       Scanner scan = new Scanner(System.in);
       String name = pet.name; 
       //Lazy.clearConsole();
-      System.out.print("\n--------[MY FIRST ELDRITCH EVIL]--------\n  1. Inventory\n  2. Go to the store\n  3. Check "+name+"'s Stats\n  4. Feed " + name + "\n  5. Sleep "+name+"\n  6. Exercise "+name+"\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");
+      System.out.print("\n\n--------{MY FIRST ELDRITCH EVIL}--------\n  1. Inventory\n  2. Store\n  3. "+name+"'s Stats\n  4. Feed " + name + " ");
+      for(int i=0; i<itemInvAmount.length; i++){
+        if(invItems[i] == null){continue;} //skip the nulls
+        if(invItems[i].equalsIgnoreCase("Food")){ //once it finds medication
+          if(itemInvAmount[i] > 0)
+          System.out.print(" ("+itemInvAmount[i]+"x)");
+          break;
+        }
+      }
+      if (pet.satiety <= 0.25){ //menu alert if pet satiety is low
+        System.out.print(" (!)");
+      }
+      System.out.print("\n  5. Sleep "+name+" ");
+      if (pet.energy <= 0.25){ // menu alert if pet energy is low
+        System.out.print(" (!)");
+      }
+      System.out.print("\n  6. Exercise "+name+" ");
+      if (pet.exercised<=1){
+        System.out.print(" (!)");
+      }
+      System.out.print("\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");
       int input = scan.nextInt();
       switch(input){
         case 1: //inventory
@@ -58,7 +78,7 @@ public class Menu{
 
 
   public static void openInventory(Pet pet){
-    System.out.println("\n-------{INVENTORY}-------\nPRESS 0 TO EXIT");
+    System.out.println("\n\n-------{INVENTORY}-------\nPRESS 0 TO EXIT");
     if(!pet.isEvil){ //if pet isn't evil, display this inventory
       for (int i = 0; i < invItems.length; i++) {
         if(itemInvAmount[i] == 0){
