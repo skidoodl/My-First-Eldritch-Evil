@@ -58,12 +58,15 @@ public class Pet{
 
     
     public void killPet(String cause){
+        System.out.println("\n\n------------------------------------");
         Grave grave = new Grave();
         grave.printGrave(this.name);
         if (cause.equalsIgnoreCase("pop")){ //popped to death
             System.out.println(this.name+" popped.");
             Lazy.hold(1400);
             System.out.println("Better get a mop.");
+        }else if(cause.equals("wasted away")){ //wasted away
+            System.out.println(name+" wasted away.");
         }else{
             System.out.println(this.name+" died to "+cause+".");
         }
@@ -131,7 +134,7 @@ public class Pet{
             if(invItems[i] == null){continue;} //skip the nulls
             if(invItems[i].equalsIgnoreCase("Food")){ //once it finds food
                 foundFood = true;
-                System.out.println("How much food do you want to feed "+this.name+"?");
+                System.out.print("How much food do you want to feed "+name+"? ");
                 int amount=scan.nextInt();
                 if(amount<=0){ //0 or less not allowed
                     System.out.println("Not Allowed. Nope. Nuh uh.");
@@ -145,25 +148,26 @@ public class Pet{
                 }
                 //And then if you have the right amount...
                 Menu.itemInvAmount[i] -= amount;
-                switch(this.difficulty){
+                switch(difficulty){
                     case 0: //easy
-                        this.satiety += (0.25*amount);
+                        satiety += (0.25*amount);
                         break;
                     case 1: //norm
-                        this.satiety += (0.1*amount);
-                        if(this.satiety>1.8){this.killPet("gastrointestinal perforation");}
+                        satiety += (0.1*amount);
+                        if(satiety>1.8){killPet("gastrointestinal perforation");}
                         break;
                     case 2: //hard
-                        this.satiety += (0.04*amount);
-                        if(this.satiety>1.1){this.killPet("gastrointestinal perforation");}
+                        satiety += (0.04*amount);
+                        if(satiety>1.1){killPet("gastrointestinal perforation");}
                         break;
                     case 3: //impos.
-                        this.satiety += (0.001*amount);
-                        if(this.satiety>1){this.killPet("gastrointestinal perforation");}
+                        satiety += (0.001*amount);
+                        if(satiety>1){killPet("gastrointestinal perforation");}
                         break;
                 }
                 main.action++;
-                //Lazy.waitForEnter();
+                System.out.println("Satiety: "+satiety);
+                Lazy.waitForEnter();
                 return;
             }
         }
@@ -246,9 +250,9 @@ public class Pet{
     }
     
     public void checkStats(){ 
-        System.out.println(this.name+"'s Stats:\n------------------------------------------");
+        System.out.print("\n\n----------{"+name+"'s Stats}----------");
         String yrs = Lazy.autoPlural(age);
-        System.out.print(name+" is "+age+" year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+energy+"\nSatiation: "+satiety+"\n"+name);
+        System.out.print(name+" is "+age+" year"+yrs+" old.\nEnergy: "+energy+"\nSatiation: "+satiety+"\n"+name);
         if(isHealthy){
             System.out.println(" is healthy.");
         }else{
@@ -258,7 +262,7 @@ public class Pet{
         if(isEnergized){
             System.out.println(name+" is energized.");
         }
-        if (exercised<1){
+        if (exercised<=1){
             System.out.println(name+" is looking kinda chubby. Might wanna hit the gym...");
         }else if (exercised < 7){
             System.out.println(name+" is looking nice and fit.");
