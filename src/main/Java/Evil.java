@@ -137,13 +137,13 @@ public class Evil{
         System.out.println(name+" attacked!");
         switch (armor){
             case 1: //lv1 armor
-                atk = (int) (atk*0.85);
+                atk = (int) (atk*0.89);
                 break;
             case 2: //lv2 armour
-                atk = (int) (atk*0.70);
+                atk = (int) (atk*0.75);
                 break;
             case 3: //lv3 armoure
-                atk = (int) (atk*0.55); // may be too much of a damage decrease - change?
+                atk = (int) (atk*0.65); // may be too much of a damage decrease - change?
                 break;
             default: //no armor
                 //none
@@ -198,7 +198,7 @@ public class Evil{
                 }
         }
         Lazy.hold(600);
-        System.out.println("The attack dealt "+atk+" damage.");
+        System.out.println(name+"'s attack dealt "+atk+" damage.");
         playerHP -= atk;
         Lazy.waitForEnter();
         
@@ -215,7 +215,7 @@ public class Evil{
     private static void attack(Pet pet){
         Random ran = new Random();
         Scanner scan = new Scanner(System.in);
-        String[] attackOpts = {"Punch","Block","Strong Slash","Guarded Slash","Sword Block","Shield Gaurd","Shield Parry","Shield Bash"};
+        String[] attackOpts = {"Punch","Block","Strong Slash","Guarded Slash","Sword Block","Shield Guard","Shield Parry","Shield Bash"};
         String[] attacks = new String[8];
         int mCnt = 0;
         System.out.println("--------[ATTACK]--------\nActive Weapon: "+activeWeapon+"\nActive Shield: "+activeShield);
@@ -500,10 +500,10 @@ public class Evil{
             if(foundJuice==true){
                 int rando = ran.nextInt(21);
                 int heal = 25 + rando;
-                if ((heal + playerHP)>playerHP){ //if heal goes over, BONUS HP
+                if ((heal + playerHP)>maxHP){ //if heal goes over, BONUS HP
                     bonusHP = (playerHP + heal) - maxHP;
-                    if (bonusHP>20){ //max amount of bonus HP for normie heal is 20
-                        bonusHP = 20;
+                    if (bonusHP>25){ //max amount of bonus HP for normie heal is 20
+                        bonusHP = 25;
                     }
                     playerHP = maxHP + bonusHP;
                     System.out.println("You are at full health! You now have "+bonusHP+" extra HP");
@@ -511,7 +511,6 @@ public class Evil{
                     playerHP += heal; //heal player
                     System.out.println("You recovered "+heal+" health!");
                 }
-                action++;
             }else{
                 System.out.println("You have no Magic Juice.");
             }
@@ -527,10 +526,10 @@ public class Evil{
             if(foundJuice==true){
                 int rando = ran.nextInt(26);
                 int heal = 40 + rando;
-                if ((heal + playerHP)>playerHP){ //if heal goes over, BONUS HP
+                if ((heal + playerHP)>maxHP){ //if heal goes over, BONUS HP
                     bonusHP = (playerHP + heal) - maxHP;
-                    if (bonusHP>35){ //max amount of bonus HP for super juice is 35
-                        bonusHP = 35;
+                    if (bonusHP>40){ //max amount of bonus HP for super juice is 40
+                        bonusHP = 40;
                     }
                     playerHP = maxHP + bonusHP;
                     System.out.println("You are at full health! You now have "+bonusHP+" extra HP");
@@ -538,7 +537,6 @@ public class Evil{
                     playerHP += heal; //heal player
                     System.out.println("You recovered "+heal+" health!");
                 }
-                action++;
             }else{
                 System.out.println("You have no Magic Super Juice.");
             }
@@ -570,6 +568,7 @@ public class Evil{
                 case "none":
                     break;
                 case "Money":
+                    System.out.println("You earned "+amount+" mon");
                     pet.money += amount;
                     break;
                 default:
@@ -592,6 +591,8 @@ public class Evil{
                     }
                     Menu.crisisInvItems[emptySlot] = rewName;
                     Menu.crisisInvAmount[emptySlot] += amount;
+                    String rewPl = Lazy.autoPlural(amount);
+                    System.out.println("You found "+amount+" "+rewName+rewPl+"!");
                     break;
 
             }
