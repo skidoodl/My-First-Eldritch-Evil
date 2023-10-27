@@ -61,7 +61,7 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
 * 1.2.2
     * Fixed pet death display error
 * 1.2.3
-    * Ferg no longer attacks after player uses health juice
+    * Pet no longer attacks after player uses health juice
     * Equipped items are now marked in inventory
     * Crisis Items with a stock of 1x no longer prompt how many
     * Typo fixes
@@ -72,6 +72,10 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
     * Shield Guard now works
     * UI updates
     * Other minor bugfixes
+* 1.2.4
+    * UI updates
+    * Pet ages every 3 cycles
+    * Fixed "Pet Died to Wasted Away"
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
