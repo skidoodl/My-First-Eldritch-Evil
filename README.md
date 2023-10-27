@@ -58,8 +58,20 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
     * Guarded slash now works
     * Food bundles now work
     * Cycles since evil should now reset
- * 1.2.2
+* 1.2.2
     * Fixed pet death display error
+* 1.2.3
+    * Ferg no longer attacks after player uses health juice
+    * Equipped items are now marked in inventory
+    * Crisis Items with a stock of 1x no longer prompt how many
+    * Typo fixes
+    * Adjusted order of events in cycle
+    * Earning items in evil cycle should now display message
+    * Crisis shop item stock decreases after purchase
+    * Magic juice works now
+    * Shield Guard now works
+    * UI updates
+    * Other minor bugfixes
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
