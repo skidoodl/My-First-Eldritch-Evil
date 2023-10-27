@@ -91,7 +91,7 @@ public class Evil{
         if (bonusHP>0){
             System.out.print(" + "+bonusHP); // + bonus hp
         }
-        System.out.println("   {MENU}   "+name+" HP: "+petHP+"\n-------------------------------------------------------"); //main menu display
+        System.out.println("   {MENU}   "+name+" HP: "+petHP+"\n---------------------------------------------"); //main menu display
         //Pet health bar?
         System.out.print("  1. Inventory\n  2. Shop\n  3. Stats\n  4. Attack\nSELECT: "); //menu options
         int input = scan.nextInt();
@@ -218,7 +218,7 @@ public class Evil{
         String[] attackOpts = {"Punch","Block","Strong Slash","Guarded Slash","Sword Block","Shield Guard","Shield Parry","Shield Bash"};
         String[] attacks = new String[8];
         int mCnt = 0;
-        System.out.println("--------[ATTACK]--------\nActive Weapon: "+activeWeapon+"\nActive Shield: "+activeShield);
+        System.out.println("\n\n--------{ATTACK}--------\nActive Weapon: "+activeWeapon+"\nActive Shield: "+activeShield);
         for (int i = 0; i < attackOpts.length; i++) { //print the menu, determine available attack options
             if(activeWeapon.equalsIgnoreCase("none")){ //if no weapon equipped
                 if(i>1 && i<5){continue;} //...and i != punch, continue - also prevents from skipping shield-related items
@@ -459,7 +459,7 @@ public class Evil{
             int rando = ran.nextInt(100);
             System.out.println("You attempt to give "+name+" sedatives");
             Lazy.waitForEnter();
-            if (rando<85){
+            if (rando<75){
                 System.out.println(name+" begins to look very sleepy...");
                 Lazy.hold(750);
                 System.out.print(name+"'s eyes begin to...");
@@ -605,7 +605,7 @@ public class Evil{
         }else{
             checkShield = "equipped";
         }
-        System.out.print("\n-----------STATS-----------\nYour Health: "+(playerHP-bonusHP));
+        System.out.print("\n----------{STATS}----------\nYour Health: "+(playerHP-bonusHP));
         if(bonusHP>0){System.out.print(" + "+bonusHP);} //if bonus hp, display
         System.out.println("\nActive Weapon: "+activeWeapon+"\nShield: "+checkShield+"\nArmor Equipped: "+armor+"\n----------"+pet.name+" STATS----------\nHealth: "+petHP+"\n"+pet.name+" has turned evil "+pet.evilCount+" time"+Lazy.autoPlural(pet.evilCount)+".\nTimes Defeated: "+pet.petDefeats);
         Lazy.waitForEnter();
