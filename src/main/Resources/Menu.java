@@ -102,7 +102,23 @@ public class Menu{
           crisisInvItems[i] = null;
         }
         if (crisisInvItems[i] != null) {
-          System.out.println("  "+(i + 1) + ". " + crisisInvItems[i]+" x"+crisisInvAmount[i]);
+          System.out.print("  "+(i + 1) + ". " + crisisInvItems[i]+" x"+crisisInvAmount[i]);
+          if(Evil.activeWeapon.equals(crisisInvItems[i]) || Evil.activeShield.equals(crisisInvItems[i])){
+            System.out.print(" - Equipped");
+          }
+          switch(crisisInvItems[i]){
+            case "Armor (lv1)":
+              if(Evil.armor == 1){System.out.print(" - Equipped");}
+              break;
+            case "Armour (lv2)":
+              if(Evil.armor == 2){System.out.print(" - Equipped");}
+              break;
+            case "Armoure (lv3)":
+              if(Evil.armor == 3){System.out.print(" - Equipped");}
+            default:
+              //def
+          }
+          System.out.println();
         }
       }
       System.out.print("SELECT: ");
@@ -272,7 +288,7 @@ public class Menu{
           System.out.println("  "+(i+1)+". "+crisisShopItems[i]+ " x" + crisisItemStock[i]+"  -  Price: "+crisisPrice[i]);
         }
       }
-      System.out.print("  0. Return to Menu\nSELECT: ");
+      System.out.print("SELECT: ");
       int sel = scan.nextInt(); //allow user to select item to purchase
   
       while (sel>11 || sel<0){ //ensure the user makes a selection within the correct range
@@ -282,8 +298,13 @@ public class Menu{
       if (sel == 0){
         return;
       }else{
-        System.out.print("How many? ");
-        int quant = scan.nextInt();
+        int quant;
+        if (crisisItemStock[sel-1]==1){
+          quant = 1;
+        }else{
+          System.out.print("How many? ");
+          quant = scan.nextInt();
+        }
         if(crisisItemStock[(sel - 1)] < quant){
           System.out.println("Not enough stock.");
           Lazy.waitForEnter();
@@ -301,6 +322,7 @@ public class Menu{
         }else{
           pet.money -= cost; //subtract cost from wallet
           int emptySlot = -1;
+          crisisItemStock[(sel-1)] -= quant;
           boolean duplicate = false;
           for(int i = 0; i < crisisInvItems.length;i++){ //search for duplicates with invItems and your selection
             if(crisisInvItems[i] == crisisShopItems[(sel-1)]){
