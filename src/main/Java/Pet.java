@@ -221,6 +221,7 @@ public class Pet{
                 this.killPet("neglect");
             }
         }
+        Lazy.waitForEnter();
     }
 
     public void exercise(){
@@ -272,7 +273,7 @@ public class Pet{
             int cSE = Cycle.cyclesSinceEvil;
             String ecPlural = Lazy.autoPlural(evilCount);
             String dsePlural = Lazy.autoPlural(cSE);
-            System.out.println(name+" has turned evil "+evilCount+"time"+ecPlural+".\nIt has been "+cSE+" cycle"+dsePlural+" since "+name+" was evil.");
+            System.out.println(name+" has turned evil "+evilCount+" time"+ecPlural+".\nIt has been "+cSE+" cycle"+dsePlural+" since "+name+" was evil.");
         }
         Lazy.waitForEnter();
         return;
