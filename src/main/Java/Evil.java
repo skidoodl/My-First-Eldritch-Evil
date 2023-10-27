@@ -18,22 +18,22 @@ public class Evil{
             case 0: //easy
                 playerHP = 200;
                 maxHP = 200;
-                petHP = 600;
+                petHP = 450;
                 break;
             case 1: //norm
                 playerHP = 150;
                 maxHP = 150;
-                petHP = 700;
+                petHP = 500;
                 break;
             case 2: //hard
-                playerHP = 100;
-                maxHP = 100;
-                petHP = 900;
+                playerHP = 120;
+                maxHP = 150;
+                petHP = 600;
                 break;
             case 3: //impos
-                playerHP = 70;
-                maxHP = 70;
-                petHP = 900;
+                playerHP = 100;
+                maxHP = 100;
+                petHP = 750;
                 break;
             default:
         }
