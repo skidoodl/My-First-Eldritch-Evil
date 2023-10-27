@@ -10,6 +10,9 @@ public class Cycle{
         String petActions[] = {name+" cleans its... tentacles.",name+" is growing a third eye.",name+" is growing a fourth eye.","You catch "+name+" plotting an assasination.","You tripped over "+name+" walking down the stairs last night... again...",name+" was named a suspect in murder.",name+"'s teeth are looking extra sharp today!","You got banned from your local PetCo... and dog park... and elementary school.",name+" seems to have taken a liking to ketchup... but where is "+name+" getting it?",name+" fails another DNA test. Maybe it should study next time.",name+"'s BAC is found to be well over the legal limit.",name+" learns to speak "+Lazy.ranStringArray(langs)+".",name+" is learning to speak "+Lazy.ranStringArray(langs)+".",name+"'s new lawyer immediately quits.",name+" quits its job at Spirit Halloween after one day.",name+" thinks MatLab is a real programming language.",name+" put semicolons after all your if statements.",name+" ate your left sock.",name+" ate your right sock.",name+" joined Twitter.",name+" didn't return its shopping cart.",name+" trapped you at an Amy Schumer show.",name+" is running for president. It'll probably win."};
         Random ran = new Random();
         
+        if (cycle % 4 == 0 && cycle != 0){pet.birthday();} //age pet up, if necessary
+        pet.money+=50;
+
         int rando = ran.nextInt(99);
         int evilchance;
         if (!pet.isEvil){ //evil pet chances
@@ -56,7 +59,6 @@ public class Cycle{
                 System.out.println(name+" is getting kinda fat.");
             }
             
-            if (cycle % 4 == 0 && cycle != 0){pet.birthday();} //age pet up, if necessary
 
             rando = ran.nextInt(99);
             switch(pet.difficulty){ //various cycle functions, vary by difficulty
@@ -69,7 +71,7 @@ public class Cycle{
                         pet.satiety -= .05;
                     }
                     
-                    if(!pet.isEnergized){pet.energy -= .08;} //energy
+                    if(!pet.isEnergized){pet.energy -= .07;} //energy
                     pet.money += 100; //earn money
                     if (rando <4){ //player lose money
                         pet.money = (int) (pet.money*.85);
@@ -87,7 +89,7 @@ public class Cycle{
                     if(pet.isEnergized){ //energy
                         pet.energy -= .08;
                     }else{
-                        pet.energy -= (.08 + (rando*.004));
+                        pet.energy -= (.06 + (rando*.004));
                     }
                     pet.money += 75; //earn money
                     if (rando <10){//player loses money
@@ -106,7 +108,7 @@ public class Cycle{
                     if(pet.isEnergized){ //energy
                         pet.energy -= .13;
                     }else{
-                        pet.energy -= (.14 + (rando*.005));
+                        pet.energy -= (.08 + (rando*.005));
                     }
                     pet.money += 50; //earn money
                     if (rando <15){//player loses money
@@ -123,9 +125,9 @@ public class Cycle{
                             pet.satiety -= .18;
                         }
                     if(pet.isEnergized){ //energy
-                        pet.energy -= .12;
+                        pet.energy -= .1;
                     }else{
-                        pet.energy -= (.19 + (rando*.004));
+                        pet.energy -= (.12 + (rando*.004));
                     }
                     pet.money += 30; //earn money
                     if (rando <25){//player loses money
