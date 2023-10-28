@@ -76,6 +76,11 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
     * UI updates
     * Pet ages every 3 cycles
     * Fixed "Pet Died to Wasted Away"
+    * Fixed Gravestone Display Error
+    * Added Menu Alerts
+    * Inventory item sort method added to solve inventory numbering bug
+    * Price adjustments
+    * Changed file directory system.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
