@@ -73,7 +73,7 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
     * UI updates
     * Other minor bugfixes
 * 1.2.4
-    * UI updates
+    * UI standardization
     * Pet ages every 3 cycles
     * Fixed "Pet Died to Wasted Away"
     * Fixed Gravestone Display Error
