@@ -39,48 +39,50 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
 ## Version History
 * 1.0  - Release of the first version
 * 1.1 - Evil Fix
-    * Fixed initiation bug when pet turned Evil
-    * Other bugfixes
-    * Minor optimizations
+   * Fixed initiation bug when pet turned Evil
+   * Other bugfixes
+   * Minor optimizations
 * 1.2 - Mac Release
-    * Created Mac release
-    * Minor Windows release changes
-    * Added Energy Drink and Incense
-    * Calming pet now rewards money
-    * Improved stats menu
-    * Pet now ages up after 4 cycles
-    * Cleaned up some UI elements
-    * Optimizations
+   * Created Mac release
+   * Minor Windows release changes
+   * Added Energy Drink and Incense
+   * Calming pet now rewards money
+   * Improved stats menu
+   * Pet now ages up after 4 cycles
+   * Cleaned up some UI elements
+   * Optimizations
 * 1.2.1
-    * Critical hits are now possible
-    * Adjusted success rates for attacks
-    * You can now get rewards in Evil Cycle
-    * Guarded slash now works
-    * Food bundles now work
-    * Cycles since evil should now reset
+   * Critical hits are now possible
+   * Adjusted success rates for attacks
+   * You can now get rewards in Evil Cycle
+   * Guarded slash now works
+   * Food bundles now work
+   * Cycles since evil should now reset
 * 1.2.2
-    * Fixed pet death display error
+   * Fixed pet death display error
 * 1.2.3
-    * Pet no longer attacks after player uses health juice
-    * Equipped items are now marked in inventory
-    * Crisis Items with a stock of 1x no longer prompt how many
-    * Typo fixes
-    * Adjusted order of events in cycle
-    * Earning items in evil cycle should now display message
-    * Crisis shop item stock decreases after purchase
-    * Magic juice works now
-    * Shield Guard now works
-    * UI updates
-    * Other minor bugfixes
+   * Pet no longer attacks after player uses health juice
+   * Equipped items are now marked in inventory
+   * Crisis Items with a stock of 1x no longer prompt how many
+   * Typo fixes
+   * Adjusted order of events in cycle
+   * Earning items in evil cycle should now display message
+   * Crisis shop item stock decreases after purchase
+   * Magic juice works now
+   * Shield Guard now works
+   * UI updates
+   * Other minor bugfixes
 * 1.2.4
-    * UI standardization
-    * Pet ages every 3 cycles
-    * Fixed "Pet Died to Wasted Away"
-    * Fixed Gravestone Display Error
-    * Added Menu Alerts
-    * Inventory item sort method added to solve inventory numbering bug
-    * Price adjustments
-    * Changed file directory system.
+   * UI standardization
+   * Pet ages every 3 cycles
+   * Fixed "Pet Died to Wasted Away"
+   * Fixed Gravestone Display Error
+   * Added Menu Alerts
+   * Inventory item sort method added to solve inventory numbering bug
+   * Price adjustments
+   * Changed file directory system.
+* 1.2.5 (unreleased)
+   * Bugfixes
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
