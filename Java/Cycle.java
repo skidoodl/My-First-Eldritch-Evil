@@ -213,7 +213,7 @@ public class Cycle{
 
         if(pet.isEnergized){ //chance to lose energized status
             rando = ran.nextInt(5);
-            if(rando==0){ //1/5 chance of no longer being energized
+            if(rando<2){ //2/5 chance of no longer being energized
                 System.out.println(name+" is no longer energized");
             }
         }
