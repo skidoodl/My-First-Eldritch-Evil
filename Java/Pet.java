@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class Pet{
     public int age, difficulty, money, relationship;
@@ -249,20 +250,21 @@ public class Pet{
         main.action++;
     }
     
-    public void checkStats(){ 
-        System.out.println("\n\n----------{"+name+"'s Stats}----------");
+    public void checkStats(){
+        DecimalFormat df = new DecimalFormat("#.##");
+        System.out.println(this.name+"'s Stats:\n------------------------------------------");
         String yrs = Lazy.autoPlural(age);
-        System.out.print(name+" is "+age+" year"+yrs+" old.\nCycle "+Cycle.cycle+"\nEnergy: "+energy+"\nSatiation: "+satiety+"\n"+name);
+        System.out.print(name+" is "+age+" year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+df.format(energy)+"\nSatiation: "+df.format(satiety)+"\n"+name);
         if(isHealthy){
             System.out.println(" is healthy.");
         }else{
             System.out.println(" is sick.");
         }
-        System.out.println("Health: "+health);
+        System.out.println("Health: "+df.format(health));
         if(isEnergized){
             System.out.println(name+" is energized.");
         }
-        if (exercised<=1){
+        if (exercised<1){
             System.out.println(name+" is looking kinda chubby. Might wanna hit the gym...");
         }else if (exercised < 7){
             System.out.println(name+" is looking nice and fit.");
@@ -277,7 +279,7 @@ public class Pet{
             int cSE = Cycle.cyclesSinceEvil;
             String ecPlural = Lazy.autoPlural(evilCount);
             String dsePlural = Lazy.autoPlural(cSE);
-            System.out.println(name+" has turned evil "+evilCount+" time"+ecPlural+".\nIt has been "+cSE+" cycle"+dsePlural+" since "+name+" was evil.");
+            System.out.println(name+" has turned evil "+evilCount+"time"+ecPlural+".\nIt has been "+cSE+" cycle"+dsePlural+" since "+name+" was evil.");
         }
         Lazy.waitForEnter();
         return;
