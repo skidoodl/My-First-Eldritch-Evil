@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 
-public class main {
+public class Main{
   public static int action;
 
   public static void main(String[] args) {

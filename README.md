@@ -21,6 +21,7 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 ### Dependencies
 * Powershell
 * Bash
+* Swing
 
 ### Installing
 * Download the MyFirstEldritchEvil.zip file from the release page, then extract its contents.
@@ -81,8 +82,10 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Inventory item sort method added to solve inventory numbering bug
    * Price adjustments
    * Changed file directory system.
-* 1.2.5 (unreleased)
+* __2.0.0__ (in progress)
+   * Addition of a GUI
    * Bugfixes
+   <!-- Bugfixes carried over previous planned 1.2.5 update - now becoming MFEE v2.0 -->
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

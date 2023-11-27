@@ -73,7 +73,7 @@ public class Menu{
           pet.cuddlePet();
           break;
         case 8:
-          main.action = 3;
+          Main.action = 3;
           break;
         default:
           System.out.println("Option "+input+" is not available.");

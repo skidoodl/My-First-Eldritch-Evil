@@ -118,7 +118,7 @@ public class Pet{
             Lazy.waitForEnter();
             grave.playerDeath("loving too much",this.name);
         }
-        main.action++;
+        Main.action++;
     }
 
     public void feed(){
@@ -166,7 +166,7 @@ public class Pet{
                         if(satiety>1){killPet("gastrointestinal perforation");}
                         break;
                 }
-                main.action++;
+                Main.action++;
                 System.out.println("Satiety: "+satiety);
                 Lazy.waitForEnter();
                 return;
@@ -200,7 +200,7 @@ public class Pet{
                     break; // hard
                 case 3:System.out.println(name+" is too busy stalking its prey (you) to sleep.");//impossible
             }
-            if(this.difficulty!=3){main.action++;} //since the pet would be able to sleep (ex. impossible diff.), action++
+            if(this.difficulty!=3){Main.action++;} //since the pet would be able to sleep (ex. impossible diff.), action++
             System.out.println(); //spacer
         }
         if (this.energy>2.0){
@@ -247,7 +247,7 @@ public class Pet{
             addMoney();
             Lazy.waitForEnter();
         }
-        main.action++;
+        Main.action++;
     }
     
     public void checkStats(){
@@ -354,7 +354,7 @@ public class Pet{
                 System.out.println("You have no Medicine");
             }
         }
-        main.action++;
+        Main.action++;
         Lazy.waitForEnter();
     }
     
@@ -403,7 +403,7 @@ public class Pet{
                 System.out.println(this.name+" is feeling a little better...");
             }
             Lazy.waitForEnter();
-            main.action++;
+            Main.action++;
         }else{
             System.out.println("You have no vitamins");
             Lazy.waitForEnter();
@@ -442,7 +442,7 @@ public class Pet{
             }
             System.out.println("Energy: "+energy);
             isEnergized = true;
-            main.action++;
+            Main.action++;
         }else{
             System.out.println("You have no Energy Drinks.");
         }
@@ -475,6 +475,6 @@ public class Pet{
             System.out.println("You have placed a dangerously excessive amount of incense in "+name+"'s room...");
             Lazy.waitForEnter();
         }
-        main.action++;
+        Main.action++;
     }
 }
