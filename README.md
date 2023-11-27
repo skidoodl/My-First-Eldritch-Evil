@@ -21,7 +21,7 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 ### Dependencies
 * Powershell
 * Bash
-* Swing
+* JavaFX
 
 ### Installing
 * Download the MyFirstEldritchEvil.zip file from the release page, then extract its contents.
