@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Main{
   public static int action;
-  private static int startTime;
+  private static long startTime;
 
   public static void main(String[] args) {
     System.out.println("\n"); //spacer

@@ -82,11 +82,9 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Inventory item sort method added to solve inventory numbering bug
    * Price adjustments
    * Changed file directory system.
-* __2.0.0__ (in progress)
-   * Addition of a GUI
+* __1.2.5__ (in progress)
    * Added  number formatting for stats
    * Bugfixes
-   <!-- Bugfixes carried over previous planned 1.2.5 update - now becoming MFEE v2.0 -->
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
