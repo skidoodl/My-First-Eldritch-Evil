@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Main{
   public static int action;
+  private static int startTime;
 
   public static void main(String[] args) {
     System.out.println("\n"); //spacer
@@ -42,6 +43,7 @@ public class Main{
           name = scan.next();
         }
         pet.namePet(name);
+        startTime = System.nanoTime();
         isHatch[0]++;
         System.out.println("Welcome to the world, " + name + "!");
         if(name.equals("evil")){
