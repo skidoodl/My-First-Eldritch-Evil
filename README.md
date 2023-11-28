@@ -84,6 +84,7 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Changed file directory system.
 * __2.0.0__ (in progress)
    * Addition of a GUI
+   * Added  number formatting for stats
    * Bugfixes
    <!-- Bugfixes carried over previous planned 1.2.5 update - now becoming MFEE v2.0 -->
 
