@@ -134,8 +134,9 @@ public class Pet{
         for(int i=0; i<Menu.itemInvAmount.length; i++){
             if(invItems[i] == null){continue;} //skip the nulls
             if(invItems[i].equalsIgnoreCase("Food")){ //once it finds food
+                int fAmount = Menu.itemInvAmount[i];
                 foundFood = true;
-                System.out.print("How much food do you want to feed "+name+"? ");
+                System.out.print("How much food do you want to feed "+name+"? (x"+fAmount+" food): ");
                 int amount=scan.nextInt();
                 if(amount<=0){ //0 or less not allowed
                     System.out.println("Not Allowed. Nope. Nuh uh.");

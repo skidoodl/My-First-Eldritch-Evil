@@ -8,6 +8,7 @@ public class Main{
   private static long startTime;
 
   public static void main(String[] args) {
+    Frame frame = new Frame();
     System.out.println("\n"); //spacer
     Scanner scan = new Scanner(System.in);
     try{
