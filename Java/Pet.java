@@ -14,7 +14,7 @@ public class Pet{
     public boolean isHealthy=true;
     public boolean isEvil, isAlive;
     public boolean isEnergized=false; //when pet is energized, it loses little to no energy.
-
+    private DecimalFormat statDF = new DecimalFormat("#.##");
 
     Random ran = new Random();
     public Pet(){ //default constructor
@@ -60,18 +60,22 @@ public class Pet{
 
     
     public void killPet(String cause){
+        long startTime = Main.startTime;
+        long endTime = System.nanoTime();
         System.out.println("\n\n------------------------------------");
         Grave grave = new Grave();
         grave.printGrave(this.name);
         if (cause.equalsIgnoreCase("pop")){ //popped to death
-            System.out.println(this.name+" popped.");
+            System.out.print(this.name+" popped");
             Lazy.hold(1400);
-            System.out.println("Better get a mop.");
+            System.out.print("... Better get a mop.");
         }else if(cause.equals("wasted away")){ //wasted away
-            System.out.println(name+" wasted away.");
+            System.out.print(name+" wasted away.");
         }else{
-            System.out.println(this.name+" died to "+cause+".");
+            System.out.print(this.name+" died to "+cause+".");
         }
+        long elapsed = (endTime-startTime);
+        System.out.println("    -<>-    Time Alive: "+Lazy.timeFormat(elapsed));
         //idea: add a score?
         System.exit(0); //end the program
     }
@@ -169,7 +173,7 @@ public class Pet{
                         break;
                 }
                 Main.action++;
-                System.out.println("Satiety: "+satiety);
+                System.out.println("Satiety: "+statDF.format(satiety));
                 Lazy.waitForEnter();
                 return;
             }
@@ -253,16 +257,15 @@ public class Pet{
     }
     
     public void checkStats(){
-        DecimalFormat df = new DecimalFormat("#.##");
         System.out.println(this.name+"'s Stats:\n------------------------------------------");
         String yrs = Lazy.autoPlural(age);
-        System.out.print(name+" is "+age+" year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+df.format(energy)+"\nSatiation: "+df.format(satiety)+"\n"+name);
+        System.out.print(name+" is "+age+" year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+statDF.format(energy)+"\nSatiation: "+statDF.format(satiety)+"\n"+name);
         if(isHealthy){
             System.out.println(" is healthy.");
         }else{
             System.out.println(" is sick.");
         }
-        System.out.println("Health: "+df.format(health));
+        System.out.println("Health: "+statDF.format(health));
         if(isEnergized){
             System.out.println(name+" is energized.");
         }
@@ -407,7 +410,7 @@ public class Pet{
             Lazy.waitForEnter();
             Main.action++;
         }else{
-            System.out.println("You have no vitamins");
+            System.out.println("You have no vitamins.");
             Lazy.waitForEnter();
         }
     }
@@ -442,7 +445,7 @@ public class Pet{
             if (energy>=2.0){
                 killPet("a heart attack");
             }
-            System.out.println("Energy: "+energy);
+            System.out.println("Energy: "+statDF.format(energy));
             isEnergized = true;
             Main.action++;
         }else{

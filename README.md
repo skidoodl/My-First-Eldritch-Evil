@@ -82,8 +82,9 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Inventory item sort method added to solve inventory numbering bug
    * Price adjustments
    * Changed file directory system.
-* __1.2.5__ (in progress)
-   * Added  number formatting for stats
+* __2.0.0__ (in progress)
+   * Added number formatting for stats
+   * Time alive now tracked and displayed on death.
    * Bugfixes
 
 ## License

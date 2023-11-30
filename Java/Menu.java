@@ -42,7 +42,7 @@ public class Menu{
         System.out.print(" (!)");
       }
       System.out.print("\n  6. Exercise "+name+" ");
-      if (pet.exercised<=1){
+      if (pet.exercised<1){
         System.out.print(" (!)");
       }
       System.out.print("\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");

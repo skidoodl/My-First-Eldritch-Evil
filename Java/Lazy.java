@@ -1,4 +1,5 @@
 import java.io.Console;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Lazy{
@@ -24,21 +25,6 @@ public class Lazy{
         }
     }
 
-    public final static void clearConsole(){ //doesn't work -- find out WHY
-        try{
-            final String os = System.getProperty("os.name");
-            
-            if (os.contains("Windows")){
-                Runtime.getRuntime().exec("cls");
-            }else{
-                Runtime.getRuntime().exec("clear");
-            }
-        }
-        catch (final Exception e){
-            //  Handle any exceptions.
-        }
-    }
-
     public static String ranStringArray(String[] array){
         int rnd = new Random().nextInt(array.length);
         return array[rnd];
@@ -50,5 +36,37 @@ public class Lazy{
             plural = "s";
         }
         return plural;
+    }
+
+    public static String timeFormat(long time){
+        DecimalFormat df = new DecimalFormat("##");
+        long s = time/1_000_000_000; //thats 1 billion
+        String tString = "";
+        if (s>86_400){ //day
+            double day = s/86_400;
+            s = (long) (s % day);
+            tString += (day+":");
+        }
+        if(s>3600){ //hr
+            double h = s/3600;
+            s = (long) (s % h);
+            tString += (df.format(h)+":");
+        }else if(tString.length()>0){
+            tString+= ("00:");
+        }
+        if(s>60){ //min
+            double m = s/60;
+            s = (long) (s % m);
+            tString += (df.format(m)+":");
+        }else if(tString.length()>0){
+            tString+= ("00:");
+        }
+        if(s>0){ //sec
+            df = new DecimalFormat("##.##");
+            tString += (df.format(s));
+        }else if (tString.length()>0){
+            tString+= ("00");
+        }
+        return tString;
     }
 }

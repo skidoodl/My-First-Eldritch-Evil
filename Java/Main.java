@@ -5,10 +5,11 @@ import java.util.Random;
 
 public class Main{
   public static int action;
-  private static long startTime;
+  public static long startTime;
 
   public static void main(String[] args) {
-    Frame frame = new Frame();
+    // GameWindow gw = new GameWindow();
+    GameWindow gw = new GameWindow();
     System.out.println("\n"); //spacer
     Scanner scan = new Scanner(System.in);
     try{

@@ -83,11 +83,13 @@ public class Grave {
         }
     }
 
-    public void playerDeath(String cause, String petName){
+    public void playerDeath(String cause, String name){
+        long elapsed = System.nanoTime() - Main.startTime;
         System.out.println("\n \nYOU DIED.");
-        System.out.println("Player died to "+cause);
+        System.out.println("Player died to "+cause+".    -<>-    Time spent with "+name+": "+Lazy.timeFormat(elapsed));
         Lazy.waitForEnter();
-        System.out.println(petName+" would go on to inhabit your skin and become your replacement in\nthe sorry world you used to inhabit.");
+        System.out.println(name+" would go on to inhabit your skin and become your replacement in\nthe sorry world you used to inhabit.");
+        Lazy.waitForEnter();
         System.exit(0);
     }
 }
