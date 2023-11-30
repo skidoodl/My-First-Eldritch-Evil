@@ -20,41 +20,39 @@ public class Pet{
     public Pet(){ //default constructor
        //gyguyg
     }
-    //TO DO: IMPLEMENT SWITCH
     public Pet(int difficulty){ //Difficulties: 0=Easy, 1=Normal, 2=Hard, 3=Impossible
         isAlive = true;
         this.difficulty = difficulty;
         this.energy = 1.00;
-        if (difficulty == 0 ){ //easy
-            this.satiety = 1.00;
-            this.money = 1000;
-            this.relationship = 80;
-            difficultyName = "Easy";
-        }else if (difficulty == 1){ //normal
-            this.satiety = 0.85;
-            this.money = 750;
-            this.relationship = 65;
-            difficultyName = "Normal";
-        }else if (difficulty == 2){ //hard
-            this.satiety = 0.70;
-            this.money = 500;
-            this.relationship = 45;
-            difficultyName = "Hard";
-        }else{ //impossible
-            if (ran.nextInt(50)==0){ //2% chance of starting with a dead pet.
-                this.killPet("miscarriage");
-            }else{ //if it doesn't die...
-                this.satiety = 0.6;
-                this.relationship = 21;
-                if (ran.nextInt(4) == 0){ // 25% chance of starting with an Evil pet
-                    this.isEvil = true;
+        switch(difficulty){
+            case 0: //easy
+                satiety = 1;
+                money = 1000;
+                difficultyName = "Easy";
+            case 1: //normal
+                satiety = 0.85;
+                money = 750;
+                difficultyName = "Normal";
+            case 2: //hard
+                satiety = 0.70;
+                money = 500;
+                difficultyName = "Hard";
+            case 3: //impossible
+                if(ran.nextInt(50)==0){ //2% chance of starting with a dead pet.
+                    killPet("miscarriage");
+                }else{
+                    satiety = 0.6;
+                    if(ran.nextInt(4) == 0){ //25% chance of starting w/ evil pet
+                        isEvil = true;
+                    }
+                    if(ran.nextInt(3)==0){ //33% of starting w/ sick pet
+                        isHealthy = false;
+                    }
+                    money = 500;
+                    difficultyName = "Impossible";
                 }
-                if (ran.nextBoolean()){ //33% chance of starting with a sick pet
-                    this.isHealthy = false;
-                }
-                this.money = 500;
-                difficultyName = "Impossible";
-            }
+            default:
+                System.out.println("No clue what happened but something went wrong");
         }
     }
 
@@ -91,20 +89,23 @@ public class Pet{
     public void cuddlePet(){
         Grave grave = new Grave();
         int cdl = ran.nextInt(99)+1;
-        System.out.println("You decide to cuddle with "+this.name+".");
+        System.out.println("You decide to cuddle with "+name+".");
         Lazy.hold(1000);
-        System.out.println(this.name+" gives you a look.");
+        System.out.println(name+" gives you a look.");
         Lazy.waitForEnter();
-        System.out.println("You grab "+this.name+" in your loving embrace!");
+        System.out.println("You grab "+name+" in your loving embrace!");
         Lazy.waitForEnter();
         if (cdl <= 10){ //p(10) of killing pet
-            System.out.println("You squeeze "+this.name+" in your arms. You had a really stressful\nday, so this is exactly what you needed.");
+            System.out.println("You squeeze "+name+" in your arms. You had a really stressful\nday, so this is exactly what you needed.");
             Lazy.waitForEnter();
-            System.out.println(this.name+" squirms in your arms. How cute!");
+            System.out.println(name+" squirms in your arms. How cute!");
             Lazy.hold(1000);
-            System.out.println("You really hate your boss. You feel all that suppressed anger\nbubbling up in your chest. Luckily, you have "+this.name+" here to help you\nhandle all those negative emotions. You squeeze "+this.name+" tighter, forcing out all those pent-up emotions.");
+            System.out.println("You really hate your boss. You feel all that suppressed anger\n"+
+                               "bubbling up in your chest. Luckily, you have "+name+" here to help you\n"+
+                               "handle all those negative emotions. You squeeze "+name+" tighter,"+
+                               "forcing out all those pent-up emotions.");
             Lazy.waitForEnter();
-            System.out.println("Silly little "+this.name+" lets out an adorable little shriek!");
+            System.out.println("Silly little "+name+" lets out an adorable little shriek!");
             Lazy.waitForEnter();
             System.out.println("...");
             Lazy.waitForEnter();
@@ -112,16 +113,18 @@ public class Pet{
             Lazy.waitForEnter();
             this.killPet("pop");
         }else{
-            System.out.println(this.name+" shrieks at you, lunging forward. Claws emerge from the creature's\nhands! "+this.name+" slashes your face. With it's tiny little demon\nteeth, it bites out your left eye. You grow dizzy, and the world turns upside down.");
+            System.out.println(name+" shrieks at you, lunging forward. Claws emerge from the creature's\n"+
+                              "hands! "+name+" slashes your face. With it's tiny little demon\n"+
+                              "teeth, it bites out your left eye. You grow dizzy, and the world turns upside down.");
             Lazy.waitForEnter();
             System.out.print("The world ");
             Lazy.hold(400);
             System.out.print("slowly fades");
             Lazy.hold(400);
-            System.out.println(" to the sound of "+this.name+"'s demonic screeching.");
+            System.out.println(" to the sound of "+name+"'s demonic screeching.");
             Lazy.hold(2400);
             Lazy.waitForEnter();
-            grave.playerDeath("loving too much",this.name);
+            grave.playerDeath("loving too much",name);
         }
         Main.action++;
     }
