@@ -25,7 +25,6 @@ public class GameWindow {
         frame.setSize(800,600); //set frame dimensions
         frame.setResizable(false); //may change this later but for now its false
         frame.setLayout(null); //might change later when I learn
-        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //hitting the X ends program
         ImageIcon img = new ImageIcon("Resources/Icon.jpg"); //create image icon -- I could just stuff this into the next line, but i don't feel like it
         frame.setIconImage(img.getImage()); //change frame icon
@@ -33,5 +32,8 @@ public class GameWindow {
         frame.add(menuP);
         frame.add(petDisp);
         frame.add(feedP);
+        frame.setVisible(true); //Figured it out I have to place the setVisible *after* I add the panels
+
+        return;
     }
 }

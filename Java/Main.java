@@ -9,7 +9,7 @@ public class Main{
 
   public static void main(String[] args) {
     // GameWindow gw = new GameWindow();
-    GameWindow gw = new GameWindow();
+    new GameWindow();
     System.out.println("\n"); //spacer
     Scanner scan = new Scanner(System.in);
     try{
