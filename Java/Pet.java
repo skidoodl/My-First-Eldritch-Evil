@@ -12,7 +12,7 @@ public class Pet{
     public double health=1.0;
     public String name, difficultyName, relationshipName;
     public boolean isHealthy=true;
-    public boolean isEvil;
+    public boolean isEvil, isAlive;
     public boolean isEnergized=false; //when pet is energized, it loses little to no energy.
 
 
@@ -21,7 +21,8 @@ public class Pet{
        //gyguyg
     }
     //TO DO: IMPLEMENT SWITCH
-    public Pet(int difficulty){ //Difficulties: 0=Easy, 1=Normal, 2=Hard, 3=Impossible 
+    public Pet(int difficulty){ //Difficulties: 0=Easy, 1=Normal, 2=Hard, 3=Impossible
+        isAlive = true;
         this.difficulty = difficulty;
         this.energy = 1.00;
         if (difficulty == 0 ){ //easy
