@@ -29,14 +29,17 @@ public class Pet{
                 satiety = 1;
                 money = 1000;
                 difficultyName = "Easy";
+                break;
             case 1: //normal
                 satiety = 0.85;
                 money = 750;
                 difficultyName = "Normal";
+                break;
             case 2: //hard
                 satiety = 0.70;
                 money = 500;
                 difficultyName = "Hard";
+                break;
             case 3: //impossible
                 if(ran.nextInt(50)==0){ //2% chance of starting with a dead pet.
                     killPet("miscarriage");
@@ -51,6 +54,7 @@ public class Pet{
                     money = 500;
                     difficultyName = "Impossible";
                 }
+                break;
             default:
                 System.out.println("No clue what happened but something went wrong");
         }
