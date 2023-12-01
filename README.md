@@ -85,6 +85,7 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
 * __2.0.0__ (in progress)
    * Added number formatting for stats
    * Time alive now tracked and displayed on death.
+   * Hatching is much easier now
    * Bugfixes
 
 ## License
