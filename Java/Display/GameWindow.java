@@ -1,12 +1,17 @@
 package Display;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class GameWindow {
     MyFrame frame;
-
+    
     public GameWindow(){
         frame = new MyFrame();
         frame.setVisible(true);
@@ -14,9 +19,31 @@ public class GameWindow {
     }
 
     public void startScreen(){
+        ImageIcon bg = new ImageIcon("Resources/StartScreen/StartScreen.jpg");
+        ImageIcon bIcon = new ImageIcon("Resources/StartScreen/StartButton.png");
+
+        
+        JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
+        b.setBounds(300,475,200,73);
+        
+        b.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                System.out.println("Buttonworked");
+            }
+            
+        });
+
         JLabel label = new JLabel();
-        ImageIcon img = new ImageIcon("Resources/StartScreen.jpg");
-        label.setIcon(img);
+        label.setIcon(bg);
+        
+        JPanel panel = new JPanel();
+        panel.setBounds(frame.getBounds());
+        panel.add(label);
+        frame.add(panel);
+        frame.add(b);
         frame.setVisible(true);
     }
 
@@ -43,5 +70,7 @@ public class GameWindow {
         frame.setVisible(true);
     }
 
-    
+    public void setVisible(boolean setVis){
+        frame.setVisible(setVis);
+    }
 }

@@ -85,7 +85,10 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
 * __2.0.0__ (in progress)
    * Added number formatting for stats
    * Time alive now tracked and displayed on death.
-   * Hatching is much easier now
+   * Hatching is much easier now.
+   * Removed difficulty selection - games run on normal.
+      * Difficulty is no longer displayed in stats screen
+      * (More to come I think)
    * Bugfixes
 
 ## License

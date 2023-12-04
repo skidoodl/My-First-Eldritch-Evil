@@ -4,26 +4,29 @@ import java.text.DecimalFormat;
 
 public class Pet{
     public int age, difficulty, money, relationship;
-    public int evilCount = 0;
-    public int calming = 0; //calming is an effect that reduces pet's evil likelihood. Number corresponds to rounds until calming affect wears off.
-    public int petDefeats = 0;
-    public int exercised = 4; //determines how fit pet is
-    public double satiety, energy; //satiety, or fullness. Range is between 0 and 1, with 0 being starving to death. Energy's range is 0 to 2, 1 being normal and anything above being insanity.
-    public double health=1.0;
+    public int evilCount = 0, petDefeats = 0, calming = 0, exercised = 4;
+    /*
+     * Exercised: Determines how fit pet is
+     * Calming: Effect that reduces P(Evil) - # of rounds left of the effect 
+     */
+    public double satiety; //satiety, or fullness. Range is between 0 and 1, with 0 being starving to death. Energy's range is 0 to 2, 1 being normal and anything above being insanity.
+    public double health=1.0, energy = 1.00;
     public String name, difficultyName, relationshipName;
-    public boolean isHealthy=true;
+    public boolean isHealthy=true, isEnergized=false; //when pet is energized, it loses little to no energy.
     public boolean isEvil, isAlive;
-    public boolean isEnergized=false; //when pet is energized, it loses little to no energy.
     private DecimalFormat statDF = new DecimalFormat("#.##");
 
     Random ran = new Random();
-    public Pet(){ //default constructor
-       //gyguyg
+    public Pet(){ //default constructor - set to normal difficulty :D
+        isAlive = true;
+        difficulty = 1;
+        satiety = 0.85;
+        money = 750;
+        difficultyName = "Normal";
     }
     public Pet(int difficulty){ //Difficulties: 0=Easy, 1=Normal, 2=Hard, 3=Impossible
         isAlive = true;
         this.difficulty = difficulty;
-        this.energy = 1.00;
         switch(difficulty){
             case 0: //easy
                 satiety = 1;
@@ -266,7 +269,7 @@ public class Pet{
     public void checkStats(){
         System.out.println(this.name+"'s Stats:\n------------------------------------------");
         String yrs = Lazy.autoPlural(age);
-        System.out.print(name+" is "+age+" year"+yrs+" old.\nDifficulty: "+difficultyName+"\nEnergy: "+statDF.format(energy)+"\nSatiation: "+statDF.format(satiety)+"\n"+name);
+        System.out.print(name+" is "+age+" year"+yrs+" old.\nEnergy: "+statDF.format(energy)+"\nSatiation: "+statDF.format(satiety)+"\n"+name);
         if(isHealthy){
             System.out.println(" is healthy.");
         }else{

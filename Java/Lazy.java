@@ -31,6 +31,25 @@ public class Lazy{
             }
         }
     }
+
+    public static void waitForEnter(boolean blankMessage) {
+        if (blankMessage) {
+            Console console = System.console();
+            if (console != null) {
+                console.readLine(); // Wait for Enter
+            } else {
+                System.out.println("System console is not available. Press Enter to continue...");
+                try {
+                    System.in.read(); // Wait for Enter
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }else{
+            waitForEnter();
+        }
+    }
+
     public static void hold(int time){
         try{
             Thread.sleep(time); // Pause for (time/1000) seconds
