@@ -101,10 +101,10 @@ public class Evil{
         int input = scan.nextInt();
         switch(input){
             case 1: 
-                Menu.openInventory(pet);
+                Menu.openInventory();
                 break;
             case 2:
-                Menu.openShop(pet);
+                Menu.openShop();
                 break;
             case 3: //stats
                 stats(pet);

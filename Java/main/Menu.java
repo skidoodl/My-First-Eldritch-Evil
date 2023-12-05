@@ -18,8 +18,13 @@ public class Menu{
   public static int[] crisisItemStock = {1,1,1,1,1,1,20,20,15,10};
   public static int[] crisisInvAmount = new int[10];
   public static int[] crisisPrice = {/*Armor*/ 600,/*Armour*/ 950,/*Armoure*/ 1800,/*Wood Sword*/475,/*iron sword*/ 1020,/*Shield*/380,/*food bundle*/ 220, /*sedatives*/375, /*Magic Juice*/450, /*Magic Super Juice*/775}; // load item prices
+  
+  public static void displayMenu() { //Main Game Menu
+    final Pet pet = Main.pet;
+    final GameWindow gw = Main.gw;
 
-  public static void displayMenu(Pet pet, GameWindow gw) { //Main Game Menu
+    gw.menuScreen();
+    
     if(!pet.isEvil){
       Scanner scan = new Scanner(System.in);
       String name = pet.name; 
@@ -53,10 +58,10 @@ public class Menu{
       int input = scan.nextInt();
       switch(input){
         case 1: //inventory
-        Menu.openInventory(pet);
+        Menu.openInventory();
         break;
         case 2: //store
-          Menu.openShop(pet);
+          Menu.openShop();
           break;
         case 3: //Check Stats
           statsAlert = false;
@@ -89,10 +94,12 @@ public class Menu{
   }
 
 
-  public static void openInventory(Pet pet){
+  public static void openInventory(){
+    final Pet pet = Main.pet;
+    
     System.out.println("\n\n---------{INVENTORY}---------\nPRESS 0 TO EXIT");
     if(!pet.isEvil){ //if pet isn't evil, display this inventory
-      sortInventory(pet);
+      sortInventory();
       int i=0;
       for(i=0; invItems[i] != null && i<invItems.length; i++){
         if(invItems[i]==null){break;}
@@ -127,7 +134,7 @@ public class Menu{
           break;
       }
     }else{ //---CRISIS INVENTORY---//
-      sortInventory(pet);
+      sortInventory();
       int i=0;
       for(i=0;i<crisisInvItems.length;i++){
         if(crisisInvItems[i]==null){break;}
@@ -245,7 +252,9 @@ public class Menu{
     }
   }
 
-  public static void openShop(Pet pet){
+  public static void openShop(){
+    final Pet pet = Main.pet;
+    
     Scanner scan = new Scanner(System.in);
     if(pet.name.trim().equals("ferg")){
       System.out.println("dev mode");
@@ -272,10 +281,10 @@ public class Menu{
         if(itemStock[(sel - 1)] < quant){
           System.out.println("Not enough stock.");
           Lazy.waitForEnter();
-          Menu.openShop(pet);
+          Menu.openShop();
         }
         if (quant<1){ //if user inputs a quantity less than 1, return them back to the main shopping thing or smth idk
-          Menu.openShop(pet);
+          Menu.openShop();
         }
         int cost = itemPrice[(sel-1)]*quant; //calculate purchase cost
         
@@ -335,7 +344,7 @@ public class Menu{
         if(crisisItemStock[(sel - 1)] < quant){
           System.out.println("Not enough stock.");
           Lazy.waitForEnter();
-          Menu.openShop(pet);
+          Menu.openShop();
         }
         if (quant<1){ //if user inputs a quantity less than 1, return them back to the main shopping thing or smth idk
           Evil.crisisMenu(pet);
@@ -376,7 +385,9 @@ public class Menu{
     }
   }
 
-  private static void sortInventory(Pet pet){
+  private static void sortInventory(){
+    final Pet pet = Main.pet;
+    
     int i;
     if(!pet.isEvil){
       for(i=0; i<invItems.length; i++){

@@ -12,11 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class GameWindow {
-    MyFrame frame;
+    GameFrame frame;
     boolean gameStart;
 
     public GameWindow() {
-        frame = new MyFrame();
+        frame = new GameFrame();
         frame.setVisible(true);
     }
 

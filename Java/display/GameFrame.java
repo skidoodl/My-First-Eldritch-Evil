@@ -2,9 +2,9 @@ package display;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 
-public class MyFrame extends JFrame{
+public class GameFrame extends JFrame{
 
-    MyFrame(){
+    GameFrame(){
         this.setTitle("My First Eldritch Evil");
         this.setSize(800,600); //set frame dimensions
         this.setResizable(false); //may change this later but for now its false

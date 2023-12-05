@@ -7,10 +7,13 @@ public class Main {
   public static long startTime;
   public static boolean gameStart = false;
 
-  public static void main(String[] args) {
-    GameWindow gw = new GameWindow();
+  public static Pet pet;
+  public static GameWindow gw;
 
-    Pet pet = new Pet(gw.startScreen()); // create pet
+  public static void main(String[] args) {
+    gw = new GameWindow();
+
+    pet = new Pet(gw.startScreen()); // create pet
     String name = pet.name;
 
     // Begin Timer
@@ -18,6 +21,7 @@ public class Main {
     playTimer.startTimer();
 
     System.out.println("Welcome to the world, " + name + "!");
+
     if (name.equals("evil")) {
       Evil.main(pet);
     }
@@ -27,7 +31,7 @@ public class Main {
         Evil.main(pet);
       }
       while (action < 2) { // two actions will perform before moving on to cycle.
-        Menu.displayMenu(pet,gw);
+        Menu.displayMenu();
       }
       action = 0;
       Cycle.nextCycle(pet);
