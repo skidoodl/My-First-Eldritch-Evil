@@ -1,23 +1,26 @@
-package Display;
+package display;
 
 import java.awt.Color;
+import java.awt.Dimension;
 //import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class GameWindow {
     MyFrame frame;
+    boolean gameStart;
 
     public GameWindow() {
         frame = new MyFrame();
         frame.setVisible(true);
     }
 
-    public void startScreen() {
+    public String startScreen() {
         ImageIcon bg = new ImageIcon("Resources/StartScreen/StartScreen.jpg");
 
         JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
@@ -29,7 +32,7 @@ public class GameWindow {
             public void actionPerformed(ActionEvent e) {
                 // throw new UnsupportedOperationException("Unimplemented method
                 // 'actionPerformed'");
-                main.Main.gameStart=true;
+                gameStart = true;
             }
 
         });
@@ -43,6 +46,18 @@ public class GameWindow {
         frame.add(panel);
         frame.add(b);
         frame.setVisible(true);
+
+        while (!gameStart) { // wait for the button to be clicked
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+            }
+        }
+
+        // Naming function will go here
+        String name="Bread";
+
+        return name;
     }
 
     public void menuScreen() {

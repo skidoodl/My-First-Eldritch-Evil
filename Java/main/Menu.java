@@ -1,7 +1,8 @@
 package main;
 import java.util.Scanner;
-
+import display.GameWindow;
 import utils.Lazy;
+
 public class Menu{
   public static boolean statsAlert = false;
 
@@ -18,7 +19,7 @@ public class Menu{
   public static int[] crisisInvAmount = new int[10];
   public static int[] crisisPrice = {/*Armor*/ 600,/*Armour*/ 950,/*Armoure*/ 1800,/*Wood Sword*/475,/*iron sword*/ 1020,/*Shield*/380,/*food bundle*/ 220, /*sedatives*/375, /*Magic Juice*/450, /*Magic Super Juice*/775}; // load item prices
 
-  public static void displayMenu(Pet pet) { //Main Game Menu
+  public static void displayMenu(Pet pet, GameWindow gw) { //Main Game Menu
     if(!pet.isEvil){
       Scanner scan = new Scanner(System.in);
       String name = pet.name; 
