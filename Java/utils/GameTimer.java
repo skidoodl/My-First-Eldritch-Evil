@@ -1,3 +1,4 @@
+package utils;
 public class GameTimer {
     private long time,startTime;
     private boolean timerActive = false;

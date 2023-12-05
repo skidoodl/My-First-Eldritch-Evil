@@ -1,4 +1,7 @@
+package main;
 import java.util.Random;
+
+import utils.Lazy;
 
 public class Cycle{
     public static int cycle,cyclesSinceEvil;

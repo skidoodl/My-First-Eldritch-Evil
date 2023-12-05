@@ -1,4 +1,7 @@
+package main;
 import java.util.Scanner;
+
+import utils.Lazy;
 public class Menu{
   public static boolean statsAlert = false;
 

@@ -1,4 +1,8 @@
+package main;
 import java.util.Scanner;
+
+import utils.Lazy;
+
 import java.util.Random;
 
 public class Evil{

@@ -1,5 +1,9 @@
+package main;
 import java.util.Random;
 import java.util.Scanner;
+
+import utils.Lazy;
+
 import java.text.DecimalFormat;
 
 public class Pet{
@@ -23,7 +27,32 @@ public class Pet{
         satiety = 0.85;
         money = 750;
         difficultyName = "Normal";
+
+        // Name Pet
+        Scanner scanName = new Scanner(System.in);
+        System.out.println("Congrats on your new pet! What will you name it? (9 characters or less)");
+        String n = scanName.next().trim();
+        while (n.length() > 9) { // make sure name isn't too long
+            System.out.print("Too long! Try again: ");
+            n = scanName.next();
+        }
+        while (n.length() < 1) { // make sure name isn't too short
+            System.out.print("Invalid name. Try again: ");
+            n = scanName.next();
+        }
+        this.name = n;
+        scanName.close();
     }
+
+    public Pet(String name){
+        this.name = name;
+        isAlive = true;
+        difficulty = 1;
+        satiety = 0.85;
+        money = 750;
+        difficultyName = "Normal";
+    }
+
     public Pet(int difficulty){ //Difficulties: 0=Easy, 1=Normal, 2=Hard, 3=Impossible
         isAlive = true;
         this.difficulty = difficulty;

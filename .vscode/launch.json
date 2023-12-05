@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "main.Main",
+            "projectName": "My-First-Eldritch-Evil_49bdf049"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "Main",
             "projectName": "My-First-Eldritch-Evil_2fbb1046"
         },

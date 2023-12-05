@@ -1,6 +1,5 @@
 package Display;
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 public class MyFrame extends JFrame{
