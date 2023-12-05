@@ -1,10 +1,9 @@
 public class GameTimer {
-    private long ingameTime,allTime,startTime;
+    private long time,startTime;
     private boolean timerActive = false;
 
     public GameTimer(){ //default constructor
-        ingameTime = 0;
-        allTime = 0;
+        time = 0;
     }
 
     public void startTimer(){
@@ -15,6 +14,7 @@ public class GameTimer {
             return;
         }
         startTime = System.nanoTime();
+        timerActive = true;
     }
 
     public void pauseTimer(){
@@ -24,22 +24,17 @@ public class GameTimer {
             return;
         }
         timerActive = false;
-        ingameTime += System.nanoTime() - startTime;
+        time += System.nanoTime() - startTime;
     }
 
-    public void pauseTimer(boolean pauseAllTime){
-        //
+    public long getTime(){
+        long t = time + (System.nanoTime() - startTime);
+        return t;
     }
 
-    public void stopTimer(){
-        //
-    }
-
-    public void getActiveTime(){
-        //
-    }
-
-    public void getAllTime(){
-        //
+    public void resetTimer(){
+        timerActive = false;
+        time = 0;
+        startTime = 0;
     }
 }

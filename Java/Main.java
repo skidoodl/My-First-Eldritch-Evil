@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 import Display.GameWindow;
-import Display.MyFrame;
 
 import java.util.InputMismatchException;
 
@@ -29,8 +28,9 @@ public class Main{
       Pet pet = new Pet(); //create pet
       
       Lazy.waitForEnter("Press Enter to Hatch"); //TODO: Make this the start button for graphics interface
-      isHatch[0]++;
-      gw.menuScreen();
+      isHatch[0]++; //What is the point of this?
+      
+      //Name Pet
       System.out.println("Congrats on your new pet! What will you name it? (9 characters or less)");
       String name = scan.next().trim();
       while (name.length() > 9){ // make sure name isn't too long
@@ -42,8 +42,12 @@ public class Main{
         name = scan.next();
       }
       pet.namePet(name);
-      startTime = System.nanoTime();
-      isHatch[0]++;
+      
+      //Begin Timer
+      GameTimer playTimer = new GameTimer();
+      playTimer.startTimer();
+      
+      isHatch[0]++; //The point???
       System.out.println("Welcome to the world, " + name + "!");
       if(name.equals("evil")){
         Evil.main(pet);

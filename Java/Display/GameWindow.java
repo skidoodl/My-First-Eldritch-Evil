@@ -20,8 +20,6 @@ public class GameWindow {
 
     public void startScreen(){
         ImageIcon bg = new ImageIcon("Resources/StartScreen/StartScreen.jpg");
-        ImageIcon bIcon = new ImageIcon("Resources/StartScreen/StartButton.png");
-
         
         JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
         b.setBounds(300,475,200,73);
