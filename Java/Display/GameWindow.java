@@ -1,26 +1,23 @@
 package display;
 
 import java.awt.Color;
-import java.awt.Dimension;
-//import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class GameWindow {
-    GameFrame frame;
+    GameFrame gFrame;
     boolean gameStart;
 
     public GameWindow() {
-        frame = new GameFrame();
-        frame.setVisible(true);
+        gFrame = new GameFrame();
+        gFrame.setVisible(true);
     }
 
-    public String startScreen() {
+    public String startScreen() { //TODO - Frame got sized up, adjust contents to fit new dimensions
         ImageIcon bg = new ImageIcon("Resources/StartScreen/StartScreen.jpg");
 
         JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
@@ -41,11 +38,11 @@ public class GameWindow {
         label.setIcon(bg);
 
         JPanel panel = new JPanel();
-        panel.setBounds(frame.getBounds());
+        panel.setBounds(gFrame.getBounds());
         panel.add(label);
-        frame.add(panel);
-        frame.add(b);
-        frame.setVisible(true);
+        gFrame.add(panel);
+        gFrame.add(b);
+        gFrame.setVisible(true);
 
         while (!gameStart) { // wait for the button to be clicked
             try {
@@ -77,13 +74,13 @@ public class GameWindow {
         feedP.setLayout(null); // idk what this is about but we'll see
 
         // Add Panels
-        frame.add(menuP);
-        frame.add(petDisp);
-        frame.add(feedP);
-        frame.setVisible(true);
+        gFrame.add(menuP);
+        gFrame.add(petDisp);
+        gFrame.add(feedP);
+        gFrame.setVisible(true);
     }
 
-    public void setVisible(boolean setVis) {
-        frame.setVisible(setVis);
+    public void setGameFrameVisible(boolean setVis) {
+        gFrame.setVisible(setVis);
     }
 }
