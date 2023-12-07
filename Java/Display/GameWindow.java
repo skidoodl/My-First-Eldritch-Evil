@@ -1,6 +1,7 @@
 package display;
 
 import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 
 public class GameWindow {
     GameFrame gFrame;
+    GameFrame iFrame;
     boolean gameStart;
 
     public GameWindow() {
@@ -54,10 +56,14 @@ public class GameWindow {
         // Naming function will go here
         String name="Bread";
 
+        gFrame.remove(panel);
+
         return name;
     }
 
     public void menuScreen() {
+        gFrame.revalidate();
+        gFrame.repaint();
         JPanel menuP = new JPanel(); // Where the menu sits
         menuP.setBackground(Color.black);
         menuP.setBounds(0, 0, 400, 300);
@@ -78,6 +84,13 @@ public class GameWindow {
         gFrame.add(petDisp);
         gFrame.add(feedP);
         gFrame.setVisible(true);
+    }
+
+    public void inventory(){
+        if(iFrame == null){
+            iFrame = new GameFrame("Inventory");
+        }
+
     }
 
     public void setGameFrameVisible(boolean setVis) {
