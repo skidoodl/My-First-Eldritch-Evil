@@ -1,7 +1,6 @@
 package display;
 
 import java.awt.Color;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
@@ -57,13 +56,14 @@ public class GameWindow {
         String name="Bread";
 
         gFrame.remove(panel);
-
+        gFrame.remove(b);
         return name;
     }
 
     public void menuScreen() {
         gFrame.revalidate();
         gFrame.repaint();
+        
         JPanel menuP = new JPanel(); // Where the menu sits
         menuP.setBackground(Color.black);
         menuP.setBounds(0, 0, 400, 300);
