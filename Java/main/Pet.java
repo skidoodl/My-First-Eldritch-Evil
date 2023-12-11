@@ -122,6 +122,10 @@ public class Pet{
         this.name = name;
     }
 
+    public String getName(){
+        return this.name;
+    }
+    
     public void cuddlePet(){
         Grave grave = new Grave();
         int cdl = ran.nextInt(99)+1;

@@ -18,7 +18,7 @@ public class GameWindow {
         gFrame.setVisible(true);
     }
 
-    public String startScreen() { //TODO - Frame got sized up, adjust contents to fit new dimensions
+    public String startScreen() {
         ImageIcon bg = new ImageIcon("Resources/StartScreen/StartScreen.jpg");
 
         JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
@@ -60,29 +60,32 @@ public class GameWindow {
         return name;
     }
 
-    public void menuScreen() {
-        gFrame.revalidate();
-        gFrame.repaint();
+    public void menuScreen(String opts[]) {
         
-        JPanel menuP = new JPanel(); // Where the menu sits
-        menuP.setBackground(Color.black);
-        menuP.setBounds(0, 0, 400, 300);
-        menuP.setLayout(null); // idk what this is about but we'll see
+        //MENU PANEL
+        MenuPanel mPanel = new MenuPanel(opts);
 
+        //PET DISPLAY PANEL
+        //TODO - I added two graphics for pet into the resources folder - ready to implement
         JPanel petDisp = new JPanel(); // Where the pet gets displayed
         petDisp.setBackground(Color.white);
-        petDisp.setBounds(400, 0, 400, 300);
-        petDisp.setLayout(null); // idk what this is about but we'll see
+        petDisp.setBounds(480, 0, 480, 360);
+        //petDisp.setLayout(null); // idk what this is about but we'll see
 
+
+        //MFEE FEED
         JPanel feedP = new JPanel(); // Where the game feed is displayed
         feedP.setBackground(Color.gray);
-        feedP.setBounds(0, 300, 800, 300);
-        feedP.setLayout(null); // idk what this is about but we'll see
+        feedP.setBounds(480, 360, 480, 360);
+        //feedP.setLayout(null); // idk what this is about but we'll see
 
+        
         // Add Panels
-        gFrame.add(menuP);
+        gFrame.add(mPanel);
         gFrame.add(petDisp);
         gFrame.add(feedP);
+        gFrame.revalidate();
+        gFrame.repaint();
         gFrame.setVisible(true);
     }
 

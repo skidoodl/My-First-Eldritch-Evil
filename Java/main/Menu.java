@@ -6,6 +6,8 @@ import utils.Lazy;
 public class Menu{
   public static boolean statsAlert = false;
 
+  private static String name = Main.pet.name;
+  private static String[] menuOpts = {"Inventory","Store",(name+"'s Stats"),("Feed "+name),("Sleep "+name),("Exercise "+name),("Cuddle with "+name),"Next Day"};
   //-----NORMAL INVENTORY-----//
   public static String[] invItems = new String[10];
   public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
@@ -22,12 +24,13 @@ public class Menu{
   public static void displayMenu() { //Main Game Menu
     final Pet pet = Main.pet;
     final GameWindow gw = Main.gw;
+    
 
-    gw.menuScreen();
+    gw.menuScreen(menuOpts);
     
     if(!pet.isEvil){
       Scanner scan = new Scanner(System.in);
-      String name = pet.name; 
+
       //Lazy.clearConsole();
       System.out.print("\n\n--------{MY FIRST ELDRITCH EVIL}--------\n  1. Inventory");
       System.out.print("\n  2. Store\n  3. "+name+"'s Stats");
