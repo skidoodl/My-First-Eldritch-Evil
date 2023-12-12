@@ -90,6 +90,8 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
       * Difficulty is no longer displayed in stats screen
       * (More to come I think)
    * Bugfixes
+   * Added start screen
+   * Added menu window with visual pet display
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
