@@ -59,46 +59,18 @@ public class Menu{
       }
       System.out.print("\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");
       int input = scan.nextInt();
-      switch(input){
-        case 1: //inventory
-        Menu.openInventory();
-        break;
-        case 2: //store
-          Menu.openShop();
-          break;
-        case 3: //Check Stats
-          statsAlert = false;
-          pet.checkStats();
-          break;
-        case 4: //feed
-          pet.feed();
-          break;
-        case 5: // sleep
-          System.out.print("How many hours do you want "+pet.name+" to sleep? ");
-          int hours = scan.nextInt();
-          pet.sleep(hours);
-          break;
-        case 6: //Exercise
-          pet.exercise();
-          break;
-        case 7: //cuddle pet
-          pet.cuddlePet();
-          break;
-        case 8:
-          Main.action = 3;
-          break;
-        default:
-          System.out.println("Option "+input+" is not available.");
-          break;
-      }
+      useMenu(input-1);
     }else{
       Evil.crisisMenu(pet);
     }
   }
 
 
-  public static void openInventory(){
+  public static void openInventory(){ //TODO - Make inventory class
     final Pet pet = Main.pet;
+    final GameWindow gw = Main.gw;
+
+    gw.inventory();
     
     System.out.println("\n\n---------{INVENTORY}---------\nPRESS 0 TO EXIT");
     if(!pet.isEvil){ //if pet isn't evil, display this inventory
@@ -253,6 +225,44 @@ public class Menu{
           System.out.println("Unavailable"); //Yet to implement: magic juices
       }
     }
+  }
+
+  public static void useMenu (int sel){
+    final Pet pet = Main.pet;
+
+    Scanner scan = new Scanner(System.in);
+    switch(sel){ //TODO - Edit the cases to start from 0
+        case 0: //inventory
+        Menu.openInventory();
+        break;
+        case 1: //store
+          Menu.openShop();
+          break;
+        case 2: //Check Stats
+          statsAlert = false;
+          pet.checkStats();
+          break;
+        case 3: //feed
+          pet.feed();
+          break;
+        case 4: // sleep
+          System.out.print("How many hours do you want "+pet.name+" to sleep? ");
+          int hours = scan.nextInt();
+          pet.sleep(hours);
+          break;
+        case 5: //Exercise
+          pet.exercise();
+          break;
+        case 6: //cuddle pet
+          pet.cuddlePet();
+          break;
+        case 7:
+          Main.action = 3;
+          break;
+        default:
+          System.out.println("Option "+sel+" is not available.");
+          break;
+      }
   }
 
   public static void openShop(){

@@ -12,8 +12,6 @@ public class GameTimer {
 
     public void startTimer(){
         if (timerActive){
-            System.out.println("   >>Could not start game timer because\n"+
-                               "     it was already running.\n");
             JOptionPane.showMessageDialog(null,"Could not start game timer because it was already running.","Game Timer Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -23,8 +21,6 @@ public class GameTimer {
 
     public void pauseTimer(){
         if(!timerActive){
-            System.out.println("   >>Could not pause game timer because\n"+
-                               "     it was already paused.");
             JOptionPane.showMessageDialog(null,"Could not pause game timer because it was already paused.","Game Timer Error",JOptionPane.ERROR_MESSAGE);
             return;
         }

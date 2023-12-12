@@ -3,6 +3,8 @@ import java.io.Console;
 import java.text.DecimalFormat;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class Lazy{
     public static void waitForEnter() {
         System.out.print("Press Enter to Continue");
@@ -70,6 +72,30 @@ public class Lazy{
             plural = "s";
         }
         return plural;
+    }
+
+    public static int findInArray(String[] array, String item) {
+        int i;
+        for(i = 0; i<array.length; i++){
+            if (array[i] == item){
+                return i;
+            }
+        }
+
+        System.out.println("\""+item+"\" could not be found.");
+        return -1;
+    }
+    
+    public static int findInArray(int[] array, int integer) {
+        int i;
+        for(i = 0; i<array.length; i++){
+            if (array[i] == integer){
+                return i;
+            }
+        }
+
+        System.out.println("\""+integer+"\" could not be found.");
+        return -1;
     }
 
     public static String timeFormat(long time){
