@@ -3,8 +3,6 @@ import java.io.Console;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
-
 public class Lazy{
     public static void waitForEnter() {
         System.out.print("Press Enter to Continue");
