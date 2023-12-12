@@ -1,11 +1,9 @@
 package display;
 
-import main.Main;
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.awt.event.MouseAdapter;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
