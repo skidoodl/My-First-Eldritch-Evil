@@ -2,8 +2,12 @@ package main;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import utils.Lazy;
 
+import java.awt.Image;
 import java.text.DecimalFormat;
 
 public class Pet{
@@ -170,7 +174,6 @@ public class Pet{
     }
 
     public void feed(){
-        Scanner scan = new Scanner(System.in);
         String[] invItems = Menu.invItems;
         if (this.satiety>1.0){ //too full to eat
             System.out.println("\n"+name+" is too full to eat.");
@@ -184,46 +187,47 @@ public class Pet{
             if(invItems[i].equalsIgnoreCase("Food")){ //once it finds food
                 int fAmount = Menu.itemInvAmount[i];
                 foundFood = true;
-                System.out.print("How much food do you want to feed "+name+"? (x"+fAmount+" food): ");
-                int amount=scan.nextInt();
-                if(amount<=0){ //0 or less not allowed
-                    System.out.println("Not Allowed. Nope. Nuh uh.");
-                    Lazy.waitForEnter();
+                System.out.println("Feeding pet...");
+                
+                ImageIcon imgIcon = new ImageIcon("Resources/MessageIcons/FeedPetIcon.png"); //Get feed message icon
+                //Format icon to size:
+                Image img = imgIcon.getImage();
+                img = img.getScaledInstance(80, 67, java.awt.Image.SCALE_SMOOTH);
+                imgIcon = new ImageIcon(img);
+
+
+                String[] feedOptions = new String[fAmount]; //Initialize the list for the user to choose feed amount
+                for (int j=0; j<fAmount; j++){ //populate list with options
+                    feedOptions[j] = String.valueOf(j+1);
+                }
+                //Get amount to be fed:
+                Object selected = JOptionPane.showInputDialog(null,"How much food do you want to feed "+name+"?", "Feed "+name,JOptionPane.INFORMATION_MESSAGE, imgIcon,feedOptions, feedOptions[0]);
+                int amount=0; //initialize amount variable
+                //Get amount:
+                if (selected != null) {
+                    amount = Integer.parseInt(selected.toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Something went wrong.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                if (amount > Menu.itemInvAmount[i]){ //more than inv amount
-                    System.out.println("You ain't got that much food.");
-                    Lazy.waitForEnter();
-                    return;
+
+                Menu.itemInvAmount[i] -= amount; //Subtract food from inventory
+                
+                double feed = (0.15*amount); //Max possible feed: 0.2/food | Min possible feed 0.1/food
+                satiety += feed;
+
+                if (satiety > 1.7) {
+                    killPet("gastrointestinal perforation");
                 }
-                //And then if you have the right amount...
-                Menu.itemInvAmount[i] -= amount;
-                switch(difficulty){
-                    case 0: //easy
-                        satiety += (0.25*amount);
-                        break;
-                    case 1: //norm
-                        satiety += (0.1*amount);
-                        if(satiety>1.8){killPet("gastrointestinal perforation");}
-                        break;
-                    case 2: //hard
-                        satiety += (0.04*amount);
-                        if(satiety>1.1){killPet("gastrointestinal perforation");}
-                        break;
-                    case 3: //impos.
-                        satiety += (0.001*amount);
-                        if(satiety>1){killPet("gastrointestinal perforation");}
-                        break;
-                }
+                
                 Main.action++;
-                System.out.println("Satiety: "+statDF.format(satiety));
-                Lazy.waitForEnter();
+                JOptionPane.showMessageDialog(null, "You fed "+name+" "+amount+" food (+"+statDF.format(feed)+" satiety).\nCurrent Satiety: "+statDF.format(satiety), "Feed "+name, JOptionPane.INFORMATION_MESSAGE, imgIcon);
                 return;
             }
         }
         if(!foundFood){
-        System.out.println("You have no food in your inventory");
-        Lazy.waitForEnter();
+            JOptionPane.showMessageDialog(null, "You have no food in your inventory","Feed "+name,JOptionPane.INFORMATION_MESSAGE);
+            //TODO - Add an option to visit shop and buy food
         }
     }
 

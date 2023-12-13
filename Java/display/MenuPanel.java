@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
 import main.Menu;
@@ -69,7 +68,6 @@ public class MenuPanel extends JPanel{
     private void handleOptionClick(String option) {
         // Add your logic here to handle the click for each option
         int sel = Lazy.findInArray(opts, option);
-        JOptionPane.showMessageDialog(this, "Selected Option: " + option+"\nIndex: "+sel);
         Menu.useMenu(sel);
     }
 }
