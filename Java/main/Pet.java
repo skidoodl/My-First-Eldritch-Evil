@@ -23,6 +23,7 @@ public class Pet{
     public boolean isHealthy=true, isEnergized=false; //when pet is energized, it loses little to no energy.
     public boolean isEvil, isAlive;
     private DecimalFormat statDF = new DecimalFormat("#.##");
+    private DecimalFormat statPctDF = new DecimalFormat("##");
 
     Random ran = new Random();
     public Pet(){ //default constructor - set to normal difficulty :D
@@ -302,39 +303,62 @@ public class Pet{
         }
         Main.action++;
     }
-    
-    public void checkStats(){
-        System.out.println(this.name+"'s Stats:\n------------------------------------------");
-        String yrs = Lazy.autoPlural(age);
-        System.out.print(name+" is "+age+" year"+yrs+" old.\nEnergy: "+statDF.format(energy)+"\nSatiation: "+statDF.format(satiety)+"\n"+name);
-        if(isHealthy){
-            System.out.println(" is healthy.");
-        }else{
-            System.out.println(" is sick.");
+
+    public String[] getStatsArray() {
+        // Determine length of stats array
+        int s = 6; // age, energy, satiation, is healthy, health stat, exercise = 6
+        if (isEnergized){s++;}
+        if (calming>0){s++;}
+        if (evilCount>0){s++;}
+        String[] stats = new String[s];
+        
+        // Age
+        stats[0] = name+" is "+age+" year"+Lazy.autoPlural(age)+" old.";
+        // Energy
+        stats[1] = "Energy: "+statPctDF.format(energy*100)+"%"; //display as percentage
+        // Satiation
+        stats[2] = name + " is "+statPctDF.format(satiety*100)+"% full (satiety).";
+        // isHealthy
+        if (isHealthy) {
+            stats[3] = name + " is healthy.";
+        } else {
+            stats[3] = name + " isn't feeling to good."; //TODO: Create vet system??
         }
-        System.out.println("Health: "+statDF.format(health));
-        if(isEnergized){
-            System.out.println(name+" is energized.");
+        // Health Level
+        stats[4] = name + "'s health is at "+statPctDF.format(health*100)+"%";
+        // Exercised
+        if (exercised <= -4) {
+            stats[5] = name + " is obese."; // TODO: Obese pet art?
+        } else if (exercised<0){
+            stats[5] = name + " is looking kinda chubby. Might wanna hit the gym...";
+        } else if (exercised < 7) {
+            stats[5] = name + " is looking nice and fit.";
+        } else {
+            stats[5] = name + " is looking crazy buff."; // TODO - Create buff pet art?
         }
-        if (exercised<1){
-            System.out.println(name+" is looking kinda chubby. Might wanna hit the gym...");
-        }else if (exercised < 7){
-            System.out.println(name+" is looking nice and fit.");
-        }else{
-            System.out.println(name +" is looking crazy buff.");
+        // Conditional Stats
+        if (stats.length > 6) {
+            int i = 6;
+            // isEnergized
+            if (isEnergized) {
+                stats[i] = name + " is energized.";
+                i++;
+            }
+            // Calming (Incense effect)
+            if (calming > 0) {
+                stats[i] = "Incense is calming "+name+" and reducing its chance of\n"+
+                           "turning evil. The incense will last for "+calming+" more cycle"+Lazy.autoPlural(calming)+".";
+                i++;
+            }
+            // How many times turned evil, Cycles since evil
+            if (evilCount > 0) {
+                int cse = Cycle.cyclesSinceEvil;
+                stats[i] = name+" has turned evil "+evilCount+" time"+Lazy.autoPlural(evilCount)+".\n"+
+                          "It has been "+cse+" cycle"+Lazy.autoPlural(cse)+" since "+name+" was evil.";
+                i++;
+            }
         }
-        if(calming>0){
-            String calmin = Lazy.autoPlural(calming);
-            System.out.println("Incense is calming "+name+" and reducing its chance of\nturning evil. The incense will last for "+calming+" more cycle"+calmin+".");
-        }
-        if(evilCount>0){
-            int cSE = Cycle.cyclesSinceEvil;
-            String ecPlural = Lazy.autoPlural(evilCount);
-            String dsePlural = Lazy.autoPlural(cSE);
-            System.out.println(name+" has turned evil "+evilCount+"time"+ecPlural+".\nIt has been "+cSE+" cycle"+dsePlural+" since "+name+" was evil.");
-        }
-        Lazy.waitForEnter();
-        return;
+        return stats;
     }
 
     public void birthday(){

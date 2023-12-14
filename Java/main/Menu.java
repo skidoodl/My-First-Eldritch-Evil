@@ -1,10 +1,12 @@
 package main;
 import java.util.Scanner;
 import display.GameWindow;
+import display.mainPanels.StatsPanel;
 import utils.Lazy;
 
 public class Menu{
   public static boolean statsAlert = false;
+  public static boolean statsOn = false;
 
   private static String name = Main.pet.name;
   private static String[] menuOpts = {"Inventory","Store",(name+"'s Stats"),("Feed "+name),("Sleep "+name),("Exercise "+name),("Cuddle with "+name),"Next Day"};
@@ -229,6 +231,7 @@ public class Menu{
 
   public static void useMenu (int sel){
     final Pet pet = Main.pet;
+    GameWindow gw = Main.gw;
 
     Scanner scan = new Scanner(System.in);
     switch(sel){ //TODO - Edit the cases to start from 0
@@ -239,8 +242,14 @@ public class Menu{
           Menu.openShop();
           break;
         case 2: //Check Stats
-          statsAlert = false;
-          pet.checkStats();
+          if (statsOn) {
+            statsOn = false;
+            gw.statsVisible(false);
+          } else {
+            statsAlert = false;
+            statsOn = true;
+            gw.statsVisible(true);
+          }
           break;
         case 3: //feed
           pet.feed();

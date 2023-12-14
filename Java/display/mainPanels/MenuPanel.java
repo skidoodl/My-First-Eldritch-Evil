@@ -1,4 +1,4 @@
-package display;
+package display.mainPanels;
 
 import java.awt.GridLayout;
 import java.awt.Color;
@@ -29,7 +29,7 @@ public class MenuPanel extends JPanel{
         for (String option : options) {
             JLabel label = new JLabel(option);
             label.addMouseListener(new OptionMouseListener(label));
-            label.setFont(new Font("Papyrus", Font.PLAIN, 20));
+            label.setFont(DEFAULT_FONT);
             label.setForeground(Color.white);
             add(label);
         }

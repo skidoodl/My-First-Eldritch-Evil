@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+
+import display.mainPanels.MenuPanel;
+import display.mainPanels.StatsPanel;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +16,9 @@ public class GameWindow {
     GameFrame gFrame;
     InventoryFrame iFrame;
     boolean gameStart;
+    public boolean statsVisible = false;
+    private StatsPanel sPanel;
+    private JPanel petDisplay;
 
     public GameWindow() {
         gFrame = new GameFrame();
@@ -67,9 +74,9 @@ public class GameWindow {
 
         //PET DISPLAY PANEL
         //TODO - I added two graphics for pet into the resources folder - ready to implement
-        JPanel petDisp = new JPanel(); // Where the pet gets displayed
-        petDisp.setBackground(Color.white);
-        petDisp.setBounds(480, 0, 480, 360);
+        petDisplay = new JPanel(); // Where the pet gets displayed
+        petDisplay.setBackground(Color.white);
+        petDisplay.setBounds(480, 0, 480, 360);
 
         //MFEE FEED
         JPanel feedP = new JPanel(); // Where the game feed is displayed
@@ -78,11 +85,26 @@ public class GameWindow {
         
         // Add Panels
         gFrame.add(mPanel);
-        gFrame.add(petDisp);
+        gFrame.add(petDisplay);
         gFrame.add(feedP);
         gFrame.revalidate();
         gFrame.repaint();
         gFrame.setVisible(true);
+    }
+
+    public void statsVisible (boolean b) {
+        if (b) {
+            sPanel = new StatsPanel();
+            gFrame.remove(petDisplay);
+            gFrame.add(sPanel);
+            gFrame.revalidate();
+            gFrame.repaint();
+            gFrame.setVisible(true);
+        } else {
+            gFrame.remove(sPanel);
+            gFrame.revalidate();
+            gFrame.repaint();
+        }
     }
 
     public void inventory(){
