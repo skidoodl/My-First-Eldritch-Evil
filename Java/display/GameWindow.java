@@ -90,6 +90,12 @@ public class GameWindow {
         gFrame.revalidate();
         gFrame.repaint();
         gFrame.setVisible(true);
+
+        try { //wait for mouse click
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void statsVisible (boolean b) {

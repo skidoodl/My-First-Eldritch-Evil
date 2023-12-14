@@ -62,6 +62,7 @@ public class Menu{
       System.out.print("\n  7. Cuddle with "+name+"\n  8. Next Day\nSELECT: ");
       int input = scan.nextInt();
       useMenu(input-1);
+
     }else{
       Evil.crisisMenu(pet);
     }

@@ -31,7 +31,9 @@ public class Main {
         Evil.main(pet);
       }
       while (action < 2) { // two actions will perform before moving on to cycle.
+        int x = action;
         Menu.displayMenu();
+
       }
       action = 0;
       Cycle.nextCycle(pet);
