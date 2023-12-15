@@ -30,6 +30,16 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 * Windows: Right-click the .ps1 file named "Run This File With Powershell to Play.ps1" and run it with Powershell to play.
 * Mac: Double-click the "Run My First Eldritch Evil - Mac" file to run with Terminal.
 
+## Play Guide
+### Items - Using the Inventory and Shop
+Blabla
+
+<!-- Place holder -->
+
+### Sleeping the Pet
+Once you put the pet to sleep, you will see it begin to snooze in the pet display panel. The pet will continue to sleep until woken by the player (clicking on the pet).
+<!-- May add more once features get add -->
+
 ## Help
 If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. This is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
 
@@ -82,6 +92,8 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Inventory item sort method added to solve inventory numbering bug
    * Price adjustments
    * Changed file directory system.
+
+### Graphics Update
 * __2.0.0__ (in progress)
    * Added number formatting for stats
    * Time alive now tracked and displayed on death.
@@ -89,9 +101,11 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Removed difficulty selection - games run on normal.
       * Difficulty is no longer displayed in stats screen
       * (More to come I think)
+   * Added start screen.
+   * Added menu window with visual pet display.
+   * Feeding the pet uses a drop-down menu now.
+   * Reworked the pet sleep mechanic (unfinished)
    * Bugfixes
-   * Added start screen
-   * Added menu window with visual pet display
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
