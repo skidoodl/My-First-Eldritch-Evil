@@ -34,7 +34,8 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 ### Items - Using the Inventory and Shop
 Blabla
 
-<!-- Place holder -->
+### Feeding Your Pet
+Just as you need to eat food to stay alive, so too must your pet obtain nutrients by consuming its own... "food." As time goes on, your pet will become hungry. Your pet's hunger level is measured by "Satiation." Low satiation (<1.0) means your pet is hungry. Luckily for you, feeding it is not difficult. Once you purchase food from the shop, it will appear in your inventory. Then, there are two ways to feed it: Either select food from your inventory and then choose "Use" from the list of options it gives you, or select "Feed [Pet Name]" from the main menu. A pop-up will appear where you can then select the amount of food to feed your pet. You can give it as much or as little food as you want, but be careful: feed it too much food and your pet will become unhealthy, or worse, dead.
 
 ### Sleeping the Pet
 Once you put the pet to sleep, you will see it begin to snooze in the pet display panel. The pet will continue to sleep until woken by the player (clicking on the pet).
