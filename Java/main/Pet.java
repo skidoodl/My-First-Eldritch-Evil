@@ -5,7 +5,6 @@ import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import utils.GameTimer;
 import utils.Lazy;
 
 import java.awt.Image;
@@ -20,8 +19,8 @@ public class Pet{
      */
     public double satiety; //satiety, or fullness. Range is between 0 and 1, with 0 being starving to death. Energy's range is 0 to 2, 1 being normal and anything above being insanity.
     public double health=1.0, energy = 1.00;
-    public String name, difficultyName, relationshipName;
-    public boolean isHealthy=true, isEnergized=false, isSleeping=false; //when pet is energized, it loses little to no energy.
+    public String name, difficultyName, mood;
+    public boolean isHealthy=true, isEnergized=false; //when pet is energized, it loses little to no energy.
     public boolean isEvil, isAlive;
     private DecimalFormat statDF = new DecimalFormat("#.##");
     private DecimalFormat statPctDF = new DecimalFormat("##");
@@ -229,16 +228,6 @@ public class Pet{
         if(!foundFood){
             JOptionPane.showMessageDialog(null, "You have no food in your inventory","Feed "+name,JOptionPane.INFORMATION_MESSAGE);
             //TODO - Add an option to visit shop and buy food
-        }
-    }
-
-    public void petSleep() {
-        if (!isSleeping) {
-            isSleeping = true;
-            GameTimer sleepTimer = new GameTimer();
-            System.out.println("Sleeping Pet...");
-            sleepTimer.startTimer();
-            //gotta figure out the toggle thing. Hmmm.
         }
     }
 

@@ -1,7 +1,6 @@
 package main;
 import java.util.Scanner;
 import display.GameWindow;
-import display.mainPanels.StatsPanel;
 import utils.Lazy;
 
 public class Menu{
@@ -256,6 +255,7 @@ public class Menu{
           pet.feed();
           break;
         case 4: // sleep
+
           System.out.print("How many hours do you want "+pet.name+" to sleep? ");
           int hours = scan.nextInt();
           pet.sleep(hours);

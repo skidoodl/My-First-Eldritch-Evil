@@ -19,6 +19,7 @@ public class GameWindow {
     public boolean statsVisible = false;
     private StatsPanel sPanel;
     private JPanel petDisplay;
+    
 
     public GameWindow() {
         gFrame = new GameFrame();
