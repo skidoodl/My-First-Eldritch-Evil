@@ -303,6 +303,7 @@ public class Pet{
         Main.action++;
     }
 
+    // TODO - perhaps make a specific class extending this one for pet utilities?
     public String[] getStatsArray() {
         // Determine length of stats array
         int s = 6; // age, energy, satiation, is healthy, health stat, exercise = 6
@@ -367,6 +368,7 @@ public class Pet{
     }
 
     // TO DO - if pet is already healthy...
+    // TODO - create seperate class extending this one specifically for item use?
     public void medicate(boolean isStrong){ //could be optimized, but we can do that later
         if (isHealthy == true){
             System.out.println(name+" is already healthy!");
@@ -552,4 +554,5 @@ public class Pet{
         }
         Main.action++;
     }
+
 }

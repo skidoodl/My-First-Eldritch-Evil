@@ -10,13 +10,35 @@ import javax.swing.ImageIcon;
 import main.Pet;
 import main.Main;
 
+/* List of Potential Moods:
+ * Afraid
+ * Aggravated
+ * Angry
+ * Anxious
+ * Dominant
+ * Calm
+ * Depressed
+ * Guilty
+ * Grumpy
+ * Indifferent
+ * Insecure
+ * Irritated
+ * Lonely
+ * Sad
+ * 
+ * List of Potential Actions:
+ * Crying
+ * Stretching
+ * Performing satanic rituals
+ */
+
 public class PetPanel extends JPanel {
-    private Pet pet = Main.pet;
+    private final Pet pet = Main.pet;
     ImageIcon petIcon;
     JLabel petLabel = new JLabel();
     private String trackedMood;
 
-    public PetPanel(String[] options) {
+    public PetPanel() {
         setBounds(480, 0, 480, 360);
         setLayout(null); // just for now
         setBackground(Color.white);
@@ -26,21 +48,19 @@ public class PetPanel extends JPanel {
     public void updatePetDisplay() {
         if ((!pet.mood.equalsIgnoreCase(trackedMood)) || trackedMood == null) {
             //if pet mood has changed - cuz otherwise just skip
-            trackedMood = pet.mood;
-
-            switch (pet.mood) {
-                case "normal": moodNormal();
-                case "hungry": moodHungry();
-                default: JOptionPane.showMessageDialog(null, pet.name+" attempted to feel emotions not available to\nthis present plain of reality. (Mood "+pet.mood+" does not exist)","Internal Error", JOptionPane.ERROR_MESSAGE);
+            trackedMood = pet.mood; // Update mood tracker
+            String moodFile = "Resources/PetGraphics/Moods/" + pet.mood + ".png"; // Get file path based on mood
+            try {
+                petLabel = new JLabel(new ImageIcon(moodFile)); // Create the label
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, pet.name+" attempted to experience an mood that does not yet exist on present plane of reality.", "Error", JOptionPane.ERROR_MESSAGE);
+                pet.mood = "transcendental";
+                // May occur if the file path does not represent a valid image file
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "An unknown mood error occured", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    private void moodNormal() {
-        petIcon = new ImageIcon("Resources/PetGraphics/PetNormal.png");
-    }
-
-    private void moodHungry() {
-        // hungry mood
-    }
 }
