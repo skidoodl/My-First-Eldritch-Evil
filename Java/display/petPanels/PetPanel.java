@@ -1,5 +1,6 @@
 package display.petPanels;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JPanel;
@@ -10,13 +11,27 @@ import javax.swing.ImageIcon;
 import main.Pet;
 import main.Main;
 
-/* List of Potential Moods:
+/* List of Moods Icons Needed:
+ * Sleepy
+ * Exhausted
+ * Starving
+ * Buff (Gym Bro)
+ * Chubby (opt.)
+ * Obese
+ * Overstuffed (Not obese, just really full belly)
+ * Sick
+ * Extremely Sick
+ * Dying
+ * Energized
+ * Calm
+ */
+
+/* List of Additional Possible Moods:
  * Afraid
  * Aggravated
  * Angry
  * Anxious
  * Dominant
- * Calm
  * Depressed
  * Guilty
  * Grumpy
@@ -25,42 +40,37 @@ import main.Main;
  * Irritated
  * Lonely
  * Sad
- * 
- * List of Potential Actions:
- * Crying
- * Stretching
- * Performing satanic rituals
  */
 
 public class PetPanel extends JPanel {
     private final Pet pet = Main.pet;
-    ImageIcon petIcon;
-    JLabel petLabel = new JLabel();
-    private String trackedMood;
+    private JLabel petLabel;
+
+    private ImageIcon getPetImage() {
+        String moodFile = "Resources/PetGraphics/Moods/" + pet.mood + ".png";
+        System.out.println(moodFile);
+        try {
+            return new ImageIcon(moodFile);
+        } catch (IllegalArgumentException e) {
+            // May occur if the file path does not represent a valid image file
+            JOptionPane.showMessageDialog(null, pet.name+" attempted to experience an mood that does not yet exist on present plane of reality.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("PetPanel Error: " + pet.name + " attempted to experience a mood beyond the scope of its present reality.");
+            pet.mood = "transcendental";
+            return new ImageIcon("Resources/PetGraphics/Moods/transcendental.png");
+        }
+    } 
 
     public PetPanel() {
+        petLabel = new JLabel(getPetImage()); // Initialize pet label
         setBounds(480, 0, 480, 360);
-        setLayout(null); // just for now
-        setBackground(Color.white);
-
+        setLayout(new BorderLayout()); // just for now
+        setBackground(Color.pink);
+        
+        add(petLabel, BorderLayout.CENTER);
     }
 
     public void updatePetDisplay() {
-        if ((!pet.mood.equalsIgnoreCase(trackedMood)) || trackedMood == null) {
-            //if pet mood has changed - cuz otherwise just skip
-            trackedMood = pet.mood; // Update mood tracker
-            String moodFile = "Resources/PetGraphics/Moods/" + pet.mood + ".png"; // Get file path based on mood
-            try {
-                petLabel = new JLabel(new ImageIcon(moodFile)); // Create the label
-            } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(null, pet.name+" attempted to experience an mood that does not yet exist on present plane of reality.", "Error", JOptionPane.ERROR_MESSAGE);
-                pet.mood = "transcendental";
-                // May occur if the file path does not represent a valid image file
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "An unknown mood error occured", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        petLabel.setIcon(getPetImage());
     }
 
 }

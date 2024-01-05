@@ -34,6 +34,7 @@ public class Pet{
         satiety = 0.85;
         money = 750;
         difficultyName = "Normal";
+        mood = "normal";
 
         // Name Pet
         Scanner scanName = new Scanner(System.in);
@@ -58,6 +59,7 @@ public class Pet{
         satiety = 0.85;
         money = 750;
         difficultyName = "Normal";
+        mood = "normal";
     }
 
     public Pet(int difficulty){ //Difficulties: 0=Easy, 1=Normal, 2=Hard, 3=Impossible

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import display.mainPanels.MenuPanel;
 import display.mainPanels.StatsPanel;
+import display.petPanels.PetPanel;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -18,7 +19,7 @@ public class GameWindow {
     boolean gameStart;
     public boolean statsVisible = false;
     private StatsPanel sPanel;
-    private JPanel petDisplay;
+    private PetPanel petPanel;
     
 
     public GameWindow() {
@@ -71,23 +72,20 @@ public class GameWindow {
     public void menuScreen(String opts[]) {
         
         //MENU PANEL
-        MenuPanel mPanel = new MenuPanel(opts);
+        MenuPanel menuPanel = new MenuPanel(opts);
 
         //PET DISPLAY PANEL
-        //TODO - I added two graphics for pet into the resources folder - ready to implement
-        petDisplay = new JPanel(); // Where the pet gets displayed
-        petDisplay.setBackground(Color.white);
-        petDisplay.setBounds(480, 0, 480, 360);
+        petPanel = new PetPanel();
 
         //MFEE FEED
-        JPanel feedP = new JPanel(); // Where the game feed is displayed
-        feedP.setBackground(Color.gray);
-        feedP.setBounds(480, 360, 480, 360);
+        JPanel gameFeed = new JPanel(); // Where the game feed is displayed
+        gameFeed.setBackground(Color.gray);
+        gameFeed.setBounds(480, 360, 480, 360);
         
         // Add Panels
-        gFrame.add(mPanel);
-        gFrame.add(petDisplay);
-        gFrame.add(feedP);
+        gFrame.add(menuPanel);
+        gFrame.add(petPanel);
+        gFrame.add(gameFeed);
         gFrame.revalidate();
         gFrame.repaint();
         gFrame.setVisible(true);
@@ -102,13 +100,14 @@ public class GameWindow {
     public void statsVisible (boolean b) {
         if (b) {
             sPanel = new StatsPanel();
-            gFrame.remove(petDisplay);
+            gFrame.remove(petPanel);
             gFrame.add(sPanel);
             gFrame.revalidate();
             gFrame.repaint();
             gFrame.setVisible(true);
         } else {
             gFrame.remove(sPanel);
+            gFrame.add(petPanel);
             gFrame.revalidate();
             gFrame.repaint();
         }

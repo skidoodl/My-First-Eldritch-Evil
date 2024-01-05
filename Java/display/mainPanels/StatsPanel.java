@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import main.Pet;
+import main.Main;
 
 public class StatsPanel extends JPanel{
     // Set up font details
@@ -15,7 +16,7 @@ public class StatsPanel extends JPanel{
     private static final Font DEFAULT_FONT = new Font("Ariel",Font.PLAIN,FONT_SIZE);
     
     public StatsPanel() {
-        Pet pet = main.Main.pet;
+        Pet pet = Main.pet;
         // Have pet create array of stats to be printed
         String[] stats = pet.getStatsArray();
 
