@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import display.mainPanels.MenuPanel;
 import display.mainPanels.StatsPanel;
 import display.petPanels.PetPanel;
+import display.petPanels.PetSleep;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ public class GameWindow {
     public boolean statsVisible = false;
     private StatsPanel sPanel;
     private PetPanel petPanel;
+    private PetSleep sleepPanel;
     
 
     public GameWindow() {
@@ -70,6 +72,7 @@ public class GameWindow {
     }
 
     public void menuScreen(String opts[]) {
+        System.out.println("Hi");
         
         //MENU PANEL
         MenuPanel menuPanel = new MenuPanel(opts);
@@ -97,7 +100,7 @@ public class GameWindow {
         }
     }
 
-    public void statsVisible (boolean b) {
+    public void statsVisible (boolean b) { // TODO - adjust so stats can be viewed while pet sleeping
         if (b) {
             sPanel = new StatsPanel();
             gFrame.remove(petPanel);
@@ -111,6 +114,23 @@ public class GameWindow {
             gFrame.revalidate();
             gFrame.repaint();
         }
+    }
+
+    public void petSleep () {
+        sleepPanel = new PetSleep();
+        gFrame.remove(petPanel);
+        gFrame.add(sleepPanel);
+        gFrame.revalidate();
+        gFrame.repaint();
+    }
+
+    public void endSleep () {
+        System.out.println("End sleep");
+        gFrame.remove(sleepPanel);
+        petPanel.updatePetDisplay();
+        gFrame.add(petPanel);
+        gFrame.revalidate();
+        gFrame.repaint();
     }
 
     public void inventory(){
@@ -141,5 +161,9 @@ public class GameWindow {
 
     public void setGameFrameVisible(boolean setVis) {
         gFrame.setVisible(setVis);
+    }
+
+    public void updatePetDisplay() {
+        petPanel.updatePetDisplay();
     }
 }

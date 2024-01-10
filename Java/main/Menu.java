@@ -8,7 +8,7 @@ public class Menu{
   public static boolean statsOn = false;
 
   private static String name = Main.pet.name;
-  private static String[] menuOpts = {"Inventory","Store",(name+"'s Stats"),("Feed "+name),("Sleep "+name),("Exercise "+name),("Cuddle with "+name),"Next Day"};
+  private static String[] menuOpts = {"Inventory","Store",(name+"'s Stats"),("Feed "+name),("Sleep "+name),("Exercise "+name),("Cuddle with "+name),"Next Day","Test"};
   //-----NORMAL INVENTORY-----//
   public static String[] invItems = new String[10];
   public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
@@ -255,10 +255,9 @@ public class Menu{
           pet.feed();
           break;
         case 4: // sleep
-
-          System.out.print("How many hours do you want "+pet.name+" to sleep? ");
-          int hours = scan.nextInt();
-          pet.sleep(hours);
+          if (!pet.isSleeping){
+            gw.petSleep();
+          }
           break;
         case 5: //Exercise
           pet.exercise();
@@ -268,6 +267,14 @@ public class Menu{
           break;
         case 7:
           Main.action = 3;
+          break;
+        case 8:
+          if(pet.mood == "hungry"){
+            pet.mood = "normal";
+          } else {
+            pet.mood = "hungry";
+          }
+          gw.updatePetDisplay();
           break;
         default:
           System.out.println("Option "+sel+" is not available.");

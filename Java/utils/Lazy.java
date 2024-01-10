@@ -127,4 +127,32 @@ public class Lazy{
         }
         return tString;
     }
+
+    public static int findMinCell (int[] array) {
+        int min = array[0];
+        int minCell = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= min) continue;
+            min = array[i];
+            minCell = i;
+        }
+
+        return minCell;
+    }
+
+    public static int findMinCell (double[] array) {
+        double min = array[0];
+        int minCell = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= min) continue;
+            min = array[i];
+            minCell = i;
+        }
+
+        return minCell;
+    }
+
+    
 }

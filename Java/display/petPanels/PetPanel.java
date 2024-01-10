@@ -2,6 +2,8 @@ package display.petPanels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -43,8 +45,8 @@ import main.Main;
  */
 
 public class PetPanel extends JPanel {
-    private final Pet pet = Main.pet;
-    private JLabel petLabel;
+    protected final Pet pet = Main.pet;
+    protected JLabel petLabel;
 
     private ImageIcon getPetImage() {
         String moodFile = "Resources/PetGraphics/Moods/" + pet.mood + ".png";
@@ -65,12 +67,22 @@ public class PetPanel extends JPanel {
         setBounds(480, 0, 480, 360);
         setLayout(new BorderLayout()); // just for now
         setBackground(Color.pink);
-        
+        petLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                petLabelClick();
+            }
+        });
+
         add(petLabel, BorderLayout.CENTER);
     }
 
     public void updatePetDisplay() {
         petLabel.setIcon(getPetImage());
+    }
+
+    protected void petLabelClick() {
+        System.out.println ("Pet Clicked");
     }
 
 }

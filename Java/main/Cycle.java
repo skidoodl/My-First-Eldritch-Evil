@@ -16,6 +16,7 @@ public class Cycle{
         if (cycle % 3 == 0 && cycle != 0){pet.birthday();} //age pet up, if necessary
         pet.money+=50;
 
+        // EVIL CALCULATIONS
         int rando = ran.nextInt(99);
         int evilchance;
         if (!pet.isEvil && cycle>4){ //evil pet chances
@@ -58,7 +59,11 @@ public class Cycle{
                 return;
             }
         }
+        
+        // STUFF IDK
         while (pet.exercised>-12 && pet.energy>0 && pet.satiety>0 && pet.health>0){
+            
+            // EXERCISE DETAILS
             pet.exercised--;
             if (pet.exercised<=-4){ //pet fatness
                 System.out.println(name+" is obese.");
@@ -66,7 +71,7 @@ public class Cycle{
                 System.out.println(name+" is getting kinda fat.");
             }
             
-
+            // ASSORTED CYCLE FUNCTIONS //
             rando = ran.nextInt(100);
             switch(pet.difficulty){ //various cycle functions, vary by difficulty
                 case 0: //easy
@@ -146,8 +151,10 @@ public class Cycle{
             }
             
             
-
+            //FUN LITTLE PET ACTIONS
+            
             System.out.println(Lazy.ranStringArray(petActions)); //fun little pet actions
+            // HEALTH
             if (pet.isHealthy){ //health check
                 rando = ran.nextInt(99); //get new random num
                 if (pet.health<1.0 && rando <=80){ //chance for pet to heal
@@ -198,22 +205,24 @@ public class Cycle{
             if (pet.health < 0.1){ //how pet is feeling
                     System.out.println(name+" is literally about to die.");
                     Menu.statsAlert = true;
-                }else if (pet.health <= 0.3){
-                    System.out.println(name+" is in the hospital.");
-                    Menu.statsAlert = true;
-                }else if (pet.health<0.6){
-                    System.out.println(name+" is feeling really sick");
+            }else if (pet.health <= 0.3){
+                System.out.println(name+" is in the hospital.");
+                Menu.statsAlert = true;
+            }else if (pet.health<0.6){
+                System.out.println(name+" is feeling really sick");
             }else if (pet.health<=1 && !pet.isHealthy){
-                    System.out.println(name+" has a tummyache.");
+                System.out.println(name+" has a tummyache.");
             }
             break;
         }
 
+        // PET DEATH
         if (pet.exercised<-12){pet.killPet("morbid obesity");}
         if (pet.health <= 0){pet.killPet("the plague.");}
         if (pet.satiety <=0){pet.killPet("starvation");}
         if (pet.energy <= 0){pet.killPet("wasted away");}
 
+        // ENERGIZEDNESS
         if(pet.isEnergized){ //chance to lose energized status
             rando = ran.nextInt(5);
             if(rando<2){ //2/5 chance of no longer being energized
@@ -226,6 +235,7 @@ public class Cycle{
         if(hng <0.2){
             System.out.println(name+" is starving...");
         }else if(hng<=0.45){
+            pet.mood = "hungry";
             System.out.println(name+" really wants to know when dinner is.");
         }else if(pet.satiety<0.6){
             System.out.println(name+" needs a snack.");
@@ -236,6 +246,7 @@ public class Cycle{
         if(en<0.2){
             System.out.println(name+" is dragging itself along the floor");
         }else if(en<=0.45){
+            pet.mood = "tired";
             System.out.print(name+" can barely keep its eyes open");
             Lazy.hold(600);
             System.out.println("... not that you're complaining, or anything");
@@ -243,7 +254,24 @@ public class Cycle{
             System.out.println(name+" needs a nap.");
         }
 
-        //pet find thing//
+        // MOOD //
+        pet.mood = "normal"; // Set pet mood to a default
+        // Weigh energy, satiation, and health
+        double[] vals = {pet.energy, pet.satiety, pet.health};
+        int x = Lazy.findMinCell(vals);
+        if (vals[x] <= 0.45) {
+            switch (x) {
+                case 0:
+                    pet.mood = "tired";
+                case 1:
+                    pet.mood = "hungry";
+                case 2:
+                    pet.mood = "sick";
+            }
+        }
+        
+
+        // FINDING ITEMS //
         double randomValue = ran.nextDouble();
         double probability = .3;
         if (randomValue < probability) {

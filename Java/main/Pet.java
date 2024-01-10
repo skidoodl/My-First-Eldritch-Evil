@@ -20,7 +20,7 @@ public class Pet{
     public double satiety; //satiety, or fullness. Range is between 0 and 1, with 0 being starving to death. Energy's range is 0 to 2, 1 being normal and anything above being insanity.
     public double health=1.0, energy = 1.00;
     public String name, difficultyName, mood;
-    public boolean isHealthy=true, isEnergized=false; //when pet is energized, it loses little to no energy.
+    public boolean isHealthy=true, isEnergized=false, isSleeping=false; //when pet is energized, it loses little to no energy.
     public boolean isEvil, isAlive;
     private DecimalFormat statDF = new DecimalFormat("#.##");
     private DecimalFormat statPctDF = new DecimalFormat("##");
@@ -281,7 +281,6 @@ public class Pet{
                 this.killPet("neglect");
             }
         }
-        Lazy.waitForEnter();
     }
 
     public void exercise(){
