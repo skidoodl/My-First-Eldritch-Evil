@@ -179,6 +179,9 @@ public class Pet{
     }
 
     public void feed(){
+        if (sleepBlock()) {
+            return;
+        }
         String[] invItems = Menu.invItems;
         if (this.satiety>1.0){ //too full to eat
             JOptionPane.showMessageDialog(null, name+" is too full to eat.", "Feed "+name,JOptionPane.INFORMATION_MESSAGE);
@@ -234,32 +237,33 @@ public class Pet{
     }
 
     public void sleep(int hours){
+        if (isSleeping) {
+            JOptionPane.showMessageDialog(null, "Click " + name + " to wake it.", "Pet is sleeping.", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         String hrs="";
         if (hours > 1){hrs = "s";} //pluralization
 
         System.out.println("Sleeping for "+hours+" hour"+hrs+"...");
         String name = this.name;
-        if (this.energy>1.5){ // if already too much energy... - move to in front of "Sleeping for hours"?
-            System.out.println(name+" is too energized to sleep.");
-            return; //go back to menu
-        }else{ //if the energy is less enough, then run
-            switch(this.difficulty){
-                case 0:
-                    this.energy += (hours*0.25);
-                    break; //easy  
-                case 1:
-                    this.energy += (hours*0.1);
-                    break; //normal
-                case 2:
-                    this.energy += (hours*0.02);
-                    break; // hard
-                case 3:System.out.println(name+" is too busy stalking its prey (you) to sleep.");//impossible
-            }
-            if(this.difficulty!=3){Main.action++;} //since the pet would be able to sleep (ex. impossible diff.), action++
-            System.out.println(); //spacer
+
+        switch(this.difficulty){
+            case 0:
+                // Easy difficulty
+                break;
+            case 1:
+                // Normal Difficulty
+                this.energy += (hours*0.05);
+                break;
+            case 2:
+                // Hard Difficulty
+                break;
+            case 3:System.out.println(name+" is too busy stalking its prey (you) to sleep.");//impossible
         }
+        if(this.difficulty!=3){Main.action++;} //since the pet would be able to sleep (ex. impossible diff.), action++
+        System.out.println(); //spacer
         if (this.energy>2.0){
-            Scanner scan = new Scanner(System.in);
+            /* Scanner scan = new Scanner(System.in);
             System.out.println(name+" has been sleeping for a long time...");
             System.out.println(name+" isn't moving...");
             System.out.print("Poke "+name+"? (y/n): ");
@@ -271,19 +275,22 @@ public class Pet{
             Lazy.hold(900);//pause for .9 sec
             if (yn.equalsIgnoreCase("y")){
                 System.out.println(name+" didn't move. "+name+"'s body feels... cold.");
-                Lazy.waitForEnter(); //press enter to continue
+                Lazy.waitForEnter(); //press enter to continue */
                 this.killPet("too much sleep");
-            }else{
+            /* }else{
                 System.out.println("You walk away from "+name+". No sense in trying to get your face ripped off.");
                 Lazy.hold(900); //pause for 0.9s
                 System.out.println("You notice a weird smell in the air as you walk away. Hopefully, "+name+" didn't drag in another corpse."); //hopefully this isn't too... problematic
                 Lazy.waitForEnter();
                 this.killPet("neglect");
-            }
+            } */
         }
     }
 
     public void exercise(){
+        if (sleepBlock()) {
+            return;
+        }
         if (this.exercised>=15){
             this.killPet("protein powder overdose");
         }else if (this.exercised>=10){
@@ -316,7 +323,11 @@ public class Pet{
         // Age
         stats[0] = name+" is "+age+" year"+Lazy.autoPlural(age)+" old.";
         // Energy
-        stats[1] = "Energy: "+statPctDF.format(energy*100)+"%"; //display as percentage
+        if (isSleeping) {
+            stats[1] = "Energy: --"+name+" is Currently Sleeping--";
+        } else {
+            stats[1] = "Energy: "+statPctDF.format(energy*100)+"%"; //display as percentage
+        }
         // Satiation
         stats[2] = name + " is "+statPctDF.format(satiety*100)+"% full (satiety).";
         // isHealthy
@@ -371,6 +382,9 @@ public class Pet{
     // TO DO - if pet is already healthy...
     // TODO - create seperate class extending this one specifically for item use?
     public void medicate(boolean isStrong){ //could be optimized, but we can do that later
+        if (sleepBlock()) {
+            return;
+        }
         if (isHealthy == true){
             System.out.println(name+" is already healthy!");
             Lazy.waitForEnter();
@@ -442,6 +456,9 @@ public class Pet{
     }
     
     public void vitamins(){
+        if (sleepBlock()) {
+            return;
+        }
         Scanner scan = new Scanner(System.in);
         boolean foundVitamins = false;
         int iRef=0;
@@ -489,6 +506,9 @@ public class Pet{
     }
 
     public void energyDrink(){
+        if (sleepBlock()) {
+            return;
+        }
         System.out.println();
         if (energy >= 1.6){
             System.out.println(name+" is too energized.");
@@ -554,6 +574,14 @@ public class Pet{
             Lazy.waitForEnter();
         }
         Main.action++;
+    }
+
+    private boolean sleepBlock () {
+        if (isSleeping) {
+            JOptionPane.showMessageDialog(null, "This action cannot be performed while " + name + " is sleeping.", "Pet is sleeping.", JOptionPane.NO_OPTION);
+            return true;
+        }
+        return false;
     }
 
 }

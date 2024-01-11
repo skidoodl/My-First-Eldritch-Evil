@@ -19,6 +19,7 @@ public class GameWindow {
     InventoryFrame iFrame;
     boolean gameStart;
     public boolean statsVisible = false;
+    private MenuPanel menuPanel;
     private StatsPanel sPanel;
     private PetPanel petPanel;
     private PetSleep sleepPanel;
@@ -71,11 +72,10 @@ public class GameWindow {
         return name;
     }
 
-    public void menuScreen(String opts[]) {
-        System.out.println("Hi");
+    public void menuScreen() {
         
         //MENU PANEL
-        MenuPanel menuPanel = new MenuPanel(opts);
+        menuPanel = new MenuPanel();
 
         //PET DISPLAY PANEL
         petPanel = new PetPanel();
@@ -100,17 +100,26 @@ public class GameWindow {
         }
     }
 
-    public void statsVisible (boolean b) { // TODO - adjust so stats can be viewed while pet sleeping
-        if (b) {
+    public void statsVisible (boolean visible) { // TODO - adjust so stats can be viewed while pet sleeping
+        boolean isSleeping = main.Main.pet.isSleeping;
+        if (visible) {
             sPanel = new StatsPanel();
-            gFrame.remove(petPanel);
+            if (isSleeping) {
+                gFrame.remove(sleepPanel);
+            } else {
+                gFrame.remove(petPanel);
+            }
             gFrame.add(sPanel);
             gFrame.revalidate();
             gFrame.repaint();
             gFrame.setVisible(true);
         } else {
             gFrame.remove(sPanel);
-            gFrame.add(petPanel);
+            if (isSleeping) {
+                gFrame.add(sleepPanel);
+            } else {
+                gFrame.add(petPanel);
+            }
             gFrame.revalidate();
             gFrame.repaint();
         }
@@ -118,6 +127,7 @@ public class GameWindow {
 
     public void petSleep () {
         sleepPanel = new PetSleep();
+        menuPanel.update();
         gFrame.remove(petPanel);
         gFrame.add(sleepPanel);
         gFrame.revalidate();
@@ -129,6 +139,7 @@ public class GameWindow {
         gFrame.remove(sleepPanel);
         petPanel.updatePetDisplay();
         gFrame.add(petPanel);
+        menuPanel.update();
         gFrame.revalidate();
         gFrame.repaint();
     }

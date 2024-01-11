@@ -19,19 +19,44 @@ public class MenuPanel extends JPanel{
     private static final Font BOLD_FONT = new Font("Papyrus", Font.BOLD, FONT_SIZE);
     private static String[] opts;
 
-    public MenuPanel(String[] options) {
+    String[] options = Menu.menuOpts;
+    boolean[] allowedWhileSleeping = Menu.allowedWhileSleeping;
+
+    public MenuPanel() {
+        
+
         opts = options;
         setLayout(new GridLayout(options.length, 1));
         setBounds(0,0,480,720);
         setBackground(Color.black);
         setBorder(new EmptyBorder(5, 10, 25, 20));
 
-        for (String option : options) {
-            JLabel label = new JLabel(option);
+        addLabels();
+    }
+
+    public void update () {
+        removeAllLabels();
+        addLabels();
+    }
+
+    private void addLabels () {
+        boolean isSleeping = main.Main.pet.isSleeping;
+        for (int i = 0; i < options.length; i++) {
+            JLabel label = new JLabel(options[i]);
             label.addMouseListener(new OptionMouseListener(label));
             label.setFont(DEFAULT_FONT);
-            label.setForeground(Color.white);
+            if (!isSleeping || allowedWhileSleeping[i]) {
+                label.setForeground(Color.white);
+            } else {
+                label.setForeground(Color.darkGray);
+            }
             add(label);
+        }
+    }
+
+    private void removeAllLabels () {
+        for (int i = getComponentCount() - 1; i >= 0; i--) {
+            remove(i);
         }
     }
 
@@ -59,7 +84,6 @@ public class MenuPanel extends JPanel{
             String selectedOption = source.getText();
             // Perform action based on the selected option
             handleOptionClick(selectedOption);
-            //TODO - Figure out the option selected
             
         }
 

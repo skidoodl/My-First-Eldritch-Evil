@@ -3,12 +3,16 @@ import java.util.Scanner;
 import display.GameWindow;
 import utils.Lazy;
 
+import javax.swing.JOptionPane;
+
 public class Menu{
   public static boolean statsAlert = false;
   public static boolean statsOn = false;
 
+  //-----MENU-----//
   private static String name = Main.pet.name;
-  private static String[] menuOpts = {"Inventory","Store",(name+"'s Stats"),("Feed "+name),("Sleep "+name),("Exercise "+name),("Cuddle with "+name),"Next Day","Test"};
+  public static String[] menuOpts = {"Inventory","Store",(name+"'s Stats"),("Feed "+name),("Sleep "+name),("Exercise "+name),("Cuddle with "+name),"Next Day","Test"};
+  public static final boolean[] allowedWhileSleeping = {true,true,true,false,false,false,true,false,true};
   //-----NORMAL INVENTORY-----//
   public static String[] invItems = new String[10];
   public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
@@ -27,7 +31,7 @@ public class Menu{
     final GameWindow gw = Main.gw;
     
 
-    gw.menuScreen(menuOpts);
+    gw.menuScreen();
     
     if(!pet.isEvil){
       Scanner scan = new Scanner(System.in);
@@ -236,8 +240,8 @@ public class Menu{
     Scanner scan = new Scanner(System.in);
     switch(sel){ //TODO - Edit the cases to start from 0
         case 0: //inventory
-        Menu.openInventory();
-        break;
+          Menu.openInventory();
+          break;
         case 1: //store
           Menu.openShop();
           break;
@@ -256,7 +260,11 @@ public class Menu{
           break;
         case 4: // sleep
           if (!pet.isSleeping){
-            gw.petSleep();
+            if (pet.energy >= 1.6) {
+              JOptionPane.showMessageDialog(null,pet.name+" is too energized to sleep.","Sleep "+pet.name, JOptionPane.INFORMATION_MESSAGE);
+            } else {
+              gw.petSleep();
+            }            
           }
           break;
         case 5: //Exercise
@@ -266,6 +274,9 @@ public class Menu{
           pet.cuddlePet();
           break;
         case 7:
+          if (pet.isSleeping) {
+            JOptionPane.showMessageDialog(null, "Cannot continue while pet is sleeping", "Pet is sleeping", JOptionPane.NO_OPTION);
+          }
           Main.action = 3;
           break;
         case 8:
