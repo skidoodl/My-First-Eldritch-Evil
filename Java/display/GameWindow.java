@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
+import display.frames.GameFrame;
+import display.frames.InventoryFrame;
 import display.mainPanels.MenuPanel;
 import display.mainPanels.StatsPanel;
 import display.petPanels.PetPanel;
@@ -137,7 +139,7 @@ public class GameWindow {
     public void endSleep () {
         System.out.println("End sleep");
         gFrame.remove(sleepPanel);
-        petPanel.updatePetDisplay();
+        petPanel.updateDisplay();
         gFrame.add(petPanel);
         menuPanel.update();
         gFrame.revalidate();
@@ -175,6 +177,11 @@ public class GameWindow {
     }
 
     public void updatePetDisplay() {
-        petPanel.updatePetDisplay();
+        petPanel.updateDisplay();
+    }
+
+    public void updateAllPanels () {
+        petPanel.updateDisplay();
+        menuPanel.update();
     }
 }

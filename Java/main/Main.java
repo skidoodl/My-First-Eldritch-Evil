@@ -26,6 +26,8 @@ public class Main {
       Evil.main(pet);
     }
 
+    Menu.displayMenu();
+
     while (true) {
       if (pet.isEvil) {
         Evil.main(pet);

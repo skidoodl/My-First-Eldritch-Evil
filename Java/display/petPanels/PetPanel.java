@@ -77,7 +77,7 @@ public class PetPanel extends JPanel {
         add(petLabel, BorderLayout.CENTER);
     }
 
-    public void updatePetDisplay() {
+    public void updateDisplay() {
         petLabel.setIcon(getPetImage());
     }
 

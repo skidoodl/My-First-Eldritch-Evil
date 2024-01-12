@@ -1,4 +1,4 @@
-package display;
+package display.frames;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import java.awt.event.*;
@@ -6,7 +6,7 @@ import java.awt.event.*;
 public class GameFrame extends JFrame implements MouseListener{
     ImageIcon img = new ImageIcon("Resources/Icon.jpg"); //create image icon -- I could just stuff this into the next line, but i don't feel like it
 
-    GameFrame(){
+    public GameFrame(){
         this.setTitle("My First Eldritch Evil");
         this.setSize(960,720);
         this.setResizable(false); //may change this later but for now its false
