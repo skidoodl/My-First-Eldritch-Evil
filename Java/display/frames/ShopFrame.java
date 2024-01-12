@@ -12,7 +12,7 @@ public class ShopFrame extends JFrame {
         setSize(960, 720);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // May change to hide on close? Idk yet
-        setIconImage(icon.getImage());
+        setIconImage(icon.getImage()); // Icon features a Mi-go, a Lovecraftian creature
     }
     
 }
