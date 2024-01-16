@@ -12,34 +12,34 @@ import javax.swing.border.EmptyBorder;
 import main.Menu;
 import utils.Lazy;
 
-public class MenuPanel extends JPanel{
-    //Set up font details
+public class MenuPanel extends JPanel {
+    // Set up font details
     private static final int FONT_SIZE = 20;
     private static final Font DEFAULT_FONT = new Font("Papyrus", Font.PLAIN, FONT_SIZE);
-    private static final Font BOLD_FONT = new Font("Papyrus", Font.BOLD, FONT_SIZE);
+    private static final Font BOLD_FONT = new Font("Calibri", Font.BOLD, FONT_SIZE-2);
+
     private static String[] opts;
 
     String[] options = Menu.menuOpts;
     boolean[] allowedWhileSleeping = Menu.allowedWhileSleeping;
 
     public MenuPanel() {
-        
 
         opts = options;
         setLayout(new GridLayout(options.length, 1));
-        setBounds(0,0,480,720);
+        setBounds(0, 0, 480, 720);
         setBackground(Color.black);
         setBorder(new EmptyBorder(5, 10, 25, 20));
 
         addLabels();
     }
 
-    public void update () {
+    public void update() {
         removeAllLabels();
         addLabels();
     }
 
-    private void addLabels () {
+    private void addLabels() {
         boolean isSleeping = main.Main.pet.isSleeping;
         for (int i = 0; i < options.length; i++) {
             JLabel label = new JLabel(options[i]);
@@ -54,7 +54,7 @@ public class MenuPanel extends JPanel{
         }
     }
 
-    private void removeAllLabels () {
+    private void removeAllLabels() {
         for (int i = getComponentCount() - 1; i >= 0; i--) {
             remove(i);
         }
@@ -70,6 +70,8 @@ public class MenuPanel extends JPanel{
         @Override
         public void mouseEntered(MouseEvent e) {
             label.setFont(BOLD_FONT);
+            label.repaint();
+            label.revalidate();
         }
 
         @Override
@@ -77,14 +79,13 @@ public class MenuPanel extends JPanel{
             label.setFont(DEFAULT_FONT);
         }
 
-
         @Override
         public void mouseClicked(MouseEvent e) {
             JLabel source = (JLabel) e.getSource();
             String selectedOption = source.getText();
             // Perform action based on the selected option
             handleOptionClick(selectedOption);
-            
+
         }
 
     }

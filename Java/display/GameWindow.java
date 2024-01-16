@@ -35,6 +35,9 @@ public class GameWindow {
     public String startScreen() {
         ImageIcon bg = new ImageIcon("Resources/StartScreen/StartScreen.jpg");
 
+        JLabel label = new JLabel();
+        label.setIcon(bg);
+
         JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
         b.setBounds(300, 475, 200, 73);
         b.setFocusable(true);
@@ -49,15 +52,14 @@ public class GameWindow {
 
         });
 
-        JLabel label = new JLabel();
-        label.setIcon(bg);
-
         JPanel panel = new JPanel();
         panel.setBounds(gFrame.getBounds());
         panel.add(label);
-        gFrame.add(panel);
+        
         gFrame.add(b);
-        gFrame.setVisible(true);
+        gFrame.add(panel);
+        gFrame.revalidate();
+        gFrame.repaint();
 
         while (!gameStart) { // wait for the button to be clicked
             try {
@@ -69,15 +71,15 @@ public class GameWindow {
         // Naming function will go here
         String name="Bread";
 
-        gFrame.remove(panel);
         gFrame.remove(b);
+        gFrame.remove(panel);
         return name;
     }
 
     public void menuScreen() {
         
         //MENU PANEL
-        menuPanel = new MenuPanel();
+        menuPanel = new MenuPanel();    
 
         //PET DISPLAY PANEL
         petPanel = new PetPanel();
