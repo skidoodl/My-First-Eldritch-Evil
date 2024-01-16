@@ -99,13 +99,11 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Added number formatting for stats
    * Time alive now tracked and displayed on death.
    * Hatching is much easier now.
-   * Removed difficulty selection - games run on normal.
-      * Difficulty is no longer displayed in stats screen
-      * (More to come I think)
+   * Removed difficulty - games run on normal.
    * Added start screen.
    * Added menu window with visual pet display.
    * Feeding the pet uses a drop-down menu now.
-   * Reworked the pet sleep mechanic (unfinished)
+   * Reworked the pet sleep mechanic
    * Bugfixes
 
 ## License
