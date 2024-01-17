@@ -16,26 +16,30 @@ public class StatsPanel extends JPanel{
     private static final Font DEFAULT_FONT = new Font("Arial",Font.PLAIN,FONT_SIZE);
     
     public StatsPanel() {
-        Pet pet = Main.pet;
-        // Have pet create array of stats to be printed
-        String[] stats = pet.getStatsArray();
-
-        setLayout(new GridLayout(stats.length,1));
+        
         setBounds(480, 0, 480, 360); //Maybe change to take up the WHOLE right side?
         setBackground(Color.white);
         setBorder(new EmptyBorder(5,5,5,5));
         
-        for (String stat : stats) {
-            JLabel label = new JLabel(stat);
-            label.setFont(DEFAULT_FONT);
-            label.setForeground(Color.black);
-            add(label);
-        }
+        addLabels();
     }
 
     public void update() {
+        removeAllLabels();
+        addLabels();
+    }
+
+    private void removeAllLabels() {
+        for (int i = getComponentCount() - 1; i >= 0; i--) {
+            remove(i);
+        }
+    }
+
+    private void addLabels () {
         // Have pet create array of stats to be printed
         String[] stats = Main.pet.getStatsArray();
+
+        setLayout (new GridLayout(stats.length, 1));
 
         for (String stat : stats) {
             JLabel label = new JLabel(stat);

@@ -97,13 +97,18 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
 ### Graphics Update
 * __2.0.0__ (in progress)
    * Added number formatting for stats
-   * Time alive now tracked and displayed on death.
+   * Time alive now tracked and displayed on death. (not working)
    * Hatching is much easier now.
    * Removed difficulty - games run on normal.
    * Added start screen.
    * Added menu window with visual pet display.
    * Feeding the pet uses a drop-down menu now.
    * Reworked the pet sleep mechanic
+      * Sleeping the pet actually takes time
+      * Player can perform some actions while pet is sleeping
+   * Added easily togglable stats menu
+   * Added responsive menu GUI
+   * Finally made moods an actual thing
    * Bugfixes
 
 ## License

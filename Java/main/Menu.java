@@ -6,8 +6,8 @@ import utils.Lazy;
 import javax.swing.JOptionPane;
 
 public class Menu{
-  public static boolean statsAlert = false;
-  public static boolean statsOn = false;
+  private static boolean statsAlert = false;
+  private static boolean statsOn = false;
 
   //-----MENU-----//
   private static String name = Main.pet.name;
@@ -257,6 +257,9 @@ public class Menu{
           break;
         case 3: //feed
           pet.feed();
+          if (statsOn) {
+            gw.updateStats();
+          }
           break;
         case 4: // sleep
           if (!pet.isSleeping){

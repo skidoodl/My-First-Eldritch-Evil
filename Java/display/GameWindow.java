@@ -39,7 +39,7 @@ public class GameWindow {
         label.setIcon(bg);
 
         JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
-        b.setBounds(300, 475, 200, 73);
+        b.setBounds(380, 535, 200, 73);
         b.setFocusable(true);
         b.addActionListener(new ActionListener() {
 
@@ -53,7 +53,7 @@ public class GameWindow {
         });
 
         JPanel panel = new JPanel();
-        panel.setBounds(gFrame.getBounds());
+        panel.setBounds(0, 0, 960, 720);
         panel.add(label);
         
         gFrame.add(b);
@@ -104,7 +104,7 @@ public class GameWindow {
         }
     }
 
-    public void statsVisible (boolean visible) { // TODO - adjust so stats can be viewed while pet sleeping
+    public boolean statsVisible (boolean visible) { // TODO - adjust so stats can be viewed while pet sleeping
         boolean isSleeping = main.Main.pet.isSleeping;
         if (visible) {
             sPanel = new StatsPanel();
@@ -127,6 +127,7 @@ public class GameWindow {
             gFrame.revalidate();
             gFrame.repaint();
         }
+        return visible;
     }
 
     public void petSleep () {
@@ -188,7 +189,7 @@ public class GameWindow {
         sPanel.update();
     }
 
-    public void updateStatsPanel () {
+    public void updateStats () {
         sPanel.update();
     }
 }
