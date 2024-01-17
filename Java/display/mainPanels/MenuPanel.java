@@ -14,9 +14,9 @@ import utils.Lazy;
 
 public class MenuPanel extends JPanel {
     // Set up font details
-    private static final int FONT_SIZE = 20;
-    private static final Font DEFAULT_FONT = new Font("Papyrus", Font.PLAIN, FONT_SIZE);
-    private static final Font BOLD_FONT = new Font("Calibri", Font.BOLD, FONT_SIZE-2);
+    private static final int FONT_SIZE = 22;
+    private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, FONT_SIZE);
+    private static final Font BOLD_FONT = new Font("Arial", Font.BOLD, FONT_SIZE+1);
 
     private static String[] opts;
 

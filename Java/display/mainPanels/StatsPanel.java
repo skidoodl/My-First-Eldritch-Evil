@@ -13,7 +13,7 @@ import main.Main;
 public class StatsPanel extends JPanel{
     // Set up font details
     private static final int FONT_SIZE = 18;
-    private static final Font DEFAULT_FONT = new Font("Ariel",Font.PLAIN,FONT_SIZE);
+    private static final Font DEFAULT_FONT = new Font("Arial",Font.PLAIN,FONT_SIZE);
     
     public StatsPanel() {
         Pet pet = Main.pet;
@@ -25,6 +25,18 @@ public class StatsPanel extends JPanel{
         setBackground(Color.white);
         setBorder(new EmptyBorder(5,5,5,5));
         
+        for (String stat : stats) {
+            JLabel label = new JLabel(stat);
+            label.setFont(DEFAULT_FONT);
+            label.setForeground(Color.black);
+            add(label);
+        }
+    }
+
+    public void update() {
+        // Have pet create array of stats to be printed
+        String[] stats = Main.pet.getStatsArray();
+
         for (String stat : stats) {
             JLabel label = new JLabel(stat);
             label.setFont(DEFAULT_FONT);

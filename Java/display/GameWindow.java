@@ -185,5 +185,10 @@ public class GameWindow {
     public void updateAllPanels () {
         petPanel.updateDisplay();
         menuPanel.update();
+        sPanel.update();
+    }
+
+    public void updateStatsPanel () {
+        sPanel.update();
     }
 }
