@@ -194,7 +194,6 @@ public class Cycle{
                 }
                 if (!pet.isHealthy){
                     System.out.println(name+" is no longer healthy.");
-                    Menu.statsAlert = true;
                 }
             }else{ //if pet is sick
                 rando = ran.nextInt(45);
@@ -204,10 +203,8 @@ public class Cycle{
             }
             if (pet.health < 0.1){ //how pet is feeling
                     System.out.println(name+" is literally about to die.");
-                    Menu.statsAlert = true;
             }else if (pet.health <= 0.3){
                 System.out.println(name+" is in the hospital.");
-                Menu.statsAlert = true;
             }else if (pet.health<0.6){
                 System.out.println(name+" is feeling really sick");
             }else if (pet.health<=1 && !pet.isHealthy){

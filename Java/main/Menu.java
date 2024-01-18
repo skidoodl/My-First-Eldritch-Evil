@@ -1,6 +1,7 @@
 package main;
 import java.util.Scanner;
 import display.GameWindow;
+import display.ShopWindow;
 import utils.Lazy;
 
 import javax.swing.JOptionPane;
@@ -15,10 +16,10 @@ public class Menu{
   public static final boolean[] allowedWhileSleeping = {true,true,true,false,false,false,true,false,true};
   //-----NORMAL INVENTORY-----//
   public static String[] invItems = new String[10];
-  public static String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
+  public static final String[] shopItems = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
   public static int[] itemStock = {100,20,5,25,35,16,0,0,0,0};
   public static int[] itemInvAmount = new int[10];
-  public static int[] itemPrice = {/*food*/ 50,/*meds*/ 450,/*strong meds*/ 900,/*vitamins*/200,/*Energy Drink*/230,/*Incense*/410}; // load item prices
+  public static final int[] itemPrice = {/*food*/ 50,/*meds*/ 450,/*strong meds*/ 900,/*vitamins*/200,/*Energy Drink*/230,/*Incense*/410}; // load item prices
   //-----CRISIS INVENTORY-----//
   public static String[] crisisInvItems = new String[10];
   public static String[] crisisShopItems = {"Armor (lv1)", "Armour (lv2)", "Armoure (lv3)","Wood Sword","Iron Sword","Shield","Food Bundle","Sedatives","Magic Juice","Magic Super Juice"};
@@ -296,8 +297,11 @@ public class Menu{
       }
   }
 
+  private static ShopWindow sw;
+
   public static void openShop(){
     final Pet pet = Main.pet;
+    sw = new ShopWindow();
     
     Scanner scan = new Scanner(System.in);
     if(pet.name.trim().equals("ferg")){

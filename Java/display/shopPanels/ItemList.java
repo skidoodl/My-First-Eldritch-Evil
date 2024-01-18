@@ -1,53 +1,42 @@
-package display.mainPanels;
+package display.shopPanels;
 
-import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-import javax.swing.JPanel;
+
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import main.Menu;
-import utils.Lazy;
 
-public class MenuPanel extends JPanel {
+public class ItemList extends JPanel {
     // Set up font details
     private static final int FONT_SIZE = 22;
     private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, FONT_SIZE);
-    private static final Font BOLD_FONT = new Font("Arial", Font.BOLD, FONT_SIZE+1);
+    private static final Font BOLD_FONT = new Font("Arial", Font.BOLD, FONT_SIZE);
+    
+    String[] items = Menu.shopItems;
+    int[] price = Menu.itemPrice;
 
+    public ItemList() {
 
-    String[] options = Menu.menuOpts;
-    boolean[] allowedWhileSleeping = Menu.allowedWhileSleeping;
+        setLayout(new GridLayout(items.length, 1));
+        setBounds(0,30,480,690);
+        setBackground(Color.white);
+        setBorder(new EmptyBorder(5,10,25,10));
 
-    public MenuPanel() {
-
-        setLayout(new GridLayout(options.length, 1));
-        setBounds(0, 0, 480, 720);
-        setBackground(Color.black);
-        setBorder(new EmptyBorder(5, 10, 25, 20));
-
-        addLabels();
-    }
-
-    public void update() {
-        removeAllLabels();
         addLabels();
     }
 
     private void addLabels() {
-        boolean isSleeping = main.Main.pet.isSleeping;
-        for (int i = 0; i < options.length; i++) {
-            JLabel label = new JLabel(options[i]);
+        for (int i = 0; i < items.length; i++) {
+            JLabel label = new JLabel(items[i] + "  |  $" + price[i]);
             label.addMouseListener(new OptionMouseListener(label));
             label.setFont(DEFAULT_FONT);
-            if (!isSleeping || allowedWhileSleeping[i]) {
-                label.setForeground(Color.white);
-            } else {
-                label.setForeground(Color.darkGray);
-            }
+            label.setForeground(Color.black);
             add(label);
         }
     }
@@ -80,17 +69,9 @@ public class MenuPanel extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             JLabel source = (JLabel) e.getSource();
-            String selectedOption = source.getText();
-            // Perform action based on the selected option
-            handleOptionClick(selectedOption);
+            String selectedItem = source.getText();
 
         }
 
-    }
-
-    private void handleOptionClick(String option) {
-        // Add your logic here to handle the click for each option
-        int sel = Lazy.findInArray(options, option);
-        Menu.useMenu(sel);
     }
 }
