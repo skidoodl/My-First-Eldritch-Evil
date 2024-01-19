@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import main.Menu;
+import main.Inventory;
 
 public class ItemList extends JPanel {
     // Set up font details
@@ -18,8 +18,8 @@ public class ItemList extends JPanel {
     private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, FONT_SIZE);
     private static final Font BOLD_FONT = new Font("Arial", Font.BOLD, FONT_SIZE);
     
-    String[] items = Menu.shopItems;
-    int[] price = Menu.itemPrice;
+    String[] items = Inventory.getItemList();
+    int[] price = Inventory.getPricesList();
 
     public ItemList() {
 
@@ -70,8 +70,12 @@ public class ItemList extends JPanel {
         public void mouseClicked(MouseEvent e) {
             JLabel source = (JLabel) e.getSource();
             String selectedItem = source.getText();
-
+    
         }
 
+    }
+
+    private void buyMenu (String item) {
+        //trigger dat slider.
     }
 }

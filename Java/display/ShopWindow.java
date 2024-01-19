@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import display.frames.ShopFrame;
 import display.shopPanels.ItemList;
+import display.shopPanels.PurchasePanel;
 
 public class ShopWindow {
     ShopFrame sFrame;
@@ -33,15 +34,16 @@ public class ShopWindow {
         desc.setBounds(480,250,480,250);
 
         //ACTION MENU
-        JPanel actions = new JPanel();
+        /* JPanel actions = new JPanel();
         actions.setBackground(Color.orange);
-        actions.setBounds(480,500,480,220);
+        actions.setBounds(480,500,480,220); */
+        PurchasePanel pPanel = new PurchasePanel();
 
         sFrame.add(wallet);
         sFrame.add(items);
         sFrame.add(display);
         sFrame.add(desc);
-        sFrame.add(actions);
+        sFrame.add(pPanel);
         sFrame.revalidate();
         sFrame.repaint();
         sFrame.setVisible(true);

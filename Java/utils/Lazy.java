@@ -79,9 +79,8 @@ public class Lazy{
                 return i;
             }
         }
-
         System.out.println("\""+item+"\" could not be found.");
-        return -1;
+        return i;
     }
     
     public static int findInArray(int[] array, int integer) {
@@ -91,9 +90,29 @@ public class Lazy{
                 return i;
             }
         }
+        System.out.println("'"+integer+"' could not be found.");
+        return i;
+    }
 
-        System.out.println("\""+integer+"\" could not be found.");
-        return -1;
+    public static boolean isInArray (String[] array, String item) {
+        int i;
+        for(i = 0; i<array.length; i++) {
+            if (array[i] == item) {
+                return true;
+            }
+        }
+        System.out.println("\""+item+"\" could not be found.");
+        return false;
+    }
+    public static boolean isInArray (int[] array, int integer) {
+        int i;
+        for(i = 0; i<array.length; i++) {
+            if (array[i] == integer) {
+                return true;
+            }
+        }
+        System.out.println("'"+integer+"' could not be found.");
+        return false;
     }
 
     public static String timeFormat(long time){
@@ -140,7 +159,6 @@ public class Lazy{
 
         return minCell;
     }
-
     public static int findMinCell (double[] array) {
         double min = array[0];
         int minCell = 0;
@@ -154,5 +172,14 @@ public class Lazy{
         return minCell;
     }
 
-    
+    public static void printArray (String[] array) {
+        System.out.print("\nPrinting array: [");
+        for (int i = 0; i<array.length; i++) {
+            System.out.print(array[i]);
+            if (i < array.length-1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.print("]");
+    }
 }
