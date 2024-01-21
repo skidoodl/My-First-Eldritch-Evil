@@ -19,30 +19,28 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 
 ## Getting Started
 ### Dependencies
-* Powershell
-* Bash
-* JavaFX
+* N/A
 
 ### Installing
 * Download the MyFirstEldritchEvil.zip file from the release page, then extract its contents.
 
 ### Executing Program
-* Windows: Right-click the .ps1 file named "Run This File With Powershell to Play.ps1" and run it with Powershell to play.
-* Mac: Double-click the "Run My First Eldritch Evil - Mac" file to run with Terminal.
+* Windows: --
+* Mac: --
 
 ## Play Guide
 ### Items - Using the Inventory and Shop
-Blabla
+The graphical update of My First Eldritch Evil has introduced a brand new shopping system. Accessing the shop allows you to see a full list of available items, each with their own description and usage guide. Purchasing is super simple!
 
 ### Feeding Your Pet
 Just as you need to eat food to stay alive, so too must your pet obtain nutrients by consuming its own... "food." As time goes on, your pet will become hungry. Your pet's hunger level is measured by "Satiation." Low satiation (<1.0) means your pet is hungry. Luckily for you, feeding it is not difficult. Once you purchase food from the shop, it will appear in your inventory. Then, there are two ways to feed it: Either select food from your inventory and then choose "Use" from the list of options it gives you, or select "Feed [Pet Name]" from the main menu. A pop-up will appear where you can then select the amount of food to feed your pet. You can give it as much or as little food as you want, but be careful: feed it too much food and your pet will become unhealthy, or worse, dead.
 
 ### Sleeping the Pet
-Once you put the pet to sleep, you will see it begin to snooze in the pet display panel. The pet will continue to sleep until woken by the player (clicking on the pet).
+Once you put the pet to sleep, you will see it begin to snooze in the pet display panel. The pet will continue to sleep until woken by the player (clicking on the pet). The player can perform other actions while the pet is asleep.
 <!-- May add more once features get add -->
 
 ## Help
-If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. This is a somewhat buggy mess and may crash. Also, the only way to end the game is to die or press ctrl+c in the command prompt line.
+If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. This is a somewhat buggy mess and may crash.
 
 ## Authors
 * Kline Shimp  
