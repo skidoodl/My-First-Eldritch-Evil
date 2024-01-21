@@ -12,6 +12,28 @@ public class Inventory {
     private static int[] itemStock = {50,20,5,25,35,16,0,0,0,0};
     private static final int[] itemPrice = {/*food*/ 50,/*meds*/ 450,/*strong meds*/ 900,/*vitamins*/200,/*Energy Drink*/230,/*Incense*/410};
 
+    public static String[] getInventoryList() {
+        return inventory;
+    }
+    public static String getInventoryItemString(int itemReference) {
+        return inventory[itemReference];
+    }
+    public static String getInventoryItemReference(String itemName) {
+        // TODO - Complete method
+        return null;
+    }
+
+    public static int[] getInventoryAmount() {
+        return itemInvAmount;
+    }
+    public static int getInventoryAmount(String itemName) {
+        int i = Lazy.findInArray(inventory, itemName);
+        return itemInvAmount[i];
+    }
+    public static int getInventoryAmount(int itemReference) {
+        return itemInvAmount[itemReference];
+    }
+
     public static String[] getItemList() {
         return items;
     }
@@ -45,6 +67,9 @@ public class Inventory {
     public static int getWallet() {
         return wallet;
     }
+    public static void setWallet(int amount) {
+        wallet = amount;
+    }
 
     public static void purchaseItem(String itemName, int quantity) {
         int i = Lazy.findInArray(items, itemName);
@@ -57,12 +82,13 @@ public class Inventory {
     public static void give(String itemName, int quantity) {
         int i;
         sortInventory();
-        for (i = 0; i < inventory.length; i++) { // search inventory for the item
+        // search inventory for the item
+        for (i = 0; i < inventory.length; i++) { // TODO - make this search a method
             if (inventory[i] == null) {
                 inventory[i] = itemName;
                 break;
             }
-            if (inventory[i] == itemName) {
+            if (inventory[i].equals(itemName)) {
                 break;
             }
         }
@@ -73,11 +99,24 @@ public class Inventory {
     }
 
     public static void remove(String itemName, int quantity) {
-        // to do
+        int i;
+        sortInventory();
+        // search inventory for item
+        for (i = 0; i < inventory.length; i++) {
+            if (inventory[i] == null) {
+                inventory[i] = itemName;
+                break;
+            }
+            if (inventory[i].equals(itemName)) {
+                break;
+            }
+        }
+        itemInvAmount[i] -= quantity;
     }
 
 
     private static void sortInventory() {
+        System.out.println("Sorting Inventory");
         int i;
         for (i = 0; i < inventory.length; i++) {
             if (itemInvAmount[i] == 0) {

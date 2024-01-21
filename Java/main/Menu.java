@@ -238,13 +238,13 @@ public class Menu{
     final Pet pet = Main.pet;
     GameWindow gw = Main.gw;
 
-    Scanner scan = new Scanner(System.in);
     switch(sel){ //TODO - Edit the cases to start from 0
         case 0: //inventory
           Menu.openInventory();
           break;
         case 1: //store
-          Menu.openShop();
+          ShopWindow.openShop();
+          //Menu.openShop();
           break;
         case 2: //Check Stats
           if (statsOn) {
@@ -297,79 +297,15 @@ public class Menu{
       }
   }
 
-  private static ShopWindow sw;
+  
 
   public static void openShop() {
     final Pet pet = Main.pet;
-    sw = new ShopWindow();
 
     Scanner scan = new Scanner(System.in);
-    if (pet.name.trim().equals("ferg")) {
-      System.out.println("dev mode");
-      int max = Integer.MAX_VALUE;
-      pet.money = max;
-    }
-    System.out.println("\n\n-----------{SHOP}-----------\nWallet: " + pet.money
-        + " mon\n----------------------------\nPRESS 0 TO EXIT");
-    if (!pet.isEvil) { // if pet is not evil...
-      for (int i = 0; i < shopItems.length; i++) { // load the item list
-        if (itemStock[i] > 0) {
-          System.out
-              .println("  " + (i + 1) + ". " + shopItems[i] + " x" + itemStock[i] + "  -  Price: " + itemPrice[i]);
-        }
-      }
-      System.out.print("SELECT: ");
-      int sel = scan.nextInt(); // allow user to select item to purchase
-      while (sel > 11 || sel < 0) { // ensure the user makes a selection within the correct range
-        sel = scan.nextInt();
-      }
-      if (sel == 0) {
-        return;
-      } else {
-        System.out.print("How many? ");
-        int quant = scan.nextInt();
-        if (itemStock[(sel - 1)] < quant) {
-          System.out.println("Not enough stock.");
-          Lazy.waitForEnter();
-          Menu.openShop();
-        }
-        if (quant < 1) { // if user inputs a quantity less than 1, return them back to the main shopping
-                         // thing or smth idk
-          Menu.openShop();
-        }
-        int cost = itemPrice[(sel - 1)] * quant; // calculate purchase cost
-
-        if (cost > pet.money) {
-          System.out.println("You don't have enough money.");
-          Lazy.waitForEnter();
-        } else {
-          pet.money -= cost; // subtract cost from wallet
-          int emptySlot = -1;
-          itemStock[(sel - 1)] -= quant;
-          boolean duplicate = false;
-          for (int i = 0; i < invItems.length; i++) { // search for duplicates with invItems and your selection
-            if (invItems[i] == shopItems[(sel - 1)]) {
-              duplicate = true;
-              emptySlot = i;
-              break;
-            }
-          }
-          if (!duplicate) {
-            for (int i = 0; i < invItems.length; i++) {
-              if (invItems[i] == null) {
-                emptySlot = i;
-                break;
-              }
-            }
-          }
-          if (emptySlot != -1) {
-            invItems[emptySlot] = shopItems[(sel - 1)];
-          }
-          itemInvAmount[emptySlot] = itemInvAmount[emptySlot] + quant;
-        }
-        return;
-      }
-    } else { // ----CRISIS SHOP----/
+    
+    if (pet.isEvil) { // crisis shop stuff
+      
       for (int i = 0; i < crisisShopItems.length; i++) { // load the item list
         if (crisisItemStock[i] > 0) {
           System.out.println(

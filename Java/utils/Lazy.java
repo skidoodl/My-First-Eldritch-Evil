@@ -173,13 +173,13 @@ public class Lazy{
     }
 
     public static void printArray (String[] array) {
-        System.out.print("\nPrinting array: [");
+        System.out.print("Printing array: [");
         for (int i = 0; i<array.length; i++) {
             System.out.print(array[i]);
             if (i < array.length-1) {
                 System.out.print(", ");
             }
         }
-        System.out.print("]");
+        System.out.println("]");
     }
 }

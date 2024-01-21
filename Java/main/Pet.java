@@ -32,7 +32,7 @@ public class Pet{
         isAlive = true;
         difficulty = 1;
         satiety = 0.85;
-        money = 750;
+        Inventory.setWallet(750);
         difficultyName = "Normal";
         mood = "normal";
 
@@ -57,7 +57,7 @@ public class Pet{
         isAlive = true;
         difficulty = 1;
         satiety = 0.85;
-        money = 750;
+        Inventory.setWallet(750);
         difficultyName = "Normal";
         mood = "normal";
     }
@@ -182,15 +182,16 @@ public class Pet{
         if (sleepBlock()) {
             return;
         }
-        String[] invItems = Menu.invItems;
+        String[] invItems = Inventory.getInventoryList();
         if (this.satiety>1.0){ //too full to eat
             JOptionPane.showMessageDialog(null, name+" is too full to eat.", "Feed "+name,JOptionPane.INFORMATION_MESSAGE);
         }
         boolean foundFood = false;
-        for(int i=0; i<Menu.itemInvAmount.length; i++){
+        // TODO - Can probably replace with some Inventory method
+        for(int i = 0; i < Inventory.getInventoryAmount().length; i++){
             if(invItems[i] == null){continue;} //skip the nulls
             if(invItems[i].equalsIgnoreCase("Food")){ //once it finds food
-                int fAmount = Menu.itemInvAmount[i];
+                int fAmount = Inventory.getInventoryAmount(i);
                 foundFood = true;
                 System.out.println("Feeding pet...");
                 
@@ -216,7 +217,7 @@ public class Pet{
                     return;
                 }
 
-                Menu.itemInvAmount[i] -= amount; //Subtract food from inventory
+                Inventory.remove("Food", amount);
                 
                 double feed = (0.15*amount); //Max possible feed: 0.2/food | Min possible feed 0.1/food
                 satiety += feed;

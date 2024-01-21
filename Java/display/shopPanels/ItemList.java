@@ -9,7 +9,9 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
+import display.ShopWindow;
 import main.Inventory;
 
 public class ItemList extends JPanel {
@@ -25,6 +27,7 @@ public class ItemList extends JPanel {
 
         setLayout(new GridLayout(items.length, 1));
         setBounds(0,30,480,690);
+        setBorder(new LineBorder(Color.darkGray));
         setBackground(Color.white);
         setBorder(new EmptyBorder(5,10,25,10));
 
@@ -33,7 +36,8 @@ public class ItemList extends JPanel {
 
     private void addLabels() {
         for (int i = 0; i < items.length; i++) {
-            JLabel label = new JLabel(items[i] + "  |  $" + price[i]);
+            // JLabel label = new JLabel(items[i] + "  |  $" + price[i]);
+            JLabel label = new JLabel(items[i]);
             label.addMouseListener(new OptionMouseListener(label));
             label.setFont(DEFAULT_FONT);
             label.setForeground(Color.black);
@@ -70,12 +74,10 @@ public class ItemList extends JPanel {
         public void mouseClicked(MouseEvent e) {
             JLabel source = (JLabel) e.getSource();
             String selectedItem = source.getText();
-    
+            ShopWindow.itemSelect(selectedItem);
         }
 
     }
 
-    private void buyMenu (String item) {
-        //trigger dat slider.
-    }
+    
 }

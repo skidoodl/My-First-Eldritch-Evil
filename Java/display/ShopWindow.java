@@ -5,14 +5,21 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import display.frames.ShopFrame;
+import display.shopPanels.DefaultActionPanel;
 import display.shopPanels.ItemList;
 import display.shopPanels.PurchasePanel;
+import main.Inventory;
 
 public class ShopWindow {
-    ShopFrame sFrame;
-    public int itemSelected;
+    private static ShopFrame sFrame;
 
-    public ShopWindow() {
+    private static DefaultActionPanel actionPanel;
+    private static PurchasePanel purchasePanel;
+
+    private static boolean itemSelected = false;
+    private static String currentSelected;
+
+    public static void openShop() {
         sFrame = new ShopFrame();
 
         // WALLET DISPLAY
@@ -34,19 +41,54 @@ public class ShopWindow {
         desc.setBounds(480,250,480,250);
 
         //ACTION MENU
-        /* JPanel actions = new JPanel();
-        actions.setBackground(Color.orange);
-        actions.setBounds(480,500,480,220); */
-        PurchasePanel pPanel = new PurchasePanel();
+        actionPanel = new DefaultActionPanel();
 
         sFrame.add(wallet);
         sFrame.add(items);
         sFrame.add(display);
         sFrame.add(desc);
-        sFrame.add(pPanel);
+        sFrame.add(actionPanel);
         sFrame.revalidate();
         sFrame.repaint();
         sFrame.setVisible(true);
         
+    }
+
+    public static void itemSelect(String item) {
+        if (item.equals(currentSelected)) {
+            deselectItem();
+            return;
+        }
+
+        // Add the purchase panel
+        if (!itemSelected) {
+            sFrame.remove(actionPanel);
+            itemSelected = true;
+        } else {
+            sFrame.remove(purchasePanel);
+        }
+        currentSelected = item;
+        purchasePanel = new PurchasePanel(item);
+        sFrame.add(purchasePanel);
+
+        sFrame.revalidate();
+    }
+
+    public static void deselectItem() {
+        if (itemSelected) {
+            sFrame.remove(purchasePanel);
+            itemSelected = false;
+            currentSelected = null;
+            sFrame.add(actionPanel);
+        }
+        sFrame.revalidate();
+        sFrame.repaint();
+    }
+
+    public static void itemPurchase(String item, int quantity) {
+        // TODO - add method to properly update relevant panels
+
+        Inventory.purchaseItem(currentSelected, quantity);
+        sFrame.updateHeader();
     }
 }
