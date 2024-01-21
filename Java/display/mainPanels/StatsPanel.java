@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-import main.Pet;
 import main.Main;
 
 public class StatsPanel extends JPanel{

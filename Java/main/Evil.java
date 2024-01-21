@@ -100,11 +100,12 @@ public class Evil{
         System.out.print("  1. Inventory\n  2. Shop\n  3. Stats\n  4. Attack\nSELECT: "); //menu options
         int input = scan.nextInt();
         switch(input){
-            case 1: 
-                Menu.openInventory();
+            case 1:
+                // TODO - Crisis Inventory
                 break;
             case 2:
-                Menu.openShop();
+                // Open Shop
+                // TODO - Crisis Shop
                 break;
             case 3: //stats
                 stats(pet);

@@ -109,7 +109,9 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Added easily togglable stats menu.
    * Added responsive menu GUI.
    * Finally made moods an actual thing.
-   * Shopping experience completely reworked.
+   * Shopping system completely reworked.
+      * Shop opens in seperate window to allow multitasking.
+      * Information about items and use now visible (unfinished).
    * Bugfixes
 
 ## License

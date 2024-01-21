@@ -3,7 +3,6 @@ package display;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 import display.frames.GameFrame;
 import display.frames.InventoryFrame;
@@ -12,9 +11,11 @@ import display.mainPanels.StatsPanel;
 import display.petPanels.PetPanel;
 import display.petPanels.PetSleep;
 
+import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 
 public class GameWindow {
     GameFrame gFrame;
@@ -45,8 +46,7 @@ public class GameWindow {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // throw new UnsupportedOperationException("Unimplemented method
-                // 'actionPerformed'");
+                //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
                 gameStart = true;
             }
 

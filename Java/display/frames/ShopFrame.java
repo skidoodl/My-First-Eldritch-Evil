@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 
 import main.Inventory;
-import main.Main;
 
 public class ShopFrame extends JFrame {
     ImageIcon icon = new ImageIcon("Resources/Icons/Shop_Icon.png");

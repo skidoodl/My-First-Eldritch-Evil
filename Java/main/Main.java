@@ -26,15 +26,14 @@ public class Main {
       Evil.main(pet);
     }
 
-    Menu.displayMenu();
+    gw.menuScreen();
 
     while (true) {
       if (pet.isEvil) {
         Evil.main(pet);
       }
       while (action < 2) { // two actions will perform before moving on to cycle.
-        Menu.displayMenu();
-
+        gw.menuScreen();
       }
       action = 0;
       Cycle.nextCycle(pet);
