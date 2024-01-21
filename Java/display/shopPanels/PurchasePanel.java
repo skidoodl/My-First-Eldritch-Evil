@@ -59,8 +59,6 @@ public class PurchasePanel extends JPanel implements ChangeListener {
             }
         });
 
-
-
         this.add(slider, BorderLayout.CENTER);
         this.add(button, BorderLayout.SOUTH);
     }
