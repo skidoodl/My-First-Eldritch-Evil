@@ -38,6 +38,13 @@ public class MenuPanel extends JPanel {
     }
 
     private void addLabels() {
+        /* 
+         * I need to figure out a better system for dealing with allowed/unallowed menu
+         * choices. Perhaps an adjacent array with booleans, and a method to determine
+         * true/false for each thing. That way, stuff like feeding the pet can be
+         * grayed out if there is no food in the inventory, for example.
+         */
+
         boolean isSleeping = main.Main.pet.isSleeping;
         for (int i = 0; i < options.length; i++) {
             JLabel label = new JLabel(options[i]);
