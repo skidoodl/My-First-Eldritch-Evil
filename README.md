@@ -120,12 +120,19 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Shopping system completely reworked
       * Shop opens in seperate window to allow multitasking
       * _Information about items and use now visible (unfinished)_
+   * _Inventory system completely reworked (unimplemented)_
+      * Player can now organize inventory order
+      * Player can now sell items from their inventory
    * _Complete overhaul of the fitness system (unimplemented)_
       * Exercising now has a greater impact on gameplay
       * Exercising the pet is now a more active process (...get it?)
       * Introduced fitness plans (still in the early stages) (unimplemented)
    * _Introduced more skill/physical-related stats for pet (unimplemented)_
    * Removed menu alerts for stats (may be reimplemented in future versions)
+   * _Added pet competition system (unimplemented)_
+   * Earning money works different now
+   * _Added new items_
+      * _Alarm clock (unimplemented)_
    * Bugfixes
 
 ## License
