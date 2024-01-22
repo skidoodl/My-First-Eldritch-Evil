@@ -30,14 +30,25 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 
 ## Play Guide
 ### Items - Using the Inventory and Shop
-The graphical update of My First Eldritch Evil has introduced a brand new shopping system. Accessing the shop allows you to see a full list of available items, each with their own description and usage guide. Purchasing is super simple!
+The graphical update of My First Eldritch Evil has introduced a brand new shopping system. Accessing the shop allows you to see a full list of available items, each with their own description and usage guide. Purchasing is super simple! Below the play guide is located an item guide for your convience.
 
 ### Feeding Your Pet
 Just as you need to eat food to stay alive, so too must your pet obtain nutrients by consuming its own... "food." As time goes on, your pet will become hungry. Your pet's hunger level is measured by "Satiation." Low satiation (<1.0) means your pet is hungry. Luckily for you, feeding it is not difficult. Once you purchase food from the shop, it will appear in your inventory. Then, there are two ways to feed it: Either select food from your inventory and then choose "Use" from the list of options it gives you, or select "Feed [Pet Name]" from the main menu. A pop-up will appear where you can then select the amount of food to feed your pet. You can give it as much or as little food as you want, but be careful: feed it too much food and your pet will become unhealthy, or worse, dead.
 
 ### Sleeping the Pet
-Once you put the pet to sleep, you will see it begin to snooze in the pet display panel. The pet will continue to sleep until woken by the player (clicking on the pet). The player can perform other actions while the pet is asleep.
+Once you put the pet to sleep, you will see it begin to snooze in the pet display panel. The pet will continue to sleep until woken by the player (clicking on the pet). The player can perform other actions while the pet is asleep, but make sure not too let it sleep for too long, or else unfortunate things may happen.
+
+### Exercising the Pet (2.0 system yet to be implemented)
+It's important to keep your pet healthy and fit. Exercising you pet works similarly to sleeping it, where you can get it started on a routine and let it train in the background. However, make sure to check in with your pet occasionally to make sure it drinks enough water or isn't over-exerting itself. Too much time exercising could cause it to lose all its energy and end up hurting itself. 
+#### Creating a Fitness Plan (yet to be implemented)
+In order to train up specific stats for your pet, you can create a fitness plan. This will allow your pet to perform better against other pets in competitions. However, these stats also become dangerous if your pet turns evil...
+
+### Competing With Your Pet
+_yet to be created_
 <!-- May add more once features get add -->
+
+## Item Guide
+nothin here yet
 
 ## Help
 If you are having trouble getting this to work, make sure [Java](https://www.java.com/en/) is installed. This is a somewhat buggy mess and may crash.
@@ -94,22 +105,27 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
 
 ### Graphics Update
 * __2.0.0__ (in progress)
-   * Added number formatting for stats.
-   * Time alive now tracked and displayed on death. (not working)
-   * Hatching is much easier now.
-   * Removed difficulty - games run on normal.
-   * Added start screen.
-   * Added menu window with visual pet display.
-   * Feeding the pet uses a drop-down menu now.
-   * Reworked the pet sleep mechanic.
-      * Sleeping the pet actually takes time.
-      * Player can perform some actions while pet is sleeping.
-   * Added easily togglable stats menu.
-   * Added responsive menu GUI.
-   * Finally made moods an actual thing.
-   * Shopping system completely reworked.
-      * Shop opens in seperate window to allow multitasking.
-      * Information about items and use now visible (unfinished).
+   * Added number formatting for stats
+   * _Time alive now tracked and displayed on death (not working)_
+   * Hatching is much easier now
+   * Removed difficulty - games run on normal
+   * Added start screen
+   * Added menu window with visual pet display
+   * Reworked the pet sleep mechanic
+      * Sleeping the pet actually takes time
+      * Player can perform some actions while pet is sleeping
+   * Added easily togglable stats menu
+   * Added responsive menu GUI
+   * Reimplementation of moods
+   * Shopping system completely reworked
+      * Shop opens in seperate window to allow multitasking
+      * _Information about items and use now visible (unfinished)_
+   * _Complete overhaul of the fitness system (unimplemented)_
+      * Exercising now has a greater impact on gameplay
+      * Exercising the pet is now a more active process (...get it?)
+      * Introduced fitness plans (still in the early stages) (unimplemented)
+   * _Introduced more skill/physical-related stats for pet (unimplemented)_
+   * Removed menu alerts for stats (may be reimplemented in future versions)
    * Bugfixes
 
 ## License
