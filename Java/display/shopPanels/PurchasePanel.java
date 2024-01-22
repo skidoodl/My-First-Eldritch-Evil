@@ -38,20 +38,25 @@ public class PurchasePanel extends JPanel implements ChangeListener {
             slider.setMaximum(mostPurchasable);
         }
         slider.setMinimum(0);
-        slider.setPreferredSize(new Dimension(300, 150));
-        slider.setBounds(480, 500, 300, 150);
-        slider.setPaintTicks(true); // ticks are dark gray so they don't really show :(
+        slider.setPreferredSize(new Dimension(400, 130));
+        //slider.setBounds(480, 500, 300, 150);
+        slider.setPaintTicks(true); 
         slider.setMinorTickSpacing(1);
         slider.setPaintTrack(true);
         slider.setMajorTickSpacing(5); // TODO - Should change based on max-purchasable
         slider.setPaintLabels(true);
         slider.setValue(0);
         slider.setSnapToTicks(true);
-        
+        slider.setBackground(Color.gray);
+        slider.setForeground(Color.black);
+
         slider.addChangeListener(this);
 
         button = new JButton("Buy 0 " + item + " for 0 mon.");
-        button.setBounds(500, 680, 210, 140);
+        button.setPreferredSize(new Dimension(220, 30));
+        button.setBackground(Color.black);
+        button.setForeground(new Color(109,77,172));
+        button.setFocusPainted(false);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -85,10 +85,16 @@ public class ShopWindow {
         sFrame.repaint();
     }
 
+    public static void refreshItem(String item) {
+        deselectItem();
+        itemSelect(item);
+    }
+
     public static void itemPurchase(String item, int quantity) {
         // TODO - add method to properly update relevant panels
 
         Inventory.purchaseItem(currentSelected, quantity);
         sFrame.updateHeader();
+        refreshItem(item);        
     }
 }
