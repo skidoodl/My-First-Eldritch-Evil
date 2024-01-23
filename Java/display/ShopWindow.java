@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import display.frames.ShopFrame;
 import display.shopPanels.DefaultActionPanel;
+import display.shopPanels.ItemDisplay;
 import display.shopPanels.ItemList;
 import display.shopPanels.PurchasePanel;
 import main.Inventory;
@@ -15,6 +16,7 @@ public class ShopWindow {
 
     private static DefaultActionPanel actionPanel;
     private static PurchasePanel purchasePanel;
+    private static ItemDisplay itemDisp = new ItemDisplay();
 
     private static boolean itemSelected = false;
     private static String currentSelected;
@@ -30,15 +32,16 @@ public class ShopWindow {
         // ITEM LIST
         ItemList items = new ItemList();
 
-        // ITEM DISPLAY
+        // DISPLAY
         JPanel display = new JPanel();
         display.setBackground(Color.pink);
-        display.setBounds(480,0,480,250);
+        display.setBounds(480,0,480,240);
+        
 
         // ITEM DESCRIPTION
         JPanel desc = new JPanel();
         desc.setBackground(Color.cyan);
-        desc.setBounds(480,250,480,250);
+        desc.setBounds(480,240,480,260);
 
         //ACTION MENU
         actionPanel = new DefaultActionPanel();
@@ -46,6 +49,7 @@ public class ShopWindow {
         sFrame.add(wallet);
         sFrame.add(items);
         sFrame.add(display);
+        sFrame.add(itemDisp);
         sFrame.add(desc);
         sFrame.add(actionPanel);
         sFrame.revalidate();
@@ -69,6 +73,7 @@ public class ShopWindow {
         }
         currentSelected = item;
         purchasePanel = new PurchasePanel(item);
+        itemDisp.showImage(item);
         sFrame.add(purchasePanel);
 
         sFrame.revalidate();
@@ -80,6 +85,7 @@ public class ShopWindow {
             itemSelected = false;
             currentSelected = null;
             sFrame.add(actionPanel);
+            itemDisp.removeImage();
         }
         sFrame.revalidate();
         sFrame.repaint();
