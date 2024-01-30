@@ -87,7 +87,7 @@ public class Menu{
           break;
       }
   }
-
+/* 
   private static void sortInventory(){
     final Pet pet = Main.pet;
     
@@ -127,6 +127,6 @@ public class Menu{
     }
     
   }
-
+ */
   
 }

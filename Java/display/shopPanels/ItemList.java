@@ -44,12 +44,13 @@ public class ItemList extends JPanel {
             add(label);
         }
     }
-
+/* 
     private void removeAllLabels() {
         for (int i = getComponentCount() - 1; i >= 0; i--) {
             remove(i);
         }
     }
+ */
 
     private class OptionMouseListener extends MouseAdapter {
         private final JLabel label;
