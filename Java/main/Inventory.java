@@ -1,5 +1,11 @@
 package main;
 
+import java.awt.Color;
+
+import javax.swing.JPanel;
+
+import display.frames.InventoryFrame;
+import display.inventoryPanels.InventoryList;
 import utils.Lazy;
 
 public class Inventory {
@@ -70,6 +76,9 @@ public class Inventory {
     public static void setWallet(int amount) {
         wallet = amount;
     }
+    public static void addMoney(int amount) {
+        wallet += amount;
+    }
 
     public static void purchaseItem(String itemName, int quantity) {
         int i = Lazy.findInArray(items, itemName);
@@ -112,6 +121,35 @@ public class Inventory {
             }
         }
         itemInvAmount[i] -= quantity;
+    }
+
+
+    // ---- OPEN INVENTORY ---- //
+    private static InventoryFrame iFrame;
+
+    public static void openInventory() {
+
+        iFrame = new InventoryFrame();
+
+        InventoryList invList = new InventoryList();
+        
+
+        JPanel monInfo = new JPanel(); // Displays player's wallet info
+        monInfo.setBackground(Color.red);
+        monInfo.setBounds(0,640,480,40);
+
+        JPanel itemInfo = new JPanel(); // Displays info about items or, if not item is selected, tips or other game-related info
+        itemInfo.setBackground(Color.green);
+        itemInfo.setBounds(480,0,480,720);
+
+        // Add Panels
+        iFrame.add(invList);
+        iFrame.add(monInfo);
+        iFrame.add(itemInfo);
+        iFrame.revalidate();
+        iFrame.repaint();
+        iFrame.setVisible(true);
+    
     }
 
 

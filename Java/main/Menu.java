@@ -1,8 +1,6 @@
 package main;
-import java.util.Scanner;
 import display.GameWindow;
 import display.ShopWindow;
-import utils.Lazy;
 
 import javax.swing.JOptionPane;
 
@@ -27,174 +25,13 @@ public class Menu{
   public static int[] crisisPrice = {/*Armor*/ 600,/*Armour*/ 950,/*Armoure*/ 1800,/*Wood Sword*/475,/*iron sword*/ 1020,/*Shield*/380,/*food bundle*/ 220, /*sedatives*/375, /*Magic Juice*/450, /*Magic Super Juice*/775}; // load item prices
   
 
-  public static void openInventory(){ //TODO - Make inventory class
-    final Pet pet = Main.pet;
-    final GameWindow gw = Main.gw;
-
-    gw.inventory();
-    
-    System.out.println("\n\n---------{INVENTORY}---------\nPRESS 0 TO EXIT");
-    if(!pet.isEvil){ //if pet isn't evil, display this inventory
-      sortInventory();
-      int i=0;
-      for(i=0; invItems[i] != null && i<invItems.length; i++){
-        if(invItems[i]==null){break;}
-        System.out.println("  "+(i + 1) + ". " + invItems[i]+" x"+itemInvAmount[i]);
-      }
-      System.out.print("SELECT: ");
-      Scanner scan = new Scanner(System.in);
-      int input = scan.nextInt(); 
-      
-      if(input == 0){return;} //return
-      String sel = (invItems[(input-1)]);
-      switch(sel){
-        case "Food":
-          pet.feed();
-          break;
-        case "Medication":
-          pet.medicate(false);
-          break;
-        case "Strong Medication":
-          pet.medicate(true);
-          break;
-        case "Vitamins":
-          pet.vitamins();
-          break;
-        case "Energy Drink":
-          pet.energyDrink();
-          break;
-        case "Incense":
-          pet.incense();
-        default:
-          System.out.println("Unavailable");
-          break;
-      }
-    }else{ //---CRISIS INVENTORY---//
-      sortInventory();
-      int i=0;
-      for(i=0;i<crisisInvItems.length;i++){
-        if(crisisInvItems[i]==null){break;}
-        System.out.print("  "+(i + 1) + ". " + crisisInvItems[i]+" x"+crisisInvAmount[i]);
-        if(Evil.activeWeapon.equals(crisisInvItems[i]) || Evil.activeShield.equals(crisisInvItems[i])){System.out.print(" - Equipped");}
-        switch(crisisInvItems[i]){
-          case "Armor (lv1)":
-            if(Evil.armor == 1){System.out.print(" - Equipped");}
-            break;
-          case "Armour (lv2)":
-            if(Evil.armor == 2){System.out.print(" - Equipped");}
-            break;
-          case "Armoure (lv3)":
-            if(Evil.armor == 3){System.out.print(" - Equipped");}
-          default:
-            //def
-        }
-        System.out.println();
-      }
-      
-      System.out.print("SELECT: ");
-      Scanner scan = new Scanner(System.in);
-      int input = scan.nextInt();
-      if(input == 0){
-        return;
-      }
-      String sel = crisisInvItems[(input-1)];
-
-      switch (sel){ 
-        case "Armor (lv1)":
-          if(Evil.armor == 1){ //if already equipped
-            System.out.println("Unequipped Armor");
-            Evil.armor = 0;
-          }else{
-            System.out.println("Equipped Armor");
-            Evil.armor = 1;
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Armour (lv2)":
-          if(Evil.armor == 2){ //if already equipped
-            System.out.println("Unequipped Armour");
-            Evil.armor = 0;
-          }else{
-            System.out.println("Equipped Armour");
-            Evil.armor = 2;
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Armoure (lv3)":
-          if(Evil.armor == 3){ //if already equipped
-            System.out.println("Unequipped Armoure");
-            Evil.armor = 0;
-          }else{
-            System.out.println("Equipped Armoure");
-            Evil.armor = 3;
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Wood Sword":
-          if(Evil.activeWeapon.equals("Wood Sword")){ //if already equipped
-            System.out.println("Unequipped Wood Sword");
-            Evil.activeWeapon = "none";
-          }else{
-            System.out.println("Equipped Wood Sword");
-            Evil.activeWeapon = "Wood Sword";
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Iron Sword":
-          if(Evil.activeWeapon.equals("Iron Sword")){ //if already equipped
-            System.out.println("Unequipped Iron Sword");
-            Evil.activeWeapon = "none";
-          }else{
-            System.out.println("Equipped Iron Sword");
-            Evil.activeWeapon = "Iron Sword";
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Shield":
-          if(Evil.activeShield.equals("Shield")){
-            System.out.println("Unequipped Shield.");
-            Evil.activeShield = "none";
-          }else{
-            System.out.println("Equipped Shield");
-            Evil.activeShield = "Shield";
-          }
-          Lazy.waitForEnter();
-          break;
-        case "Food Bundle":
-          Evil.foodBribe(pet);
-          break;
-        case "Sedatives":
-          Evil.sedate(pet);
-          break;
-        case "Magic Juice":
-          if(Evil.bonusHP>0){
-            System.out.println("You cannot recover any more health");
-            Lazy.waitForEnter();
-          }else{
-            Evil.magicJuice(false);
-          }
-          break;
-        case "Magic Super Juice":
-          if(Evil.bonusHP>0){
-            System.out.println("You cannot recover any more health");
-            Lazy.waitForEnter();
-          }else{
-            Evil.magicJuice(true);
-          }
-          break;
-        default:
-          System.out.println("Unavailable"); //Yet to implement: magic juices
-      }
-    }
-  }
-
   public static void useMenu (int sel){ // TODO - Make this a method in GameWindow plz
     final Pet pet = Main.pet;
     GameWindow gw = Main.gw;
 
     switch(sel){ //TODO - Edit the cases to start from 0
         case 0: //inventory
-          Menu.openInventory();
+          Inventory.openInventory();
           break;
         case 1: //store
           ShopWindow.openShop();
@@ -236,6 +73,8 @@ public class Menu{
           Main.action = 3;
           break;
         case 8:
+          Inventory.addMoney(500);
+          System.out.println("500 money added. Current balance: " + Inventory.getWallet());
           if(pet.mood == "hungry"){
             pet.mood = "normal";
           } else {

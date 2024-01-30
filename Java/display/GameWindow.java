@@ -149,32 +149,6 @@ public class GameWindow {
         gFrame.repaint();
     }
 
-    public void inventory(){
-        iFrame = new InventoryFrame();
-
-
-        JPanel invContents = new JPanel(); // Displays items in player's inventory
-        invContents.setBackground(Color.black);
-        invContents.setBounds(0, 0, 480, 680);
-
-        JPanel monInfo = new JPanel(); // Displays player's wallet info
-        monInfo.setBackground(Color.red);
-        monInfo.setBounds(0,680,480,40);
-
-        JPanel itemInfo = new JPanel(); // Displays info about items or, if not item is selected, tips or other game-related info
-        itemInfo.setBackground(Color.green);
-        itemInfo.setBounds(480,0,480,720);
-
-        // Add Panels
-        iFrame.add(invContents);
-        iFrame.add(monInfo);
-        iFrame.add(itemInfo);
-        iFrame.revalidate();
-        iFrame.repaint();
-        iFrame.setVisible(true);
-
-    }
-
     public void setGameFrameVisible(boolean setVis) {
         gFrame.setVisible(setVis);
     }

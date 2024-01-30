@@ -102,7 +102,7 @@ public class Pet{
     }
 
     
-    public void killPet(String cause){
+    public void killPet(String cause){ // TODO - make this a window
         long startTime = Main.startTime;
         long endTime = System.nanoTime();
         System.out.println("\n\n------------------------------------");

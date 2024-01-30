@@ -94,6 +94,7 @@ public class ShopWindow {
     public static void refreshItem(String item) {
         deselectItem();
         itemSelect(item);
+
     }
 
     public static void itemPurchase(String item, int quantity) {
