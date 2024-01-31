@@ -9,6 +9,7 @@ import display.shopPanels.DefaultActionPanel;
 import display.shopPanels.ItemDisplay;
 import display.shopPanels.ItemList;
 import display.shopPanels.PurchasePanel;
+import display.shopPanels.*;
 import main.Inventory;
 
 public class ShopWindow {
@@ -17,6 +18,7 @@ public class ShopWindow {
     private static DefaultActionPanel actionPanel;
     private static PurchasePanel purchasePanel;
     private static ItemDisplay itemDisp = new ItemDisplay();
+    private static ItemStatsPanel itemStats;
 
     private static boolean itemSelected = false;
     private static String currentSelected;
@@ -37,6 +39,8 @@ public class ShopWindow {
         display.setBackground(Color.pink);
         display.setBounds(480,0,480,240);
         
+        // ITEM STATS
+        itemStats = new ItemStatsPanel();
 
         // ITEM DESCRIPTION
         JPanel desc = new JPanel();
@@ -52,6 +56,12 @@ public class ShopWindow {
         sFrame.add(itemDisp);
         sFrame.add(desc);
         sFrame.add(actionPanel);
+        sFrame.add(itemStats);
+
+        if (itemSelected == true) {
+            itemSelect(currentSelected);
+        }
+
         sFrame.revalidate();
         sFrame.repaint();
         sFrame.setVisible(true);
@@ -59,6 +69,8 @@ public class ShopWindow {
     }
 
     public static void itemSelect(String item) {
+        System.out.println("Item Select");
+
         if (item.equals(currentSelected)) {
             deselectItem();
             return;
@@ -74,6 +86,7 @@ public class ShopWindow {
         currentSelected = item;
         purchasePanel = new PurchasePanel(item);
         itemDisp.showImage(item);
+        itemStats.showStats(item);
         sFrame.add(purchasePanel);
 
         sFrame.revalidate();
@@ -81,6 +94,7 @@ public class ShopWindow {
 
     public static void deselectItem() {
         if (itemSelected) {
+            System.out.println("Deselect");
             sFrame.remove(purchasePanel);
             itemSelected = false;
             currentSelected = null;
@@ -91,17 +105,9 @@ public class ShopWindow {
         sFrame.repaint();
     }
 
-    public static void refreshItem(String item) {
-        deselectItem();
-        itemSelect(item);
-
-    }
-
     public static void itemPurchase(String item, int quantity) {
-        // TODO - add method to properly update relevant panels
-
         Inventory.purchaseItem(currentSelected, quantity);
         sFrame.updateHeader();
-        refreshItem(item);        
+        itemSelect(item);
     }
 }

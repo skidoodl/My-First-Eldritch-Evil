@@ -1,6 +1,7 @@
 package display.petPanels;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,7 +45,8 @@ public class PetSleep extends PetPanel {
         });
         sleepTimer.start();
 
-        
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
     }
 
     protected void petLabelClick() {

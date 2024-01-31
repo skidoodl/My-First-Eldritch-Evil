@@ -1,6 +1,7 @@
 package display.shopPanels;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -64,6 +65,7 @@ public class ItemList extends JPanel {
             label.setFont(BOLD_FONT);
             label.repaint();
             label.revalidate();
+            label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }
 
         @Override

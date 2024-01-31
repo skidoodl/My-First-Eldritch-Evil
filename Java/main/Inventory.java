@@ -123,6 +123,32 @@ public class Inventory {
         itemInvAmount[i] -= quantity;
     }
 
+    public static String[] getItemStats(String item) {
+        int i = getItemReference(item);
+
+        String[] stats = {
+            item,
+            "\nBuy Price: " + itemPrice[i] + " mon",
+            "\n Sell Price: " + "unavailable",
+            "\nStock: x" + itemStock[i]
+        };
+        // more to come, I assume
+
+        return stats;
+    }
+    public static String[] getItemStats(int itemReference) {
+
+        String[] stats = {
+            getItemName(itemReference),
+            "\nBuy Price: " + itemPrice[itemReference] + " mon",
+            "\n Sell Price: " + "unavailable",
+            "\nStock: x" + itemStock[itemReference]
+        };
+        // more to come, I assume
+
+        return stats;
+    }
+
 
     // ---- OPEN INVENTORY ---- //
     private static InventoryFrame iFrame;
