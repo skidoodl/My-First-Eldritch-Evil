@@ -80,6 +80,8 @@ public class Inventory {
         wallet += amount;
     }
 
+    //----USEFUL TOOLS----//
+
     public static void purchaseItem(String itemName, int quantity) {
         int i = Lazy.findInArray(items, itemName);
         itemStock[i] -= quantity;
@@ -108,18 +110,7 @@ public class Inventory {
     }
 
     public static void remove(String itemName, int quantity) {
-        int i;
-        sortInventory();
-        // search inventory for item
-        for (i = 0; i < inventory.length; i++) {
-            if (inventory[i] == null) {
-                inventory[i] = itemName;
-                break;
-            }
-            if (inventory[i].equals(itemName)) {
-                break;
-            }
-        }
+        int i = findInventoryLocation(itemName);
         itemInvAmount[i] -= quantity;
     }
 
@@ -147,6 +138,37 @@ public class Inventory {
         // more to come, I assume
 
         return stats;
+    }
+    public static boolean isInInventory(String item) {
+        System.out.println("Searching inventory for" + item + "...");
+        sortInventory();
+        for (int i = 0; i < itemInvAmount.length; i++) {
+            if (inventory[i] == null) {
+                break;
+            }
+            if (inventory[i].equalsIgnoreCase(item)) {
+                System.out.println(item + " found.");
+                return true;
+            }
+        }
+        System.out.println(item + " could not be found.");
+        return false;
+    }
+
+    public static Integer findInventoryLocation(String item) {
+        System.out.println("Searching inventory for " + item + "...");
+        sortInventory();
+        for (int i = 0; i < itemInvAmount.length; i++) {
+            if(inventory[i] == null) {
+                break;
+            }
+            if(inventory[i].equalsIgnoreCase(item)) {
+                System.out.println(item + " found at ref# " + i);
+                return i;
+            }
+        }
+        System.out.println(item + " could not be found.");
+        return null;
     }
 
 

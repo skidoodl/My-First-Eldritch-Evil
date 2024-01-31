@@ -187,9 +187,8 @@ public class Pet{
             JOptionPane.showMessageDialog(null, name+" is too full to eat.", "Feed "+name,JOptionPane.INFORMATION_MESSAGE);
         }
         boolean foundFood = false;
-        // TODO - Can probably replace with some Inventory method
+        // TODO - update to use proper findItem inventory methods
         for(int i = 0; i < Inventory.getInventoryAmount().length; i++){
-            if(invItems[i] == null){continue;} //skip the nulls
             if(invItems[i].equalsIgnoreCase("Food")){ //once it finds food
                 int fAmount = Inventory.getInventoryAmount(i);
                 foundFood = true;
@@ -212,9 +211,6 @@ public class Pet{
                 //Get amount:
                 if (selected != null) {
                     amount = Integer.parseInt(selected.toString());
-                } else {
-                    JOptionPane.showMessageDialog(null, "Something went wrong.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
                 }
 
                 Inventory.remove("Food", amount);
@@ -456,54 +452,49 @@ public class Pet{
         this.money += ran.nextInt(101) +50;
     }
     
-    public void vitamins(){
+    public void useVitamins(){
         if (sleepBlock()) {
             return;
         }
-        Scanner scan = new Scanner(System.in);
-        boolean foundVitamins = false;
-        int iRef=0;
-        for(int i=0; i<Menu.itemInvAmount.length; i++){
-            if(Menu.invItems[i] == null){continue;} //skip the nulls
-            if(Menu.invItems[i].equalsIgnoreCase("Vitamins")){ //once it finds food
-                foundVitamins = true;
-                iRef = i;
-                break;
-            }
+        if(!Inventory.isInInventory("Vitamins")) {
+            return;
         }
-        if(foundVitamins == true){
-            int amount;
-            System.out.println("How many vitamins do you want to give "+this.name+"?");
-            amount=scan.nextInt();
-            if(amount<=0){ //0 or less not allowed
-                System.out.println("Not Allowed. Nope. Nuh uh.");
-                Lazy.waitForEnter();
-                return;
-            }
-            if (amount > Menu.itemInvAmount[iRef]){ //more than inv amount
-                System.out.println("You do not have that many vitamins");
-                Lazy.waitForEnter();
-                return;
-            }
-            Menu.itemInvAmount[iRef] -= amount;
-            System.out.println("You feed "+this.name+" "+amount+" vitamin"+Lazy.autoPlural(amount)+".");
-            this.health += 0.15*amount;
-            Lazy.waitForEnter();
-            if (this.health>1.5){
-                this.killPet("hypervitaminosis");
-            }else if(this.health>1.0){
-                this.health = 1.0;
-                System.out.println(this.name+" has totally recovered!");
-                addMoney();
-            }else{
-                System.out.println(this.name+" is feeling a little better...");
-            }
-            Lazy.waitForEnter();
-            Main.action++;
+
+        int invLoc = Inventory.findInventoryLocation("Vitamins");
+        int amount = Inventory.getInventoryAmount(invLoc);
+        // TODO - Eventually make this use an Inventory Action Panel. Maybe a useItem(String item) method that returns the selected amount or smth idk
+
+        String[] vOptions = new String[amount]; //get drop-down options ready
+        for (int i = 0; i < amount; i++) {
+            vOptions[i] = String.valueOf(i+1);
+        }
+        // Get amount to use
+        Object selected = JOptionPane.showInputDialog(null,"How many vitamins do you want to give "+name+"?", "Use Vitamins",JOptionPane.INFORMATION_MESSAGE, null, vOptions, vOptions[0]);
+        amount = 0; // reusing this
+        // Get amount:
+        if (selected != null) {
+            amount = Integer.parseInt(selected.toString());
+        }
+
+        // Use vitamins
+        Inventory.remove("Vitamins", amount);
+        health += 0.12*amount;
+        System.out.println("Giving " + name + " " + amount + " vitamins... health: " + health);
+
+        // Check vitamin effects
+        if (this.health>1.5){
+            this.killPet("hypervitaminosis");
+        }else if(this.health>1.0){
+            this.health = 1.0;
+            System.out.println(this.name+" has totally recovered!");
+            addMoney();
         }else{
-            System.out.println("You have no vitamins.");
-            Lazy.waitForEnter();
+            System.out.println(this.name+" is feeling a little better...");
         }
+        //TODO - Transfer these outputs to become JOptionPanes
+
+        Main.action++;
+        JOptionPane.showMessageDialog(null, "You gave " + name + " " + amount + " vitamin" + Lazy.autoPlural(amount) + ".\nCurrent Satiety: "+statDF.format(satiety), "Use Vitamins", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void energyDrink(){

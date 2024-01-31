@@ -30,7 +30,7 @@ You have been forcefully tasked with taking care of your aunt's horrible pet of 
 
 ## Play Guide
 ### Items - Using the Inventory and Shop
-The graphical update of My First Eldritch Evil has introduced a brand new shopping system. Accessing the shop allows you to see a full list of available items, each with their own description and usage guide. Purchasing is super simple! Below the play guide is located an item guide for your convience.
+The graphical update of My First Eldritch Evil has introduced a brand new shopping system. Accessing the shop allows you to see a full list of available items, each with their own description and usage guide. Purchasing is super simple! Below the play guide is located an item guide for your convenience.
 
 ### Feeding Your Pet
 Just as you need to eat food to stay alive, so too must your pet obtain nutrients by consuming its own... "food." As time goes on, your pet will become hungry. Your pet's hunger level is measured by "Satiation." Low satiation (<1.0) means your pet is hungry. Luckily for you, feeding it is not difficult. Once you purchase food from the shop, it will appear in your inventory. Then, there are two ways to feed it: Either select food from your inventory and then choose "Use" from the list of options it gives you, or select "Feed [Pet Name]" from the main menu. A pop-up will appear where you can then select the amount of food to feed your pet. You can give it as much or as little food as you want, but be careful: feed it too much food and your pet will become unhealthy, or worse, dead.
@@ -105,6 +105,7 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
 
 ### Graphics Update
 * __2.0.0__ (in progress)
+   * Implementation of Graphical User Interface
    * Added number formatting for stats
    * _Time alive now tracked and displayed on death (not working)_
    * Hatching is much easier now
@@ -115,16 +116,15 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
       * Sleeping the pet actually takes time
       * Player can perform some actions while pet is sleeping
    * Added easily togglable stats menu
-   * Added responsive menu GUI
    * Reimplementation of moods
    * Shopping system completely reworked
-      * Shop opens in seperate window to allow multitasking
+      * Shop opens in separate window to allow multitasking
       * _Information about items and use now visible (unfinished)_
    * _Inventory system completely reworked (unimplemented)_
       * Player can now organize inventory order
       * Player can now sell items from their inventory
    * _Complete overhaul of the fitness system (unimplemented)_
-      * Exercising now has a greater impact on gameplay
+      * Exercising now has a greater impact on gameplay.
       * Exercising the pet is now a more active process (...get it?)
       * Introduced fitness plans (still in the early stages) (unimplemented)
    * _Introduced more skill/physical-related stats for pet (unimplemented)_
@@ -133,6 +133,7 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Earning money works different now
    * _Added new items_
       * _Alarm clock (unimplemented)_
+   * Minor tweaks to vitamin efficacy.
    * Bugfixes
 
 ## License

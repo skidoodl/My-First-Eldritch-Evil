@@ -1,4 +1,10 @@
 {
     "java.project.outputPath": "bin",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "cSpell.words": [
+        "Aidan",
+        "Lovecraftian",
+        "MFEE",
+        "Tamagatchi"
+    ]
 }
