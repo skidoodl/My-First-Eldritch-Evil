@@ -4,8 +4,6 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import display.ShopWindow;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 
 import main.Inventory;
+import main.Shop;
 
 public class PurchasePanel extends JPanel implements ChangeListener {
     JButton button;
@@ -60,7 +59,7 @@ public class PurchasePanel extends JPanel implements ChangeListener {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ShopWindow.itemPurchase(item, slider.getValue());
+                Shop.itemPurchase(item, slider.getValue());
             }
         });
 

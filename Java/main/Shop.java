@@ -1,19 +1,19 @@
-package display;
+package main;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import display.frames.ShopFrame;
-import display.shopPanels.DefaultActionPanel;
-import display.shopPanels.ItemDisplay;
-import display.shopPanels.ItemList;
-import display.shopPanels.PurchasePanel;
 import display.shopPanels.*;
-import main.Inventory;
 
-public class ShopWindow {
-    private static ShopFrame sFrame;
+public class Shop implements WindowListener {
+    //private static ShopFrame sFrame;
+    private static JFrame sFrame = new JFrame();
+    private static boolean shopFrameOpen;
 
     private static DefaultActionPanel actionPanel;
     private static PurchasePanel purchasePanel;
@@ -23,8 +23,26 @@ public class ShopWindow {
     private static boolean itemSelected = false;
     private static String currentSelected;
 
+    private static void createShopFrame() {
+        ImageIcon icon = new ImageIcon("Resources/Icons/Shop_Icon.png");
+        
+        updateHeader();
+        sFrame.setSize(960, 720);
+        sFrame.setLayout(null);
+        sFrame.setResizable(false);
+        sFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        sFrame.setIconImage(icon.getImage());
+
+        shopFrameOpen = true;
+    }
+
     public static void openShop() {
-        sFrame = new ShopFrame();
+        if (shopFrameOpen) {
+            sFrame.requestFocus();
+            return;
+        }
+
+        createShopFrame();
 
         // WALLET DISPLAY
         JPanel wallet = new JPanel();
@@ -36,7 +54,7 @@ public class ShopWindow {
 
         // DISPLAY
         JPanel display = new JPanel();
-        display.setBackground(Color.pink);
+        display.setBackground(Color.lightGray);
         display.setBounds(480,0,480,240);
         
         // ITEM STATS
@@ -95,11 +113,13 @@ public class ShopWindow {
     public static void deselectItem() {
         if (itemSelected) {
             System.out.println("Deselect");
-            sFrame.remove(purchasePanel);
             itemSelected = false;
             currentSelected = null;
+            sFrame.remove(purchasePanel);
             sFrame.add(actionPanel);
             itemDisp.removeImage();
+            itemStats.hideStats();
+            
         }
         sFrame.revalidate();
         sFrame.repaint();
@@ -107,7 +127,52 @@ public class ShopWindow {
 
     public static void itemPurchase(String item, int quantity) {
         Inventory.purchaseItem(currentSelected, quantity);
-        sFrame.updateHeader();
+        updateHeader();
         itemSelect(item);
+    }
+
+    private static void updateHeader() {
+        sFrame.setTitle("Shop - My First Eldritch Evil - Wallet: " + Inventory.getWallet() + " mon");
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        shopFrameOpen = false;
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowClosed'");
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowOpened'");
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowIconified'");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowDeiconified'");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowActivated'");
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowDeactivated'");
     }
 }

@@ -1,6 +1,5 @@
 package main;
 import display.GameWindow;
-import display.ShopWindow;
 
 import javax.swing.JOptionPane;
 
@@ -34,7 +33,7 @@ public class Menu{
           Inventory.openInventory();
           break;
         case 1: //store
-          ShopWindow.openShop();
+          Shop.openShop();
           break;
         case 2: //Check Stats
           if (statsOn) {

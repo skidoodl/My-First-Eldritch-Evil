@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import display.ShopWindow;
 import main.Inventory;
+import main.Shop;
 
 public class ItemList extends JPanel {
     // Set up font details
@@ -77,7 +77,7 @@ public class ItemList extends JPanel {
         public void mouseClicked(MouseEvent e) {
             JLabel source = (JLabel) e.getSource();
             String selectedItem = source.getText();
-            ShopWindow.itemSelect(selectedItem);
+            Shop.itemSelect(selectedItem);
         }
 
     }
