@@ -55,7 +55,7 @@ public class Shop {
         sFrame.add(itemStats);
 
         if (itemSelected == true) {
-            itemSelect(currentSelected);
+            selectItem(currentSelected);
         }
 
         sFrame.revalidate();
@@ -64,7 +64,7 @@ public class Shop {
         
     }
 
-    public static void itemSelect(String item) {
+    public static void selectItem(String item) {
         System.out.println("Item Select");
 
         if (item.equals(currentSelected)) {
@@ -106,7 +106,7 @@ public class Shop {
     public static void itemPurchase(String item, int quantity) {
         Inventory.purchaseItem(currentSelected, quantity);
         updateHeader();
-        itemSelect(item);
+        selectItem(item);
     }
 
     private static void updateHeader() {

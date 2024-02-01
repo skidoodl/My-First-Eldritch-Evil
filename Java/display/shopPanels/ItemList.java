@@ -92,7 +92,7 @@ public class ItemList extends JPanel {
         public void mouseClicked(MouseEvent e) {
             JLabel source = (JLabel) e.getSource();
             String selectedItem = source.getText();
-            Shop.itemSelect(selectedItem);
+            Shop.selectItem(selectedItem);
         }
 
     }

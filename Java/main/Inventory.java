@@ -5,7 +5,9 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import display.frames.InventoryFrame;
+import display.inventoryPanels.InventoryActionPanel;
 import display.inventoryPanels.InventoryList;
+import display.inventoryPanels.ItemActionPanel;
 import utils.Lazy;
 
 public class Inventory {
@@ -18,6 +20,10 @@ public class Inventory {
     private static final String[] itemType = {"Food", "Healing", "Healing", "Healing", "Buffs", "Miscellaneous", "Gear"};
     private static int[] itemStock = {50,20,5,25,35,16,1,0,0,0};
     private static final int[] itemPrice = {/*food*/ 50,/*meds*/ 300,/*strong meds*/ 600,/*vitamins*/200,/*Energy Drink*/250,/*Incense*/400,/*Alarm Clock*/750};
+
+    //-----OTHER STUFF-----//
+    private static String currentSelected;
+    private static boolean itemSelected;
 
     public static String[] getInventoryList() {
         return inventory;
@@ -202,30 +208,76 @@ public class Inventory {
     // ---- OPEN INVENTORY ---- //
     private static InventoryFrame iFrame;
 
+    private static InventoryActionPanel actionPanel;
+    private static ItemActionPanel itemActions;
+
     public static void openInventory() {
 
         iFrame = new InventoryFrame();
 
+        // item list
         InventoryList invList = new InventoryList();
         
-
+        // wallet info
         JPanel monInfo = new JPanel(); // Displays player's wallet info
         monInfo.setBackground(Color.red);
         monInfo.setBounds(0,640,480,40);
 
+        // item info
         JPanel itemInfo = new JPanel(); // Displays info about items or, if not item is selected, tips or other game-related info
         itemInfo.setBackground(Color.green);
-        itemInfo.setBounds(480,0,480,720);
+        itemInfo.setBounds(480,0,480,480);
+
+        // action panel
+        actionPanel = new InventoryActionPanel();
 
         // Add Panels
         iFrame.add(invList);
         iFrame.add(monInfo);
         iFrame.add(itemInfo);
+        iFrame.add(actionPanel);
         iFrame.revalidate();
         iFrame.repaint();
         iFrame.setVisible(true);
     }
 
+    // ----- Inventory Actions ----- //
+    public static void useItem(String item) {
+        // TODO - Build
+        throw new UnsupportedOperationException("Unimplemented method 'useItem'");
+    }
+
+    public static void sellItem(String item) {
+        // TODO - Build
+        throw new UnsupportedOperationException("Unimplemented method 'sellItem");
+    }
+
+    public static void selectItem(String item) {
+        System.out.println("Inventory " + item + " selected");
+        
+        if (item.equals(currentSelected)) {
+            deselectItem();
+            return;
+        }
+
+        //Add item action panel
+        if (!itemSelected) {
+            iFrame.remove(actionPanel);
+            itemSelected = true;
+        } else {
+            iFrame.remove(itemActions);
+        }
+        currentSelected = item;
+        itemActions = new ItemActionPanel(item);
+        iFrame.add(itemActions);
+
+        iFrame.revalidate();
+    }
+
+    public static void deselectItem() {
+        // TODO - Finish
+        throw new UnsupportedOperationException("Unimplemented method 'deselectItem");
+    }
 
     private static void sortInventory() {
         System.out.println("Sorting Inventory");
