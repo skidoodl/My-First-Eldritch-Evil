@@ -23,6 +23,7 @@ public class ItemList extends JPanel {
     
     String[] items = Inventory.getItemList();
     int[] price = Inventory.getPricesList();
+    int[] stock = Inventory.getStockList();
 
     public ItemList() {
 
@@ -37,21 +38,35 @@ public class ItemList extends JPanel {
 
     private void addLabels() {
         for (int i = 0; i < items.length; i++) {
-            // JLabel label = new JLabel(items[i] + "  |  $" + price[i]);
+            if (stock[i] == 0) { // don't add if item is out of stock
+                continue;
+            }
+            
             JLabel label = new JLabel(items[i]);
             label.addMouseListener(new OptionMouseListener(label));
             label.setFont(DEFAULT_FONT);
-            label.setForeground(Color.black);
+            
+            // Change color depending on if player can afford item
+            if (Inventory.affordability(items[i])) { // can afford
+                label.setForeground(Color.black);
+            } else {
+                label.setForeground(Color.gray);
+            }
+
             add(label);
         }
     }
-/* 
+
     private void removeAllLabels() {
         for (int i = getComponentCount() - 1; i >= 0; i--) {
             remove(i);
         }
     }
- */
+
+    public void refresh() {
+        removeAllLabels();
+        addLabels();
+    }
 
     private class OptionMouseListener extends MouseAdapter {
         private final JLabel label;

@@ -14,9 +14,10 @@ public class Inventory {
     //-----NORMAL ITEMS-----//
     private static String[] inventory = new String[10];
     private static int[] itemInvAmount = new int[10];
-    private static final String[] items = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense"};
-    private static int[] itemStock = {50,20,5,25,35,16,0,0,0,0};
-    private static final int[] itemPrice = {/*food*/ 50,/*meds*/ 450,/*strong meds*/ 900,/*vitamins*/200,/*Energy Drink*/230,/*Incense*/410};
+    private static final String[] items = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense","Alarm Clock"};
+    private static final String[] itemType = {"Food", "Healing", "Healing", "Healing", "Buffs", "Miscellaneous", "Gear"};
+    private static int[] itemStock = {50,20,5,25,35,16,1,0,0,0};
+    private static final int[] itemPrice = {/*food*/ 50,/*meds*/ 300,/*strong meds*/ 600,/*vitamins*/200,/*Energy Drink*/250,/*Incense*/400,/*Alarm Clock*/750};
 
     public static String[] getInventoryList() {
         return inventory;
@@ -70,6 +71,13 @@ public class Inventory {
         return itemStock[itemReference];
     }
 
+    public static String getItemType (String item) {
+        return itemType[getItemReference(item)];
+    }
+    public static String getItemType (int itemReference) {
+        return itemType[itemReference];
+    }
+
     public static int getWallet() {
         return wallet;
     }
@@ -119,11 +127,11 @@ public class Inventory {
 
         String[] stats = {
             item,
+            "Item Stock: " + itemStock[i] + "x",
             "\nBuy Price: " + itemPrice[i] + " mon",
-            "\n Sell Price: " + "unavailable",
-            "\nStock: x" + itemStock[i]
+            "\n Sell Price: " + itemPrice[i]/2 + "mon",
+            "Item Type: " + itemType[i]
         };
-        // more to come, I assume
 
         return stats;
     }
@@ -131,11 +139,11 @@ public class Inventory {
 
         String[] stats = {
             getItemName(itemReference),
+            "Item Stock: " + itemStock[itemReference] + "x",
             "\nBuy Price: " + itemPrice[itemReference] + " mon",
-            "\n Sell Price: " + "unavailable",
-            "\nStock: x" + itemStock[itemReference]
+            "\n Sell Price: " + itemPrice[itemReference]/2 + "mon",
+            "Item Type: " + itemType[itemReference]
         };
-        // more to come, I assume
 
         return stats;
     }
@@ -171,6 +179,25 @@ public class Inventory {
         return null;
     }
 
+    public static boolean affordability(String item) {
+        int i = getItemReference(item);
+        if (wallet > itemPrice[i]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static int getMostPurchasable(String item) {
+        int i = getItemReference(item);
+        int mostP = wallet/itemPrice[i];
+
+        if (itemStock[i] < mostP) {
+            return itemStock[i];
+        } else {
+            return mostP;
+        }
+    }
 
     // ---- OPEN INVENTORY ---- //
     private static InventoryFrame iFrame;
@@ -197,7 +224,6 @@ public class Inventory {
         iFrame.revalidate();
         iFrame.repaint();
         iFrame.setVisible(true);
-    
     }
 
 

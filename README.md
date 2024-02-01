@@ -120,6 +120,7 @@ If you are having trouble getting this to work, make sure [Java](https://www.jav
    * Shopping system completely reworked
       * Shop opens in separate window to allow multitasking
       * _Information about items and use now visible (unfinished)_
+      * Adjusted item prices
    * _Inventory system completely reworked (unimplemented)_
       * Player can now organize inventory order
       * Player can now sell items from their inventory

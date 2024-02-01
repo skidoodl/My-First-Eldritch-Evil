@@ -1,19 +1,15 @@
 package main;
 
 import java.awt.Color;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import display.frames.ShopFrame;
 import display.shopPanels.*;
 
-public class Shop implements WindowListener {
+public class Shop {
     //private static ShopFrame sFrame;
-    private static JFrame sFrame = new JFrame();
-    private static boolean shopFrameOpen;
+    private static ShopFrame sFrame = new ShopFrame();
 
     private static DefaultActionPanel actionPanel;
     private static PurchasePanel purchasePanel;
@@ -23,27 +19,9 @@ public class Shop implements WindowListener {
     private static boolean itemSelected = false;
     private static String currentSelected;
 
-    private static void createShopFrame() {
-        ImageIcon icon = new ImageIcon("Resources/Icons/Shop_Icon.png");
-        
-        updateHeader();
-        sFrame.setSize(960, 720);
-        sFrame.setLayout(null);
-        sFrame.setResizable(false);
-        sFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        sFrame.setIconImage(icon.getImage());
-
-        shopFrameOpen = true;
-    }
 
     public static void openShop() {
-        if (shopFrameOpen) {
-            sFrame.requestFocus();
-            return;
-        }
-
-        createShopFrame();
-
+        
         // WALLET DISPLAY
         JPanel wallet = new JPanel();
         wallet.setBackground(Color.black);
@@ -82,7 +60,7 @@ public class Shop implements WindowListener {
 
         sFrame.revalidate();
         sFrame.repaint();
-        sFrame.setVisible(true);
+        sFrame.open();
         
     }
 
@@ -135,44 +113,5 @@ public class Shop implements WindowListener {
         sFrame.setTitle("Shop - My First Eldritch Evil - Wallet: " + Inventory.getWallet() + " mon");
     }
 
-    @Override
-    public void windowClosing(WindowEvent e) {
-        shopFrameOpen = false;
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowClosed'");
-    }
-
-    @Override
-    public void windowOpened(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowOpened'");
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowIconified'");
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowDeiconified'");
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowActivated'");
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowDeactivated'");
-    }
+    
 }
