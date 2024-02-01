@@ -187,7 +187,7 @@ public class Inventory {
 
     public static boolean affordability(String item) {
         int i = getItemReference(item);
-        if (wallet > itemPrice[i]) {
+        if (wallet >= itemPrice[i]) {
             return true;
         } else {
             return false;

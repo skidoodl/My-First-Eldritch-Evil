@@ -30,7 +30,7 @@ public class PurchasePanel extends JPanel implements ChangeListener {
         slider = new JSlider();
 
         slider.setMaximum(Inventory.getMostPurchasable(item));
-        slider.setMinimum(1);
+        slider.setMinimum(0);
         slider.setPreferredSize(new Dimension(400, 130));
         //slider.setBounds(480, 500, 300, 150);
         slider.setPaintTicks(true); 
