@@ -252,7 +252,7 @@ public class Pet{
                 break;
             case 1:
                 // Normal Difficulty
-                this.energy += (hours*0.05);
+                this.energy += (hours*0.018);
                 break;
             case 2:
                 // Hard Difficulty
@@ -262,27 +262,7 @@ public class Pet{
         if(this.difficulty!=3){Main.action++;} //since the pet would be able to sleep (ex. impossible diff.), action++
         System.out.println(); //spacer
         if (this.energy>2.0){
-            /* Scanner scan = new Scanner(System.in);
-            System.out.println(name+" has been sleeping for a long time...");
-            System.out.println(name+" isn't moving...");
-            System.out.print("Poke "+name+"? (y/n): ");
-            String yn = scan.nextLine();
-            while (!yn.equalsIgnoreCase("y") && !yn.equalsIgnoreCase("n")) {
-                System.out.print("Poke "+name+"? (y/n): ");
-                yn = scan.nextLine();
-            }
-            Lazy.hold(900);//pause for .9 sec
-            if (yn.equalsIgnoreCase("y")){
-                System.out.println(name+" didn't move. "+name+"'s body feels... cold.");
-                Lazy.waitForEnter(); //press enter to continue */
                 this.killPet("too much sleep");
-            /* }else{
-                System.out.println("You walk away from "+name+". No sense in trying to get your face ripped off.");
-                Lazy.hold(900); //pause for 0.9s
-                System.out.println("You notice a weird smell in the air as you walk away. Hopefully, "+name+" didn't drag in another corpse."); //hopefully this isn't too... problematic
-                Lazy.waitForEnter();
-                this.killPet("neglect");
-            } */
         }
     }
 

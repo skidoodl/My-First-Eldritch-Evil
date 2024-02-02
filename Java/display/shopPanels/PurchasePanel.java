@@ -35,7 +35,7 @@ public class PurchasePanel extends JPanel implements ChangeListener {
         slider.setMaximum(Inventory.getMostPurchasable(item));
         slider.setMinimum(0);
         slider.setPreferredSize(new Dimension(400, 130));
-        //slider.setBounds(480, 500, 300, 150);
+        slider.setBackground(Color.lightGray);
         slider.setPaintTicks(true); 
         slider.setMinorTickSpacing(1);
         slider.setPaintTrack(true);
@@ -50,7 +50,7 @@ public class PurchasePanel extends JPanel implements ChangeListener {
 
         button = new JButton("Buy 0 " + item + " for " + Inventory.getItemPrice(item) + " mon.");
         button.setPreferredSize(new Dimension(260, 30));
-        button.setForeground(Color.black);
+        button.setForeground(Color.white);
         button.setBackground(new Color(109,77,172));
         button.setFocusPainted(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

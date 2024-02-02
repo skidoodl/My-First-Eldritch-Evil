@@ -2,7 +2,9 @@ package display.inventoryPanels;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,12 +37,24 @@ public class InventoryList extends JPanel {
     }
 
     private void addLabels() {
+        Inventory.sortInventory();
         for (int i = 0; i < items.length; i++) {
+            if (items[i] == null) {
+                break;
+            }
             JLabel label = new JLabel(items[i]);
             label.addMouseListener(new OptionMouseListener(label));
             label.setFont(DEFAULT_FONT);
             label.setForeground(Color.black);
             label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+            FontMetrics fMetrics = label.getFontMetrics(label.getFont());
+            int width = fMetrics.stringWidth(items[i]);
+            int height = fMetrics.getHeight();
+            // label.setPreferredSize(new Dimension(width, height));
+            label.setMaximumSize(new Dimension(width, height));
+            System.out.println("Label: " + label.getMaximumSize());
+
             add(label);
         }
     }

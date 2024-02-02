@@ -5,10 +5,10 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import display.frames.ShopFrame;
+import display.generalPanels.ItemStatsPanel;
 import display.shopPanels.*;
 
 public class Shop {
-    //private static ShopFrame sFrame;
     private static ShopFrame sFrame = new ShopFrame();
 
     private static DefaultActionPanel actionPanel;

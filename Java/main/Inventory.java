@@ -22,8 +22,7 @@ public class Inventory {
     private static final int[] itemPrice = {/*food*/ 50,/*meds*/ 300,/*strong meds*/ 600,/*vitamins*/200,/*Energy Drink*/250,/*Incense*/400,/*Alarm Clock*/750};
 
     //-----OTHER STUFF-----//
-    private static String currentSelected;
-    private static boolean itemSelected;
+    
 
     // ----- GET METHODS ----- //
 
@@ -278,6 +277,10 @@ public class Inventory {
         throw new UnsupportedOperationException("Unimplemented method 'sellItem");
     }
 
+    // Set Up select-related variables
+    private static boolean itemSelected = false;
+    private static String currentSelected;
+    
     public static void selectItem(String item) {
         System.out.println("Inventory " + item + " selected");
         
@@ -305,7 +308,7 @@ public class Inventory {
         throw new UnsupportedOperationException("Unimplemented method 'deselectItem");
     }
 
-    private static void sortInventory() {
+    public static void sortInventory() {
         System.out.println("Sorting Inventory");
         int i;
         for (i = 0; i < inventory.length; i++) {

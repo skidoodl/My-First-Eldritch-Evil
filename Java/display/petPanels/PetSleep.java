@@ -35,7 +35,7 @@ public class PetSleep extends PetPanel {
         sleepBar.setStringPainted(true);
         add(sleepBar, BorderLayout.SOUTH);
 
-        sleepTimer = new Timer(5000, new ActionListener() {
+        sleepTimer = new Timer(7000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sleepBar.setValue(++sleepLength);
