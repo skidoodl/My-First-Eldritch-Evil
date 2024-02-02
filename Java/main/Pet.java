@@ -187,7 +187,7 @@ public class Pet{
             JOptionPane.showMessageDialog(null, name+" is too full to eat.", "Feed "+name,JOptionPane.INFORMATION_MESSAGE);
         }
         boolean foundFood = false;
-        // TODO - update to use proper findItem inventory methods
+        // TODO - update to use proper findItem inventory methods. Below is obselete and unneccessary
         for(int i = 0; i < Inventory.getInventoryAmount().length; i++){
             if(invItems[i].equalsIgnoreCase("Food")){ //once it finds food
                 int fAmount = Inventory.getInventoryAmount(i);
@@ -211,6 +211,8 @@ public class Pet{
                 //Get amount:
                 if (selected != null) {
                     amount = Integer.parseInt(selected.toString());
+                } else {
+                    return;
                 }
 
                 Inventory.remove("Food", amount);

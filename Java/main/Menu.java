@@ -30,7 +30,12 @@ public class Menu{
 
     switch(sel){ //TODO - Edit the cases to start from 0
         case 0: //inventory
-          Inventory.openInventory();
+          if (Inventory.getInventoryTotal() == 0) {
+            JOptionPane.showMessageDialog(null, "You have no items in your inventory. Visit the shop to buy some items.", "Inventory Empty", JOptionPane.INFORMATION_MESSAGE);
+            return;
+          } else {
+            Inventory.openInventory();
+          }
           break;
         case 1: //store
           Shop.openShop();
@@ -45,8 +50,12 @@ public class Menu{
           }
           break;
         case 3: //feed
+        if (!Inventory.isInInventory("Food")) { // TODO - should move this to feed method
+          JOptionPane.showMessageDialog(null, "You have no food :(", "No Food", JOptionPane.INFORMATION_MESSAGE);
+          return;
+        }
           pet.feed();
-          if (statsOn) {
+          if (statsOn) { // move this into the feed method?
             gw.updateStats();
           }
           break;
@@ -85,47 +94,6 @@ public class Menu{
           System.out.println("Option "+sel+" is not available.");
           break;
       }
-  }
-/* 
-  private static void sortInventory(){
-    final Pet pet = Main.pet;
-    
-    int i;
-    if(!pet.isEvil){
-      for(i=0; i<invItems.length; i++){
-        if(itemInvAmount[i]==0){
-          invItems[i] = null;
-          break;
-        }
-      }
-      for(int j=i+1; j<invItems.length; j++){
-        if(invItems[j] != null){
-          invItems[i] = invItems[j]; //move item name down
-          itemInvAmount[i] = itemInvAmount[j]; //move amount down
-          itemInvAmount[j] = 0; //delete j amount
-          invItems[j] = null; //delete j item
-          i++;
-        }
-      }
-    }else{
-      for(i=0; i<crisisInvItems.length; i++){
-        if(crisisInvAmount[i]==0){
-          crisisInvItems[i] = null;
-          break;
-        }
-      }
-      for(int j=i+1; j<crisisInvItems.length; j++){
-        if(crisisInvItems[j] != null){
-          crisisInvItems[i] = crisisInvItems[j]; //move item name down
-          crisisInvAmount[i] = crisisInvAmount[j]; //move amount down
-          crisisInvAmount[j] = 0; //delete j amount
-          crisisInvItems[j] = null; //delete j item
-          i++;
-        }
-      }
-    }
-    
-  }
- */
-  
+  }  
+
 }

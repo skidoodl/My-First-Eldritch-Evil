@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import main.Inventory;
 import main.Menu;
 import utils.Lazy;
 
@@ -36,6 +37,7 @@ public class MenuPanel extends JPanel {
     public void update() {
         removeAllLabels();
         addLabels();
+        repaint();
     }
 
     private void addLabels() {
@@ -51,12 +53,19 @@ public class MenuPanel extends JPanel {
             JLabel label = new JLabel(options[i]);
             label.addMouseListener(new OptionMouseListener(label));
             label.setFont(DEFAULT_FONT);
-            if (!isSleeping || allowedWhileSleeping[i]) {
-                label.setForeground(Color.white);
-            } else {
+            label.setForeground(Color.white);
+            if (isSleeping && !allowedWhileSleeping[i]) { // prevent during sleeping
+                label.setForeground(Color.darkGray);
+            }
+            // empty inventory
+            if (options[i].equals("Inventory") && Inventory.getInventoryTotal() == 0) {
                 label.setForeground(Color.darkGray);
             }
             add(label);
+            // no food
+            if (options[i].equals("Feed "+main.Main.pet.name) && !Inventory.isInInventory("Food")) {
+                label.setForeground(Color.darkGray);
+            }
         }
     }
 

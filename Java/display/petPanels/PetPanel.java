@@ -2,6 +2,7 @@ package display.petPanels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -64,6 +65,7 @@ public class PetPanel extends JPanel {
 
     public PetPanel() {
         petLabel = new JLabel(getPetImage()); // Initialize pet label
+        petLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setBounds(480, 0, 480, 360);
         setLayout(new BorderLayout()); // just for now
         setBackground(Color.pink);

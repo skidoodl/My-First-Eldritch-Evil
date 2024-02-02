@@ -11,7 +11,7 @@ public class DefaultActionPanel extends JPanel {
     
     public DefaultActionPanel () {
         setBounds(480, 500, 480, 220);
-        setBackground(Color.gray);
+        setBackground(Color.lightGray);
 
         JLabel label = new JLabel("Placeholder Action Panel");
         label.setForeground(Color.black);

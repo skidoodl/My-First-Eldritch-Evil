@@ -25,9 +25,19 @@ public class Inventory {
     private static String currentSelected;
     private static boolean itemSelected;
 
+    // ----- GET METHODS ----- //
+
     public static String[] getInventoryList() {
         return inventory;
     }
+    public static int getInventoryTotal() {
+        int total = 0;
+        for(int i = 0; i < itemInvAmount.length && itemInvAmount != null; i++) {
+            total += itemInvAmount[i];
+        }
+        return total;
+    }
+
     public static String getInventoryItemString(int itemReference) {
         return inventory[itemReference];
     }
@@ -130,31 +140,47 @@ public class Inventory {
 
     public static String[] getItemStats(String item) {
         int i = getItemReference(item);
+        
+        String owned;
+        if (getInventoryAmount(i) == 0) {
+            owned = "None";
+        } else {
+            owned = Integer.toString(getInventoryAmount(i));
+        }
 
         String[] stats = {
             item,
+            "Amount Owned: " + owned,
             "Item Stock: " + itemStock[i] + "x",
-            "\nBuy Price: " + itemPrice[i] + " mon",
-            "\n Sell Price: " + itemPrice[i]/2 + "mon",
+            "Buy Price: " + itemPrice[i] + " mon",
+            "Sell Price: " + itemPrice[i]/2 + " mon",
             "Item Type: " + itemType[i]
         };
 
         return stats;
     }
     public static String[] getItemStats(int itemReference) {
+        
+        String owned;
+        if (getInventoryAmount(itemReference) == 0) {
+            owned = "None";
+        } else {
+            owned = Integer.toString(getInventoryAmount(itemReference));
+        }
 
         String[] stats = {
             getItemName(itemReference),
+            "Amount Owned: " + owned,
             "Item Stock: " + itemStock[itemReference] + "x",
-            "\nBuy Price: " + itemPrice[itemReference] + " mon",
-            "\n Sell Price: " + itemPrice[itemReference]/2 + "mon",
+            "Buy Price: " + itemPrice[itemReference] + " mon",
+            "Sell Price: " + itemPrice[itemReference]/2 + " mon",
             "Item Type: " + itemType[itemReference]
         };
 
         return stats;
     }
     public static boolean isInInventory(String item) {
-        System.out.println("Searching inventory for" + item + "...");
+        System.out.println("Searching inventory for " + item + "...");
         sortInventory();
         for (int i = 0; i < itemInvAmount.length; i++) {
             if (inventory[i] == null) {
@@ -297,6 +323,6 @@ public class Inventory {
                 i++;
             }
         }
-        Lazy.printArray(inventory);
+        Lazy.printArray(inventory, false);
     }
 }

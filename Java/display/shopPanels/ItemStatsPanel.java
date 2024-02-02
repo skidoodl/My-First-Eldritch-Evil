@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,7 +25,7 @@ public class ItemStatsPanel extends JPanel {
         // Default Stats Panel
         setBounds(720, 0, 240, 240);
         setBackground(Color.lightGray);
-        setLayout(new GridLayout(4, 1));
+        setLayout(new BorderLayout());
         
         defaultLabel.setForeground(Color.black);
         
@@ -46,11 +47,13 @@ public class ItemStatsPanel extends JPanel {
 
     private void addStatLabels(String item) {
         removeLabels();
+        setLayout(new GridLayout(8, 1));
 
         String[] stats = Inventory.getItemStats(item);
         for (int i = 0; i < stats.length; i++) {
             JLabel label = new JLabel(stats[i]);
             label.setForeground(Color.black);
+            label.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
             add(label);
         }
     }
@@ -59,6 +62,7 @@ public class ItemStatsPanel extends JPanel {
         for (int i = getComponentCount() - 1; i >= 0; i--) {
             remove(i);
         }
+        setLayout(new BorderLayout());
     }
 
 }

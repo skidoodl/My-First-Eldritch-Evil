@@ -182,4 +182,18 @@ public class Lazy{
         }
         System.out.println("]");
     }
+    public static void printArray (String[] array, boolean printNulls) {
+        System.out.print("Printing array: [");
+        for (int i = 0; i<array.length; i++) {
+            if (array[i] == null && !printNulls) {
+                continue;
+            }
+
+            if (i > 0) {
+                System.out.print(", ");
+            }
+            System.out.print(array[i]);
+        }
+        System.out.println("]");
+    }
 }

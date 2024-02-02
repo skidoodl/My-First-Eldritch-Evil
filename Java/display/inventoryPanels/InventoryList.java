@@ -1,6 +1,7 @@
 package display.inventoryPanels;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -39,6 +40,7 @@ public class InventoryList extends JPanel {
             label.addMouseListener(new OptionMouseListener(label));
             label.setFont(DEFAULT_FONT);
             label.setForeground(Color.black);
+            label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             add(label);
         }
     }

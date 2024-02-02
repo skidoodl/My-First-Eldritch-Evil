@@ -1,6 +1,7 @@
 package display;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,13 +19,13 @@ import javax.swing.JButton;
 
 
 public class GameWindow {
-    GameFrame gFrame;
+    private static GameFrame gFrame;
     InventoryFrame iFrame;
     boolean gameStart;
     public boolean statsVisible = false;
-    private MenuPanel menuPanel;
-    private StatsPanel sPanel;
-    private PetPanel petPanel;
+    private static MenuPanel menuPanel;
+    private static StatsPanel sPanel;
+    private static PetPanel petPanel;
     private PetSleep sleepPanel;
     
 
@@ -42,6 +43,7 @@ public class GameWindow {
         JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
         b.setBounds(380, 535, 200, 73);
         b.setFocusable(true);
+        b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         b.addActionListener(new ActionListener() {
 
             @Override
@@ -157,13 +159,19 @@ public class GameWindow {
         petPanel.updateDisplay();
     }
 
-    public void updateAllPanels () {
+    public static void updateAllPanels () {
+        System.out.print("Updating All Panels... ");
         petPanel.updateDisplay();
         menuPanel.update();
-        sPanel.update();
+        if (sPanel != null) {
+            sPanel.update();
+        }
+        gFrame.revalidate();
+        System.out.println("Done.");
     }
 
     public void updateStats () {
         sPanel.update();
     }
+
 }

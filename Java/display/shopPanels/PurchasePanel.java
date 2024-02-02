@@ -4,8 +4,11 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import display.GameWindow;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +27,7 @@ public class PurchasePanel extends JPanel implements ChangeListener {
     public PurchasePanel (String item) {
         this.item = item;
         setBounds(480,500,480,220);
-        setBackground(Color.gray);
+        setBackground(Color.lightGray);
 
 
         slider = new JSlider();
@@ -36,29 +39,46 @@ public class PurchasePanel extends JPanel implements ChangeListener {
         slider.setPaintTicks(true); 
         slider.setMinorTickSpacing(1);
         slider.setPaintTrack(true);
-        slider.setMajorTickSpacing(5); // TODO - Should change based on max-purchasable
+        calculateMajorTick();
         slider.setPaintLabels(true);
         slider.setValue(0);
         slider.setSnapToTicks(true);
-        slider.setBackground(Color.gray);
         slider.setForeground(Color.black);
+        slider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         slider.addChangeListener(this);
 
-        button = new JButton("Buy 1 " + item + " for " + Inventory.getItemPrice(item) + " mon.");
+        button = new JButton("Buy 0 " + item + " for " + Inventory.getItemPrice(item) + " mon.");
         button.setPreferredSize(new Dimension(260, 30));
-        button.setBackground(Color.black);
-        button.setForeground(new Color(109,77,172));
+        button.setForeground(Color.black);
+        button.setBackground(new Color(109,77,172));
         button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Shop.itemPurchase(item, slider.getValue());
+                GameWindow.updateAllPanels();
             }
         });
 
         this.add(slider, BorderLayout.CENTER);
         this.add(button, BorderLayout.SOUTH);
+    }
+
+    private void calculateMajorTick() {
+        int max = Inventory.getMostPurchasable(item);
+        if (max <= 5) {
+            slider.setMajorTickSpacing(max);
+            return;
+        }
+        for (int i = 4; i < 10; i++) {
+            if (max % i == 0) {
+                slider.setMajorTickSpacing(i);
+                return;
+            }
+        }
+        slider.setMajorTickSpacing(5);
     }
 
     @Override
