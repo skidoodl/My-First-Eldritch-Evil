@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import display.GameWindow;
 import utils.Lazy;
 
 import java.awt.Image;
@@ -226,6 +227,7 @@ public class Pet{
                 
                 Main.action++;
                 JOptionPane.showMessageDialog(null, "You fed "+name+" "+amount+" food (+"+statDF.format(feed)+" satiety).\nCurrent Satiety: "+statDF.format(satiety), "Feed "+name, JOptionPane.INFORMATION_MESSAGE, imgIcon);
+                GameWindow.updateAllPanels();
                 return;
             }
         }

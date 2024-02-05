@@ -57,5 +57,4 @@ public class ItemActionPanel extends JPanel {
         add(useBtn);
         add(sellBtn);
     }
-
 }
