@@ -83,6 +83,7 @@ public class InventoryList extends JPanel {
             JLabel source = (JLabel) e.getSource();
             String selectedItem = source.getText();
             System.out.println(selectedItem + " selected");
+            Inventory.selectItem(selectedItem);;
         }
     }
 }

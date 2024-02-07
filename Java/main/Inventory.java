@@ -5,9 +5,11 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import display.frames.InventoryFrame;
+import display.generalPanels.ItemStatsPanel;
 import display.inventoryPanels.InventoryActionPanel;
 import display.inventoryPanels.InventoryList;
 import display.inventoryPanels.ItemActionPanel;
+import display.shopPanels.ItemDisplay;
 import utils.Lazy;
 
 public class Inventory {
@@ -268,8 +270,26 @@ public class Inventory {
 
     // ----- Inventory Actions ----- //
     public static void useItem(String item) {
-        // TODO - Build
-        throw new UnsupportedOperationException("Unimplemented method 'useItem'");
+        switch(item) {
+            case "Food":
+                Main.pet.feed();
+                break;
+            case "Medication":
+                break;
+            case "Strong Medication":
+                break;
+            case "Vitamins":
+                break;
+            case "Energy Drink":
+                break;
+            case "Incense":
+                break;
+            case "Alarm Clock":
+                break;
+            default:
+                System.out.println("Unlisted (use item)");
+
+        }
     }
 
     public static void sellItem(String item) {
@@ -280,6 +300,8 @@ public class Inventory {
     // Set Up select-related variables
     private static boolean itemSelected = false;
     private static String currentSelected;
+    private static ItemDisplay itemDisp = new ItemDisplay();
+    private static ItemStatsPanel iStats = new ItemStatsPanel();
     
     public static void selectItem(String item) {
         System.out.println("Inventory " + item + " selected");
@@ -298,6 +320,8 @@ public class Inventory {
         }
         currentSelected = item;
         itemActions = new ItemActionPanel(item);
+        itemDisp.showImage(item);
+        iStats.showStats(item);
         iFrame.add(itemActions);
 
         iFrame.revalidate();

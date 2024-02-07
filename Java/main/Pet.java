@@ -186,6 +186,7 @@ public class Pet{
         String[] invItems = Inventory.getInventoryList();
         if (this.satiety>1.0){ //too full to eat
             JOptionPane.showMessageDialog(null, name+" is too full to eat.", "Feed "+name,JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
         boolean foundFood = false;
         // TODO - update to use proper findItem inventory methods. Below is obselete and unneccessary
@@ -254,7 +255,7 @@ public class Pet{
                 break;
             case 1:
                 // Normal Difficulty
-                this.energy += (hours*0.018);
+                this.energy += (hours*0.093);
                 break;
             case 2:
                 // Hard Difficulty

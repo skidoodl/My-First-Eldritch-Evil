@@ -78,6 +78,7 @@ public class Menu{
           if (pet.isSleeping) {
             JOptionPane.showMessageDialog(null, "Cannot continue while pet is sleeping", "Pet is sleeping", JOptionPane.NO_OPTION);
           }
+          Cycle.nextCycle(pet);
           Main.action = 3;
           break;
         case 8:

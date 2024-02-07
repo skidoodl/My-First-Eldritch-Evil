@@ -49,8 +49,8 @@ public class PurchasePanel extends JPanel implements ChangeListener {
         slider.addChangeListener(this);
 
         button = new JButton("Buy 0 " + item + " for " + Inventory.getItemPrice(item) + " mon.");
-        button.setPreferredSize(new Dimension(260, 30));
-        button.setForeground(Color.white);
+        button.setPreferredSize(new Dimension(260, 40));
+        button.setForeground(Color.black);
         button.setBackground(new Color(109,77,172));
         button.setFocusPainted(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

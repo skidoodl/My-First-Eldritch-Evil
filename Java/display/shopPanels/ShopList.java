@@ -15,7 +15,7 @@ import javax.swing.border.LineBorder;
 import main.Inventory;
 import main.Shop;
 
-public class ItemList extends JPanel {
+public class ShopList extends JPanel {
     // Set up font details
     private static final int FONT_SIZE = 22;
     private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, FONT_SIZE);
@@ -25,7 +25,7 @@ public class ItemList extends JPanel {
     int[] price = Inventory.getPricesList();
     int[] stock = Inventory.getStockList();
 
-    public ItemList() {
+    public ShopList() {
 
         setLayout(new GridLayout(items.length, 1));
         setBounds(0,30,480,690);
@@ -47,7 +47,7 @@ public class ItemList extends JPanel {
             label.setFont(DEFAULT_FONT);
             
             // Change color depending on if player can afford item
-            if (Inventory.affordability(items[i])) { // can afford
+            if (Inventory.affordability(items[i]) && Inventory.getItemStock(items[i]) > 0) { // can afford
                 label.setForeground(Color.black);
             } else {
                 label.setForeground(Color.gray);

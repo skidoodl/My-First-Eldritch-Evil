@@ -15,6 +15,7 @@ public class Shop {
     private static PurchasePanel purchasePanel;
     private static ItemDisplay itemDisp = new ItemDisplay();
     private static ItemStatsPanel itemStats;
+    private static ShopList items;
 
     private static boolean itemSelected = false;
     private static String currentSelected;
@@ -28,7 +29,7 @@ public class Shop {
         wallet.setBounds(0,0,480,30);
 
         // ITEM LIST
-        ItemList items = new ItemList();
+        items = new ShopList();
 
         // DISPLAY
         JPanel display = new JPanel();
@@ -106,8 +107,10 @@ public class Shop {
     public static void itemPurchase(String item, int quantity) {
         Inventory.purchaseItem(currentSelected, quantity);
         updateHeader();
+        items.refresh();
         selectItem(item);
     }
+
 
     private static void updateHeader() {
         sFrame.setTitle("Shop - My First Eldritch Evil - Wallet: " + Inventory.getWallet() + " mon");

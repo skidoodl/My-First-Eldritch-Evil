@@ -9,8 +9,8 @@ public class Cycle{
         cycle++; //cycle counter increase
         System.out.println("\n\n------------------[Cycle "+cycle+"]-----------------");
         String name = pet.name;
-        String langs[] = {"Hebrew","Ancient Egyptian","Mandarin","Japanese","English","Pig Latin","Klingon","C++","Breadlish","Japanese","French","Amharic","Russian","Arabic","Giraffe","Sarati","the language of LOVE","to the manager","Vulcan","Sindarin","Newspeak","Hindi","Spanish","Portugese","Turkish","Urdu","Italian","Sign Language","Sugondese"};
-        String petActions[] = {name+" cleans its... tentacles.",name+" is growing a third eye.",name+" is growing a fourth eye.","You catch "+name+" plotting an assasination.","You tripped over "+name+" walking down the stairs last night... again...",name+" was named a suspect in murder.",name+"'s teeth are looking extra sharp today!","You got banned from your local PetCo... and dog park... and elementary school.",name+" seems to have taken a liking to ketchup... but where is "+name+" getting it?",name+" fails another DNA test. Maybe it should study next time.",name+"'s BAC is found to be well over the legal limit.",name+" learns to speak "+Lazy.ranStringArray(langs)+".",name+" is learning to speak "+Lazy.ranStringArray(langs)+".",name+"'s new lawyer immediately quits.",name+" quits its job at Spirit Halloween after one day.",name+" thinks MatLab is a real programming language.",name+" put semicolons after all your if statements.",name+" ate your left sock.",name+" ate your right sock.",name+" joined Twitter.",name+" didn't return its shopping cart.",name+" trapped you at an Amy Schumer show.",name+" is running for president. It'll probably win."};
+        final String langs[] = {"Hebrew","Ancient Egyptian","Mandarin","Japanese","English","Pig Latin","Klingon","C++","Breadlish","Japanese","French","Amharic","Russian","Arabic","Giraffe","Sarati","the language of LOVE","to the manager","Vulcan","Sindarin","Newspeak","Hindi","Spanish","Portugese","Turkish","Urdu","Italian","Sign Language","Sugondese"};
+        final String petActions[] = {name+" cleans its... tentacles.",name+" is growing a third eye.",name+" is growing a fourth eye.","You catch "+name+" plotting an assasination.","You tripped over "+name+" walking down the stairs last night... again...",name+" was named a suspect in murder.",name+"'s teeth are looking extra sharp today!","You got banned from your local PetCo... and dog park... and elementary school.",name+" seems to have taken a liking to ketchup... but where is "+name+" getting it?",name+" fails another DNA test. Maybe it should study next time.",name+"'s BAC is found to be well over the legal limit.",name+" learns to speak "+Lazy.ranStringArray(langs)+".",name+" is learning to speak "+Lazy.ranStringArray(langs)+".",name+"'s new lawyer immediately quits.",name+" quits its job at Spirit Halloween after one day.",name+" thinks MatLab is a real programming language.",name+" put semicolons after all your if statements.",name+" ate your left sock.",name+" ate your right sock.",name+" joined Twitter.",name+" didn't return its shopping cart.",name+" trapped you at an Amy Schumer show.",name+" is running for president. It'll probably win."};
         Random ran = new Random();
         
         if (cycle % 3 == 0 && cycle != 0){pet.birthday();} //age pet up, if necessary
@@ -319,7 +319,5 @@ public class Cycle{
             }
         }
         System.out.println();
-        Lazy.waitForEnter();
-
     }
 }
