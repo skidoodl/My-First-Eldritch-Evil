@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import display.frames.ShopFrame;
+import display.generalPanels.ItemDisplay;
 import display.generalPanels.ItemStatsPanel;
 import display.shopPanels.*;
 

@@ -5,11 +5,11 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import display.frames.InventoryFrame;
+import display.generalPanels.ItemDisplay;
 import display.generalPanels.ItemStatsPanel;
 import display.inventoryPanels.InventoryActionPanel;
 import display.inventoryPanels.InventoryList;
 import display.inventoryPanels.ItemActionPanel;
-import display.shopPanels.ItemDisplay;
 import utils.Lazy;
 
 public class Inventory {
@@ -323,13 +323,24 @@ public class Inventory {
         itemDisp.showImage(item);
         iStats.showStats(item);
         iFrame.add(itemActions);
+        iFrame.add(itemDisp);
+        iFrame.add(iStats);
 
         iFrame.revalidate();
     }
 
     public static void deselectItem() {
-        // TODO - Finish
-        throw new UnsupportedOperationException("Unimplemented method 'deselectItem");
+        if (itemSelected) {
+            System.out.println("Inventory Deselect");
+            itemSelected = false;
+            currentSelected = null;
+            iFrame.remove(itemActions);
+            // add default action panel
+            itemDisp.removeImage();
+            iStats.hideStats();
+        }
+        iFrame.revalidate();
+        iFrame.repaint();
     }
 
     public static void sortInventory() {

@@ -1,4 +1,4 @@
-package display.shopPanels;
+package display.generalPanels;
 
 import java.awt.Color;
 import java.awt.Image;
