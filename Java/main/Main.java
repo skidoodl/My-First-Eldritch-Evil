@@ -11,8 +11,15 @@ public class Main {
   public static GameWindow gw;
 
   public static void main(String[] args) {
+    // --- PRE-GAME CHECKS --- //
+    if (Inventory.checkItemDataError()) {
+      return;
+    }
+
+    // Set up game window
     gw = new GameWindow();
 
+    // Create pet
     pet = new Pet(gw.startScreen()); // create pet
     String name = pet.name;
 

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import display.frames.GameFrame;
 import display.frames.InventoryFrame;
+import display.mainPanels.ExercisePanel;
 import display.mainPanels.MenuPanel;
 import display.mainPanels.StatsPanel;
 import display.petPanels.PetPanel;
@@ -89,7 +90,7 @@ public class GameWindow {
         //MFEE FEED
         JPanel gameFeed = new JPanel(); // Where the game feed is displayed
         gameFeed.setBackground(Color.gray);
-        gameFeed.setBounds(480, 360, 480, 360);
+        gameFeed.setBounds(480, 360, 480, 380);
         
         // Add Panels
         gFrame.add(menuPanel);
@@ -141,6 +142,20 @@ public class GameWindow {
         gFrame.repaint();
     }
 
+    private static boolean isExercising = false;
+    private static ExercisePanel exercisePanel = new ExercisePanel();
+    public static void petExercise() {
+        if (isExercising) {
+            gFrame.remove(exercisePanel);
+            isExercising = false;
+        } else {
+            gFrame.add(exercisePanel);
+            isExercising = true;
+        }
+        gFrame.revalidate();
+        //gFrame.repaint();
+    }
+
     public void endSleep () {
         System.out.println("End sleep");
         gFrame.remove(sleepPanel);
@@ -163,6 +178,7 @@ public class GameWindow {
         System.out.print("Updating All Panels... ");
         petPanel.updateDisplay();
         menuPanel.update();
+        exercisePanel.update();
         if (sPanel != null) {
             sPanel.update();
         }

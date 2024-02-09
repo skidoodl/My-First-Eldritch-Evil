@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Color;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import display.frames.InventoryFrame;
@@ -16,14 +17,64 @@ public class Inventory {
     //-----WALLET-----//
     private static int wallet;
     //-----NORMAL ITEMS-----//
-    private static String[] inventory = new String[10];
-    private static int[] itemInvAmount = new int[10];
-    private static final String[] items = {"Food", "Medication", "Strong Medication","Vitamins","Energy Drink","Incense","Alarm Clock"};
-    private static final String[] itemType = {"Food", "Healing", "Healing", "Healing", "Buffs", "Miscellaneous", "Gear"};
-    private static int[] itemStock = {50,20,5,25,35,16,1,0,0,0};
-    private static final int[] itemPrice = {/*food*/ 50,/*meds*/ 300,/*strong meds*/ 600,/*vitamins*/200,/*Energy Drink*/250,/*Incense*/400,/*Alarm Clock*/750};
+    private static final String[] items = {
+        "Food", 
+        "Medication", 
+        "Strong Medication",
+        "Vitamins",
+        "Protein Powder",
+        "Energy Drink",
+        "Incense",
+        "Alarm Clock"
+    };
+    private static final String[] itemType = {
+        "Food", // food
+        "Healing", // medication
+        "Healing", // strong medication
+        "Healing", // vitamins
+        "Buffs", // protein powder
+        "Buffs", // energy drink
+        "Miscellaneous", // incense
+        "Gear" // alarm clock
+    };
+    private static int[] itemStock = {
+        50, // food
+        12, // meds
+        5, // strong meds
+        20, // vitamins
+        15, // protein powder
+        10, // energy drink
+        10, // incense
+        1 // alarm clock
+    };
+    private static final int[] itemPrice = {
+        50, // food
+        300, // meds
+        600, // strong meds
+        200, // vitamins
+        125, // protein powder
+        250, // energy drink
+        400, // incense
+        650 // alarm clock
+    };
+
+    private static String[] inventory = new String[items.length];
+    private static int[] itemInvAmount = new int[items.length];
 
     //-----OTHER STUFF-----//
+
+    public static boolean checkItemDataError() {
+        int i = items.length;
+        int j = itemType.length;
+        int k = itemStock.length;
+        int l = itemPrice.length;
+
+        if (i == j && i == k && i == l && j == k && j == l && k == l) {
+            return false;
+        }
+        JOptionPane.showMessageDialog(null, "One or more of the inventory item information arrays may be missing information.", "Item Data Array Length Discrepancy", JOptionPane.ERROR_MESSAGE);
+        return true;
+    }
     
 
     // ----- GET METHODS ----- //

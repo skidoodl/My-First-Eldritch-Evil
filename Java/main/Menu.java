@@ -69,6 +69,7 @@ public class Menu{
           }
           break;
         case 5: //Exercise
+          GameWindow.petExercise();
           pet.exercise();
           break;
         case 6: //cuddle pet

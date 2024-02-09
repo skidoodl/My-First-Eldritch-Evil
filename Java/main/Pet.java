@@ -280,7 +280,6 @@ public class Pet{
             this.energy -= 0.5;
             this.satiety -= 0.5;
             this.exercised += 3;
-            Lazy.waitForEnter();
         }else{
             String [] exLoc = {"to the gym","to the park","out on a walk","to a wrestling match","to bootcamp","on a marathon","to train with broadswords"};
             System.out.println("You took "+name+" "+Lazy.ranStringArray(exLoc)+".");
@@ -288,7 +287,6 @@ public class Pet{
             this.satiety -= 0.4;
             this.exercised += 5;
             addMoney();
-            Lazy.waitForEnter();
         }
         Main.action++;
     }
