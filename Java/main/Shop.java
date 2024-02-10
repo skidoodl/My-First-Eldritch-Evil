@@ -23,6 +23,7 @@ public class Shop {
 
 
     public static void openShop() {
+        deselectItem();
         
         // WALLET DISPLAY
         JPanel wallet = new JPanel();
@@ -31,18 +32,13 @@ public class Shop {
 
         // ITEM LIST
         items = new ShopList();
-
-        // DISPLAY
-        JPanel display = new JPanel();
-        display.setBackground(Color.lightGray);
-        display.setBounds(480,0,480,240);
         
         // ITEM STATS
         itemStats = new ItemStatsPanel();
 
         // ITEM DESCRIPTION
         JPanel desc = new JPanel();
-        desc.setBackground(Color.cyan);
+        desc.setBackground(Color.gray);
         desc.setBounds(480,240,480,260);
 
         //ACTION MENU
@@ -50,20 +46,13 @@ public class Shop {
 
         sFrame.add(wallet);
         sFrame.add(items);
-        sFrame.add(display);
         sFrame.add(itemDisp);
         sFrame.add(desc);
         sFrame.add(actionPanel);
         sFrame.add(itemStats);
 
-        if (itemSelected == true) {
-            selectItem(currentSelected);
-        }
-
         sFrame.revalidate();
-        sFrame.repaint();
         sFrame.open();
-        
     }
 
     public static void selectItem(String item) {
@@ -116,6 +105,5 @@ public class Shop {
     private static void updateHeader() {
         sFrame.setTitle("Shop - My First Eldritch Evil - Wallet: " + Inventory.getWallet() + " mon");
     }
-
     
 }

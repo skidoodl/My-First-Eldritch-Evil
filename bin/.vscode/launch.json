@@ -1,0 +1,93 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "main.Main",
+            "projectName": "My-First-Eldritch-Evil_2fbb1046"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "main.Main",
+            "projectName": "My-First-Eldritch-Evil_49bdf049"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "My-First-Eldritch-Evil_2fbb1046"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "My-First-Eldritch-Evil_49bdf049"
+        },
+        {
+            "type": "java",
+            "name": "Menu",
+            "request": "launch",
+            "mainClass": "Menu",
+            "projectName": "programs_2852f901"
+        },
+        {
+            "type": "java",
+            "name": "exceptions",
+            "request": "launch",
+            "mainClass": "exceptions",
+            "projectName": "programs_2852f901"
+        },
+        {
+            "type": "java",
+            "name": "main",
+            "request": "launch",
+            "mainClass": "main",
+            "projectName": "programs_2852f901"
+        },
+        {
+            "type": "java",
+            "name": "Grave",
+            "request": "launch",
+            "mainClass": "Grave",
+            "projectName": "programs_2852f901"
+        },
+        {
+            "type": "java",
+            "name": "gravestone",
+            "request": "launch",
+            "mainClass": "gravestone",
+            "projectName": "programs_2852f901"
+        },
+        {
+            "type": "java",
+            "name": "test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "programs_2852f901"
+        },
+        {
+            "type": "java",
+            "name": "competition",
+            "request": "launch",
+            "mainClass": "competition",
+            "projectName": "programs_2852f901"
+        },
+        {
+            "type": "java",
+            "name": "competition",
+            "request": "launch",
+            "mainClass": "competition.java",
+            "projectName": "programs_2852f901"
+        }
+    ]
+
+}

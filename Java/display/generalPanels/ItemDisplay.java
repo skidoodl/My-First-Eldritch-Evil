@@ -1,5 +1,6 @@
 package display.generalPanels;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 
@@ -21,24 +22,23 @@ public class ItemDisplay extends JPanel {
         } catch (IllegalArgumentException e) {
             // May occur if the file path does not represent a valid image file
             System.out.println("Item image could not be found.");
-            return new ImageIcon("Resources/Icons/noImage.png");
+            return new ImageIcon("Resources/icons/noImage.png");
         }
     }
 
     public ItemDisplay() {
         itemLabel = new JLabel();
         setBounds(480, 0, 240, 240);
-        setBackground(Color.pink);
+        setBackground(Color.lightGray);
+        setLayout(new BorderLayout());
+        add(itemLabel, BorderLayout.CENTER);
     }
     
     public void showImage (String item) {
         itemLabel.setIcon(getItemImage(item));
-        itemLabel.setBounds(480, 0, 240, 240);
-
-        add(itemLabel);
     }
 
     public void removeImage () {
-        remove(itemLabel);
+        itemLabel.setIcon(null);   
     }
 }

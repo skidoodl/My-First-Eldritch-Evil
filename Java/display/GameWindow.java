@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import display.frames.GameFrame;
 import display.frames.InventoryFrame;
+import display.mainPanels.ExerciseIconsPanel;
 import display.mainPanels.ExercisePanel;
 import display.mainPanels.MenuPanel;
 import display.mainPanels.StatsPanel;
@@ -36,12 +37,12 @@ public class GameWindow {
     }
 
     public String startScreen() {
-        ImageIcon bg = new ImageIcon("Resources/StartScreen/StartScreen.jpg");
+        ImageIcon bg = new ImageIcon("Resources/startScreen/StartScreen.jpg");
 
         JLabel label = new JLabel();
         label.setIcon(bg);
 
-        JButton b = new JButton(new ImageIcon("Resources/StartScreen/StartButton.png"));
+        JButton b = new JButton(new ImageIcon("Resources/startScreen/StartButton.png"));
         b.setBounds(380, 535, 200, 73);
         b.setFocusable(true);
         b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -142,18 +143,25 @@ public class GameWindow {
         gFrame.repaint();
     }
 
-    private static boolean isExercising = false;
+    private static boolean exercisePanelOpen;
     private static ExercisePanel exercisePanel = new ExercisePanel();
-    public static void petExercise() {
-        if (isExercising) {
+    private static ExerciseIconsPanel exerciseIcons = new ExerciseIconsPanel();
+    public static void toggleExercisePanel() {
+        if (exercisePanelOpen) {
+            System.out.println("Removing Exercise Panels");
             gFrame.remove(exercisePanel);
-            isExercising = false;
-        } else {
-            gFrame.add(exercisePanel);
-            isExercising = true;
+            gFrame.remove(exerciseIcons);
+            exercisePanelOpen = false;
+            gFrame.revalidate();
+            gFrame.repaint();
+            return;
         }
-        gFrame.revalidate();
-        //gFrame.repaint();
+        System.out.println("Adding exercise panels");
+        exercisePanelOpen = true;
+        gFrame.add(exerciseIcons);
+        gFrame.add(exercisePanel);
+        exerciseIcons.update();
+        updateAllPanels();
     }
 
     public void endSleep () {

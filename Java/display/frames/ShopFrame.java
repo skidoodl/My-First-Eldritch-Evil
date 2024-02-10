@@ -7,9 +7,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import main.Inventory;
+import main.Shop;
 
 public class ShopFrame extends JFrame implements WindowListener {
-    ImageIcon icon = new ImageIcon("Resources/Icons/Shop_Icon.png");
+    ImageIcon icon = new ImageIcon("Resources/icons/Shop_Icon.png");
     private static boolean frameOpen;
 
     public ShopFrame() {
@@ -43,8 +44,7 @@ public class ShopFrame extends JFrame implements WindowListener {
 
     @Override
     public void windowClosed(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowClosed'");
+        Shop.deselectItem();
     }
 
     @Override

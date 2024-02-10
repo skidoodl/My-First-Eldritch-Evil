@@ -50,7 +50,7 @@ public class PetPanel extends JPanel {
     protected JLabel petLabel;
 
     private ImageIcon getPetImage() {
-        String moodFile = "Resources/PetGraphics/Moods/" + pet.mood + ".png";
+        String moodFile = "Resources/petGraphics/Moods/" + pet.mood + ".png";
         System.out.println(moodFile);
         try {
             return new ImageIcon(moodFile);
@@ -59,7 +59,7 @@ public class PetPanel extends JPanel {
             JOptionPane.showMessageDialog(null, pet.name+" attempted to experience an mood that does not yet exist on present plane of reality.", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("PetPanel Error: " + pet.name + " attempted to experience a mood beyond the scope of its present reality.");
             pet.mood = "transcendental";
-            return new ImageIcon("Resources/PetGraphics/Moods/transcendental.png");
+            return new ImageIcon("Resources/petGraphics/Moods/transcendental.png");
         }
     } 
 

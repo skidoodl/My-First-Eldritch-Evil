@@ -196,7 +196,7 @@ public class Pet{
                 foundFood = true;
                 System.out.println("Feeding pet...");
                 
-                ImageIcon imgIcon = new ImageIcon("Resources/MessageIcons/FeedPetIcon.png"); //Get feed message icon
+                ImageIcon imgIcon = new ImageIcon("Resources/messageIcons/FeedPetIcon.png"); //Get feed message icon
                 //Format icon to size:
                 Image img = imgIcon.getImage();
                 img = img.getScaledInstance(80, 67, java.awt.Image.SCALE_SMOOTH);

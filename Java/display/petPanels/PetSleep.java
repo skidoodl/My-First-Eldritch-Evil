@@ -20,7 +20,7 @@ public class PetSleep extends PetPanel {
 
     public PetSleep() {
         pet.isSleeping = true;
-        petLabel.setIcon(new ImageIcon("Resources/PetGraphics/SleepingPet.png"));
+        petLabel.setIcon(new ImageIcon("Resources/petGraphics/SleepingPet.png"));
 
 
         sleepBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 25);
