@@ -11,6 +11,7 @@ import display.generalPanels.ItemStatsPanel;
 import display.inventoryPanels.InventoryActionPanel;
 import display.inventoryPanels.InventoryList;
 import display.inventoryPanels.ItemActionPanel;
+import display.shopPanels.SellPanel;
 import utils.Lazy;
 
 public class Inventory {
@@ -343,9 +344,18 @@ public class Inventory {
         }
     }
 
+    private static SellPanel sellPanel;
     public static void sellItem(String item) {
-        // TODO - Build
-        throw new UnsupportedOperationException("Unimplemented method 'sellItem");
+        iFrame.remove(itemActions);
+        sellPanel = new SellPanel(item);
+        iFrame.add(sellPanel);
+        iFrame.revalidate();
+    }
+
+    public static void hideSellPanel() {
+        iFrame.remove(sellPanel);
+        iFrame.add(actionPanel);
+        iFrame.revalidate();
     }
 
     // Set Up select-related variables

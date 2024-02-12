@@ -10,7 +10,7 @@ import java.awt.FlowLayout;
 
 public class ExerciseIconsPanel extends JPanel {
     
-    private static JLabel powderIcon = new JLabel(new ImageIcon("Resources/exerciseIcons/powderIcon.java"));
+    private static JLabel powderIcon = new JLabel(new ImageIcon("Resources/exerciseIcons/ProteinIcon.java"));
     
     public ExerciseIconsPanel() {
         setLayout(new FlowLayout());
