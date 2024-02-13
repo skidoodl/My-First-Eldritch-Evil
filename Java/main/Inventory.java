@@ -153,7 +153,7 @@ public class Inventory {
     public static void setWallet(int amount) {
         wallet = amount;
     }
-    public static void addMoney(int amount) {
+    public static void giveMoney(int amount) {
         wallet += amount;
     }
 
@@ -189,6 +189,11 @@ public class Inventory {
     public static void remove(String itemName, int quantity) {
         int i = findInventoryLocation(itemName);
         itemInvAmount[i] -= quantity;
+    }
+
+    public static void sell(String item, int quantity) {
+        remove(item, quantity);
+        giveMoney(getItemPrice(item)/2);
     }
 
     public static String[] getItemStats(String item) {
@@ -303,9 +308,9 @@ public class Inventory {
         monInfo.setBounds(0,640,480,40);
 
         // item info
-        JPanel itemInfo = new JPanel(); // Displays info about items or, if not item is selected, tips or other game-related info
+       /*  JPanel itemInfo = new JPanel(); // Displays info about items or, if not item is selected, tips or other game-related info
         itemInfo.setBackground(Color.green);
-        itemInfo.setBounds(480,0,480,480);
+        itemInfo.setBounds(480,0,480,480); */
 
         // action panel
         actionPanel = new InventoryActionPanel();
@@ -313,7 +318,7 @@ public class Inventory {
         // Add Panels
         iFrame.add(invList);
         iFrame.add(monInfo);
-        iFrame.add(itemInfo);
+        //iFrame.add(itemInfo);
         iFrame.add(actionPanel);
         iFrame.revalidate();
         iFrame.repaint();
@@ -344,19 +349,7 @@ public class Inventory {
         }
     }
 
-    private static SellPanel sellPanel;
-    public static void sellItem(String item) {
-        iFrame.remove(itemActions);
-        sellPanel = new SellPanel(item);
-        iFrame.add(sellPanel);
-        iFrame.revalidate();
-    }
-
-    public static void hideSellPanel() {
-        iFrame.remove(sellPanel);
-        iFrame.add(actionPanel);
-        iFrame.revalidate();
-    }
+    
 
     // Set Up select-related variables
     private static boolean itemSelected = false;
@@ -400,6 +393,21 @@ public class Inventory {
             itemDisp.removeImage();
             iStats.hideStats();
         }
+        iFrame.revalidate();
+        iFrame.repaint();
+    }
+
+    private static SellPanel sellPanel;
+    public static void sellItem(String item) {
+        iFrame.remove(itemActions);
+        sellPanel = new SellPanel(item);
+        iFrame.add(sellPanel);
+        iFrame.revalidate();
+    }
+
+    public static void cancelSellPanel() {
+        iFrame.remove(sellPanel);
+        iFrame.add(itemActions);
         iFrame.revalidate();
         iFrame.repaint();
     }

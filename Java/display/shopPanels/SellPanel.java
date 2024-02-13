@@ -29,7 +29,7 @@ public class SellPanel extends JPanel implements ChangeListener{
         slider.setMaximum(Inventory.getInventoryAmount(item));
         slider.setMinimum(0);
         slider.setPreferredSize(new Dimension(400, 130));
-        setBackground(Color.lightGray);
+        setBackground(Color.gray);
         slider.setPaintTicks(true);
         slider.setMinorTickSpacing(1);
         slider.setPaintTrack(true);
@@ -69,7 +69,7 @@ public class SellPanel extends JPanel implements ChangeListener{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Inventory.hideSellPanel();
+                Inventory.cancelSellPanel();
             }
             
         });
