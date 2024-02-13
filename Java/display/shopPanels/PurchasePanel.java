@@ -20,7 +20,6 @@ import javax.swing.JButton;
 
 import main.Inventory;
 import main.Shop;
-import utils.Lazy;
 
 public class PurchasePanel extends JPanel implements ChangeListener {
     JButton button;
