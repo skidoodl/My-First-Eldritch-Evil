@@ -193,17 +193,17 @@ public class Inventory {
 
     public static void sell(String item, int quantity) {
         remove(item, quantity);
-        giveMoney(getItemPrice(item)/2);
+        giveMoney((getItemPrice(item)/2)*quantity);
     }
 
     public static String[] getItemStats(String item) {
         int i = getItemReference(item);
         
         String owned;
-        if (getInventoryAmount(i) == 0) {
+        try {
+            owned = Integer.toString(getInventoryAmount(item));
+        } catch (ArrayIndexOutOfBoundsException e) {
             owned = "None";
-        } else {
-            owned = Integer.toString(getInventoryAmount(i));
         }
 
         String[] stats = {
@@ -371,6 +371,10 @@ public class Inventory {
             itemSelected = true;
         } else {
             iFrame.remove(itemActions);
+
+        }
+        if (selling) {
+            iFrame.remove(sellPanel);
         }
         currentSelected = item;
         itemActions = new ItemActionPanel(item);
@@ -381,6 +385,7 @@ public class Inventory {
         iFrame.add(iStats);
 
         iFrame.revalidate();
+        iFrame.repaint();
     }
 
     public static void deselectItem() {
@@ -392,13 +397,19 @@ public class Inventory {
             // add default action panel
             itemDisp.removeImage();
             iStats.hideStats();
+            /* if (sellPanel != null) {
+                iFrame.remove(sellPanel);
+            } */
+            iFrame.remove(sellPanel);
         }
         iFrame.revalidate();
         iFrame.repaint();
     }
 
     private static SellPanel sellPanel;
+    private static boolean selling = false;
     public static void sellItem(String item) {
+        selling = true;
         iFrame.remove(itemActions);
         sellPanel = new SellPanel(item);
         iFrame.add(sellPanel);
@@ -406,8 +417,10 @@ public class Inventory {
     }
 
     public static void cancelSellPanel() {
+        selling = false;
         iFrame.remove(sellPanel);
         iFrame.add(itemActions);
+        sellPanel = null;
         iFrame.revalidate();
         iFrame.repaint();
     }

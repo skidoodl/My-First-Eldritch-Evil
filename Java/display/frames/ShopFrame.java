@@ -27,6 +27,7 @@ public class ShopFrame extends JFrame implements WindowListener {
             requestFocus();
             return;
         }
+        setTitle("Shop - My First Eldritch Evil - Wallet: " + Inventory.getWallet() + " mon");
         setVisible(true);
     }
 

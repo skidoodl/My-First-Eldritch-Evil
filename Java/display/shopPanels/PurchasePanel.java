@@ -12,12 +12,15 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
 import main.Inventory;
 import main.Shop;
+import utils.Lazy;
 
 public class PurchasePanel extends JPanel implements ChangeListener {
     JButton button;
@@ -45,6 +48,21 @@ public class PurchasePanel extends JPanel implements ChangeListener {
         slider.setSnapToTicks(true);
         slider.setForeground(Color.black);
         slider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        slider.addMouseWheelListener(new MouseWheelListener() {
+
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int notches = e.getWheelRotation();
+                if (notches < 0) {
+                    //System.out.println("Mouse wheel moved UP " + notches + " notch(es)");
+                    slider.setValue(slider.getValue() - 1);
+                } else if (notches > 0) {
+                    //System.out.println("Mouse wheel moved DOWN " + -notches + " notch(es)");
+                    slider.setValue(slider.getValue() + 1);
+                }
+            }
+            
+        });
 
         slider.addChangeListener(this);
 

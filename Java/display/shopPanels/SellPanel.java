@@ -6,6 +6,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -24,6 +26,7 @@ public class SellPanel extends JPanel implements ChangeListener{
     public SellPanel(String item) {
         this.item = item;
         setBounds(480, 500, 480, 220);
+        setPreferredSize(new Dimension(480, 220));
         setBackground(Color.gray);
 
         slider.setMaximum(Inventory.getInventoryAmount(item));
@@ -39,6 +42,18 @@ public class SellPanel extends JPanel implements ChangeListener{
         slider.setSnapToTicks(true);
         slider.setForeground(Color.black);
         slider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        slider.addMouseWheelListener(new MouseWheelListener() {
+            
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int notches = e.getWheelRotation();
+                if (notches < 0) {
+                    slider.setValue(slider.getValue() - 1);
+                } else if (notches > 0) {
+                    slider.setValue(slider.getValue() + 1);
+                }
+            }
+        });
 
         slider.addChangeListener(this);
 
@@ -52,9 +67,8 @@ public class SellPanel extends JPanel implements ChangeListener{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-                //GameWindow.updateAllPanels();
+                Inventory.sell(item, slider.getValue());
+                Inventory.cancelSellPanel();
             }
             
         });
