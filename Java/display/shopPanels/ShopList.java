@@ -27,7 +27,7 @@ public class ShopList extends JPanel {
 
     public ShopList() {
 
-        setLayout(new GridLayout(items.length, 1));
+        setLayout(new GridLayout(Inventory.countItemsStocked(), 1));
         setBounds(0,30,480,690);
         setBorder(new LineBorder(Color.darkGray));
         setBackground(Color.white);

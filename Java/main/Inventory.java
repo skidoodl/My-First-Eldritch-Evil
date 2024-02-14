@@ -26,7 +26,14 @@ public class Inventory {
         "Protein Powder",
         "Energy Drink",
         "Incense",
-        "Alarm Clock"
+        "Alarm Clock",
+        "Random Training Plan",
+        "Training Plan: Weight Lifting",
+        "Training Plan: Bulking",
+        "Training Plan: Weight Loss",
+        "Training Plan: Stamina Training",
+        "Training Plan: Sprinting",
+        "Training Plan: Sparring",
     };
     private static final String[] itemType = {
         "Food", // food
@@ -36,7 +43,14 @@ public class Inventory {
         "Buffs", // protein powder
         "Buffs", // energy drink
         "Miscellaneous", // incense
-        "Gear" // alarm clock
+        "Gear", // alarm clock
+        "Training", // random training plan
+        "Training",
+        "Training",
+        "Training",
+        "Training",
+        "Training",
+        "Training",
     };
     private static int[] itemStock = {
         50, // food
@@ -46,7 +60,14 @@ public class Inventory {
         15, // protein powder
         10, // energy drink
         10, // incense
-        1 // alarm clock
+        1, // alarm clock
+        4, // random training plan
+        0, // weight lifting
+        0, // bulking
+        0, // weight loss
+        0, // stamina
+        0, // sprint
+        0, // spar
     };
     private static final int[] itemPrice = {
         50, // food
@@ -56,7 +77,14 @@ public class Inventory {
         125, // protein powder
         250, // energy drink
         400, // incense
-        650 // alarm clock
+        650, // alarm clock
+        725, // random training plan
+        500, // weight lifting
+        500, // bulking
+        500, // weight loss
+        500, // stamina
+        500, // sprint
+        500, // spar
     };
 
     private static String[] inventory = new String[items.length];
@@ -138,6 +166,15 @@ public class Inventory {
     }
     public static int getItemStock(int itemReference) {
         return itemStock[itemReference];
+    }
+    public static int countItemsStocked() {
+        int x = 0;
+        for (int i = 0; i < itemStock.length; i++) {
+            if (itemStock[i] != 0) {
+                x++;
+            }
+        }
+        return x;
     }
 
     public static String getItemType (String item) {
@@ -345,7 +382,6 @@ public class Inventory {
                 break;
             default:
                 System.out.println("Unlisted (use item)");
-
         }
     }
 

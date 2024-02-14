@@ -1,6 +1,5 @@
 package main;
 import java.util.Random;
-import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -26,33 +25,50 @@ public class Pet{
     private DecimalFormat statDF = new DecimalFormat("#.##");
     private DecimalFormat statPctDF = new DecimalFormat("##");
 
+    //---FITNESS STATS---//
+    private static int strength;
+    public static int getStrength() {
+        return strength;
+    }
+
+    private static int stamina;
+    public static int getStamina() {
+        return stamina;
+    }
+
+    private static int speed;
+    public static int getSpeed() {
+        return speed;
+    }
+
+    private static int weight;
+    public static int getWeight() {
+        // TODO - Calculate weight
+        return weight;
+    }
+
+    private static int fat;
+    public static int getFat() {
+        return fat;
+    }
+
+    private static int muscle;
+    public static int getMuscle() {
+        return muscle;
+    }
+
     Random ran = new Random();
     
-    
-    public Pet(){ //default constructor - set to normal difficulty :D
+
+    public Pet(){
+        this.name = "Bread";
         isAlive = true;
         difficulty = 1;
         satiety = 0.85;
         Inventory.setWallet(750);
         difficultyName = "Normal";
         mood = "normal";
-
-        // Name Pet
-        Scanner scanName = new Scanner(System.in);
-        System.out.println("Congrats on your new pet! What will you name it? (9 characters or less)");
-        String n = scanName.next().trim();
-        while (n.length() > 9) { // make sure name isn't too long
-            System.out.print("Too long! Try again: ");
-            n = scanName.next();
-        }
-        while (n.length() < 1) { // make sure name isn't too short
-            System.out.print("Invalid name. Try again: ");
-            n = scanName.next();
-        }
-        this.name = n;
-        scanName.close();
     }
-
     public Pet(String name){
         this.name = name;
         isAlive = true;
@@ -269,6 +285,7 @@ public class Pet{
         }
     }
 
+    
     public void exercise(){
         if (sleepBlock()) {
             return;

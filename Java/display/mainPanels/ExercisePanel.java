@@ -16,6 +16,7 @@ import main.Shop;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class ExercisePanel extends JPanel {
     
@@ -24,7 +25,6 @@ public class ExercisePanel extends JPanel {
     private static JButton bTrainPlan = new JButton("Train with Plan");
     private static JButton bTrainNoPlan = new JButton("Train without Plan");
     
-    private static boolean proteinInUse = false;
 
     public ExercisePanel() {
         setBounds(480, 360, 460, 180);
@@ -35,11 +35,15 @@ public class ExercisePanel extends JPanel {
 
         // View Fitness Plans
         bViewPlans = buttonSetUp(bViewPlans);
+        setViewPlansButton();
         bViewPlans.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                if (Exercise.countUnlockedPlans() == 0) {
+                    JOptionPane.showMessageDialog(null, "You don't own any training plans.", "No Training Plans", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                }
             }
             
         });
@@ -50,12 +54,11 @@ public class ExercisePanel extends JPanel {
         bProteinPowder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (proteinInUse) {
+                if (Exercise.getProteinPowder()) {
                     return;
                 }
                 if (Inventory.isInInventory("Protein Powder")) {
                     Exercise.useProteinPowder();
-                    proteinInUse = true;
                 } else {
                     Shop.openShop();
                     Shop.selectItem("Protein Powder");
@@ -67,14 +70,17 @@ public class ExercisePanel extends JPanel {
 
         // Train with plan
         bTrainPlan = buttonSetUp(bTrainPlan);
+        setTrainPlanButton();
         bTrainPlan.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                if (Exercise.getSelectedPlanString() == null) {
+                    JOptionPane.showMessageDialog(null, "No Training Plan Selected.", "No Exercise Plan", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    throw new UnsupportedOperationException("Training Plan Unfinished");
+                }
             }
-            
         });
         
         // Train w/out plan
@@ -103,9 +109,24 @@ public class ExercisePanel extends JPanel {
         } else {
             bProteinPowder.setText("Buy Protein Powder");
         }
-        if (proteinInUse) {
+        if (Exercise.getProteinPowder()) {
             bProteinPowder.setForeground(Color.lightGray);
             bProteinPowder.setBackground(Color.darkGray);
+        }
+    }
+    private static void setTrainPlanButton() {
+        if (Exercise.getSelectedPlanString() == null) {
+            bTrainPlan.setForeground(Color.lightGray);
+            bTrainPlan.setBackground(Color.darkGray);
+            bTrainPlan.setText("No Plan Selected");
+        } else {
+            bTrainPlan.setText("Train With Plan:\n"+Exercise.getSelectedPlanString());
+        }
+    }
+    private static void setViewPlansButton() {
+        if (Exercise.countUnlockedPlans() == 0) {
+            bViewPlans.setForeground(Color.lightGray);
+            bViewPlans.setBackground(Color.darkGray);
         }
     }
 
@@ -121,9 +142,11 @@ public class ExercisePanel extends JPanel {
     public void update() {
         System.out.println("Update Exercise Panel");
         bViewPlans = buttonSetUp(bViewPlans);
+        setViewPlansButton();
         bProteinPowder = buttonSetUp(bProteinPowder);
         setProteinButton();
         bTrainPlan = buttonSetUp(bTrainPlan);
+        setTrainPlanButton();
         bTrainNoPlan = buttonSetUp(bTrainNoPlan);
 
         add(bViewPlans);

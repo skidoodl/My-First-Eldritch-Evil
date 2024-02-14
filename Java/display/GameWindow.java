@@ -186,7 +186,7 @@ public class GameWindow {
         System.out.print("Updating All Panels... ");
         petPanel.updateDisplay();
         menuPanel.update();
-        exercisePanel.update();
+        if(exercisePanelOpen){exercisePanel.update();}
         if (sPanel != null) {
             sPanel.update();
         }
