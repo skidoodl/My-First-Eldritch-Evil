@@ -1,7 +1,9 @@
 package main;
 
 import java.awt.Color;
+import java.util.Random;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import display.frames.ShopFrame;
@@ -57,7 +59,7 @@ public class Shop {
 
     public static void selectItem(String item) {
         System.out.println("Item Select");
-
+        
         if (item.equals(currentSelected)) {
             deselectItem();
             return;
@@ -74,7 +76,9 @@ public class Shop {
         purchasePanel = new PurchasePanel(item);
         itemDisp.showImage(item);
         itemStats.showStats(item);
-        sFrame.add(purchasePanel);
+        if (Inventory.getMostPurchasable(item) > 0) {
+            sFrame.add(purchasePanel);
+        }
 
         sFrame.revalidate();
     }
@@ -95,7 +99,15 @@ public class Shop {
     }
 
     public static void itemPurchase(String item, int quantity) {
-        Inventory.purchaseItem(currentSelected, quantity);
+        if (item.equals("Random Training Plan")) {
+            // TODO - Finish this thang
+            System.out.println("TODO - Recieve Random Training Plan system.");
+            String recievedPlan = "Training Plan: Placeholder";
+            JOptionPane.showMessageDialog(null, "You recieved " + quantity + " " + recievedPlan + "!    ", "Training Plan Obtained", JOptionPane.INFORMATION_MESSAGE);
+            Inventory.changeItemPrice(item, 315); // TODO - Make this change by a percentage, not a fixed amount
+        } else {
+            Inventory.purchaseItem(item, quantity);
+        }
         updateHeader();
         items.refresh();
         selectItem(item);

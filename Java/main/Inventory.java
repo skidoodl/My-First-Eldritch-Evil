@@ -69,7 +69,7 @@ public class Inventory {
         0, // sprint
         0, // spar
     };
-    private static final int[] itemPrice = {
+    private static int[] itemPrice = {
         50, // food
         300, // meds
         600, // strong meds
@@ -156,6 +156,12 @@ public class Inventory {
     }
     public static int getItemPrice(int itemReference) {
         return itemPrice[itemReference];
+    }
+    public static void changeItemPrice(String item, int amount) {
+        itemPrice[getItemReference(item)] += amount;
+    }
+    public static void changeItemPrice(int itemReference, int amount) {
+        itemPrice[itemReference] += amount;
     }
 
     public static int[] getStockList () {
