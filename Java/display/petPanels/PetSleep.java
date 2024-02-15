@@ -25,9 +25,7 @@ public class PetSleep extends PetPanel {
 
         sleepBar = new JProgressBar(SwingConstants.HORIZONTAL, 0, 25);
         sleepBar.setValue(++sleepLength);
-        //TODO - Finish below commented code
-        // sleepBar.setBounds(x, y, length, height);
-        // sleepBar.setForeground(Color.purple);
+        
         // TODO - create function that changes color of the bar
         /* Color of bar can change based on how much energy the sleeping function will provide
          * and some other stuff too, I hope. */

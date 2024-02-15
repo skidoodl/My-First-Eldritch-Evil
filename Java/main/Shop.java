@@ -98,19 +98,32 @@ public class Shop {
         sFrame.repaint();
     }
 
-    public static void itemPurchase(String item, int quantity) {
+    public static void purchaseItem(String item, int quantity) {
         if (item.equals("Random Training Plan")) {
-            // TODO - Finish this thang
-            System.out.println("TODO - Recieve Random Training Plan system.");
-            String recievedPlan = "Training Plan: Placeholder";
-            JOptionPane.showMessageDialog(null, "You recieved " + quantity + " " + recievedPlan + "!    ", "Training Plan Obtained", JOptionPane.INFORMATION_MESSAGE);
-            Inventory.changeItemPrice(item, 315); // TODO - Make this change by a percentage, not a fixed amount
+            for (int i=0; i<quantity; i++) {
+                randomTrainingPlan();
+            }
         } else {
             Inventory.purchaseItem(item, quantity);
         }
         updateHeader();
         items.refresh();
         selectItem(item);
+    }
+    private static void randomTrainingPlan() {
+        int ref = Inventory.getItemReference("Random Training Plan");
+        Random ran = new Random();
+        System.out.print("Getting random training plan...");
+        int p = ran.nextInt(Exercise.getPlanCount());
+        String planItem = "Training Plan: " + Exercise.getPlanString(p);
+        System.out.println("Random Int: " + p + " // Plan Item Name: " + planItem);
+        Inventory.give(planItem, 1);
+        Exercise.unlockPlan(p);
+        JOptionPane.showMessageDialog(null, "You recieved " + planItem + "!    ", "Training Plan Obtained", JOptionPane.INFORMATION_MESSAGE);
+        int priceIncrease = (int) Math.round(Inventory.getItemPrice("Random Training Plan")*0.18);
+        Inventory.changeItemPrice(ref, priceIncrease);
+        Inventory.changeItemStock(ref, -1);
+        Inventory.changeMoney(-Inventory.getItemPrice(ref));
     }
 
 

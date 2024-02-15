@@ -1,5 +1,6 @@
 package main;
 
+import utils.Lazy;
 
 public class Exercise {
     // Exercise Plans
@@ -13,6 +14,12 @@ public class Exercise {
     };
     public static String getPlanString (int plan) {
         return trainingPlans[plan];
+    }
+    public static int getPlanReference (String plan) {
+        return Lazy.findInArray(trainingPlans, plan);
+    }
+    public static int getPlanCount() {
+        return trainingPlans.length;
     }
 
     private static boolean[] plansUnlocked = {false, false, false, false, false, false};
@@ -33,6 +40,14 @@ public class Exercise {
             return false;
         }
     }
+    public static void unlockPlan (int reference) {
+        plansUnlocked[reference] = true;
+    }
+    public static void unlockPlan (String plan) {
+        int r = getPlanReference(plan);
+        plansUnlocked[r] = true;
+    }
+
 
     private static Integer selectedPlan;
     public static String getSelectedPlanString() {
@@ -45,6 +60,8 @@ public class Exercise {
     public static int getSelectedPlanInt() {
         return selectedPlan;
     }
+
+    // TODO - Method that searches inventory for plans and compares them to the unlocked list in order to lock any plans the player doesn't own. Could run whenever the "View Plans" button set up is happening
 
     public static final int WEIGHT_LIFTING = 0; // trains strenght
     public static final int BULKING = 1; // trains muscle

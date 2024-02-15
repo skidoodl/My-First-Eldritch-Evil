@@ -45,12 +45,12 @@ public class Inventory {
         "Miscellaneous", // incense
         "Gear", // alarm clock
         "Training", // random training plan
-        "Training",
-        "Training",
-        "Training",
-        "Training",
-        "Training",
-        "Training",
+        "Training", // weight lifting
+        "Training", // bulking
+        "Training", // weight loss
+        "Training", // stamina
+        "Training", // sprinting
+        "Training", // sparring
     };
     private static int[] itemStock = {
         50, // food
@@ -79,12 +79,12 @@ public class Inventory {
         400, // incense
         650, // alarm clock
         725, // random training plan
-        500, // weight lifting
-        500, // bulking
-        500, // weight loss
-        500, // stamina
-        500, // sprint
-        500, // spar
+        1200, // weight lifting
+        1200, // bulking
+        1200, // weight loss
+        1200, // stamina
+        1200, // sprint
+        1200, // spar
     };
 
     private static String[] inventory = new String[items.length];
@@ -122,9 +122,8 @@ public class Inventory {
     public static String getInventoryItemString(int itemReference) {
         return inventory[itemReference];
     }
-    public static String getInventoryItemReference(String itemName) {
-        // TODO - Complete method
-        return null;
+    public static int getInventoryItemReference(String itemName) {
+        return Lazy.findInArray(inventory, itemName);
     }
 
     public static int[] getInventoryAmount() {
@@ -173,6 +172,13 @@ public class Inventory {
     public static int getItemStock(int itemReference) {
         return itemStock[itemReference];
     }
+    public static void changeItemStock(String item, int amount) {
+        int i = getItemReference(item);
+        itemStock[i] += amount;
+    }
+    public static void changeItemStock(int itemReference, int amount) {
+        itemStock[itemReference] += amount;
+    }
     public static int countItemsStocked() {
         int x = 0;
         for (int i = 0; i < itemStock.length; i++) {
@@ -184,6 +190,7 @@ public class Inventory {
     }
 
     public static String getItemType (String item) {
+        System.out.println("Getting item type");
         return itemType[getItemReference(item)];
     }
     public static String getItemType (int itemReference) {
@@ -196,7 +203,7 @@ public class Inventory {
     public static void setWallet(int amount) {
         wallet = amount;
     }
-    public static void giveMoney(int amount) {
+    public static void changeMoney(int amount) {
         wallet += amount;
     }
 
@@ -214,7 +221,7 @@ public class Inventory {
         int i;
         sortInventory();
         // search inventory for the item
-        for (i = 0; i < inventory.length; i++) { // TODO - make this search a method
+        for (i = 0; i < inventory.length; i++) {
             if (inventory[i] == null) {
                 inventory[i] = itemName;
                 break;
@@ -236,7 +243,7 @@ public class Inventory {
 
     public static void sell(String item, int quantity) {
         remove(item, quantity);
-        giveMoney((getItemPrice(item)/2)*quantity);
+        changeMoney((getItemPrice(item)/2)*quantity);
     }
 
     public static String[] getItemStats(String item) {
@@ -439,10 +446,10 @@ public class Inventory {
             // add default action panel
             itemDisp.removeImage();
             iStats.hideStats();
-            /* if (sellPanel != null) {
+            if (sellPanel != null) {
                 iFrame.remove(sellPanel);
-            } */
-            iFrame.remove(sellPanel);
+            }
+            //iFrame.remove(sellPanel);
         }
         iFrame.revalidate();
         iFrame.repaint();

@@ -74,7 +74,7 @@ public class PurchasePanel extends JPanel implements ChangeListener {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Shop.itemPurchase(item, slider.getValue());
+                Shop.purchaseItem(item, slider.getValue());
                 GameWindow.updateAllPanels();
             }
         });

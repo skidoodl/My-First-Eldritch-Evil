@@ -19,17 +19,20 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import utils.Lazy;
 
 public class GameWindow {
     private static GameFrame gFrame;
     InventoryFrame iFrame;
     boolean gameStart;
-    public boolean statsVisible = false;
+
+    private static boolean statsOn = false;
+
+    // PANELS //
     private static MenuPanel menuPanel;
     private static StatsPanel sPanel;
     private static PetPanel petPanel;
-    private PetSleep sleepPanel;
-    
+    private static PetSleep sleepPanel;
 
     public GameWindow() {
         gFrame = new GameFrame();
@@ -50,8 +53,8 @@ public class GameWindow {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
                 gameStart = true;
+                Lazy.playSound("shutup.wav");
             }
 
         });
@@ -59,7 +62,7 @@ public class GameWindow {
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 960, 720);
         panel.add(label);
-        
+
         gFrame.add(b);
         gFrame.add(panel);
         gFrame.revalidate();
@@ -73,7 +76,7 @@ public class GameWindow {
         }
 
         // Naming function will go here
-        String name="Bread";
+        String name = "Bread";
 
         gFrame.remove(b);
         gFrame.remove(panel);
@@ -81,18 +84,18 @@ public class GameWindow {
     }
 
     public void menuScreen() {
-        
-        //MENU PANEL
-        menuPanel = new MenuPanel();    
 
-        //PET DISPLAY PANEL
+        // MENU PANEL
+        menuPanel = new MenuPanel();
+
+        // PET DISPLAY PANEL
         petPanel = new PetPanel();
 
-        //MFEE FEED
+        // MFEE FEED
         JPanel gameFeed = new JPanel(); // Where the game feed is displayed
         gameFeed.setBackground(Color.gray);
         gameFeed.setBounds(480, 360, 480, 380);
-        
+
         // Add Panels
         gFrame.add(menuPanel);
         gFrame.add(petPanel);
@@ -101,14 +104,14 @@ public class GameWindow {
         gFrame.repaint();
         gFrame.setVisible(true);
 
-        try { //wait for mouse click
+        try { // wait for mouse click
             wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean statsVisible (boolean visible) { // TODO - adjust so stats can be viewed while pet sleeping
+    public static boolean statsVisible(boolean visible) { 
         boolean isSleeping = main.Main.pet.isSleeping;
         if (visible) {
             sPanel = new StatsPanel();
@@ -133,8 +136,18 @@ public class GameWindow {
         }
         return visible;
     }
+    
+    public static void toggleStats() {
+        if (statsOn) {
+            statsOn = false;
+            GameWindow.statsVisible(false);
+        } else {
+            statsOn = true;
+            GameWindow.statsVisible(true);
+        }
+    }
 
-    public void petSleep () {
+    public void petSleep() { // TODO - Convert this to static
         sleepPanel = new PetSleep();
         menuPanel.update();
         gFrame.remove(petPanel);
@@ -146,6 +159,7 @@ public class GameWindow {
     private static boolean exercisePanelOpen;
     private static ExercisePanel exercisePanel = new ExercisePanel();
     private static ExerciseIconsPanel exerciseIcons = new ExerciseIconsPanel();
+
     public static void toggleExercisePanel() {
         if (exercisePanelOpen) {
             System.out.println("Removing Exercise Panels");
@@ -164,7 +178,7 @@ public class GameWindow {
         updateAllPanels();
     }
 
-    public void endSleep () {
+    public void endSleep() {
         System.out.println("End sleep");
         gFrame.remove(sleepPanel);
         petPanel.updateDisplay();
@@ -182,11 +196,13 @@ public class GameWindow {
         petPanel.updateDisplay();
     }
 
-    public static void updateAllPanels () {
+    public static void updateAllPanels() {
         System.out.print("Updating All Panels... ");
         petPanel.updateDisplay();
         menuPanel.update();
-        if(exercisePanelOpen){exercisePanel.update();}
+        if (exercisePanelOpen) {
+            exercisePanel.update();
+        }
         if (sPanel != null) {
             sPanel.update();
         }
@@ -194,7 +210,7 @@ public class GameWindow {
         System.out.println("Done.");
     }
 
-    public void updateStats () {
+    public static void updateStats() {
         sPanel.update();
     }
 

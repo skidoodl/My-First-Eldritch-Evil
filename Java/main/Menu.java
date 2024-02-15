@@ -28,7 +28,7 @@ public class Menu{
     final Pet pet = Main.pet;
     GameWindow gw = Main.gw;
 
-    switch(sel){ //TODO - Edit the cases to start from 0
+    switch(sel){
         case 0: //inventory
           if (Inventory.getInventoryTotal() == 0) {
             JOptionPane.showMessageDialog(null, "You have no items in your inventory. Visit the shop to buy some items.", "Inventory Empty", JOptionPane.INFORMATION_MESSAGE);
@@ -41,22 +41,12 @@ public class Menu{
           Shop.openShop();
           break;
         case 2: //Check Stats
-          if (statsOn) {
-            statsOn = false;
-            gw.statsVisible(false);
-          } else {
-            statsOn = true;
-            gw.statsVisible(true);
-          }
+          GameWindow.toggleStats();
           break;
         case 3: //feed
-        if (!Inventory.isInInventory("Food")) { // TODO - should move this to feed method
-          JOptionPane.showMessageDialog(null, "You have no food :(", "No Food", JOptionPane.INFORMATION_MESSAGE);
-          return;
-        }
           pet.feed();
           if (statsOn) { // move this into the feed method?
-            gw.updateStats();
+            GameWindow.updateStats();
           }
           break;
         case 4: // sleep
@@ -82,7 +72,7 @@ public class Menu{
           Main.action = 3;
           break;
         case 8:
-          Inventory.giveMoney(500);
+          Inventory.changeMoney(500);
           System.out.println("500 money added. Current balance: " + Inventory.getWallet());
           if(pet.mood == "hungry"){
             pet.mood = "normal";

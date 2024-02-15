@@ -199,59 +199,51 @@ public class Pet{
         if (sleepBlock()) {
             return;
         }
-        String[] invItems = Inventory.getInventoryList();
         if (this.satiety>1.0){ //too full to eat
             JOptionPane.showMessageDialog(null, name+" is too full to eat.", "Feed "+name,JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        boolean foundFood = false;
-        // TODO - update to use proper findItem inventory methods. Below is obselete and unneccessary
-        for(int i = 0; i < Inventory.getInventoryAmount().length; i++){
-            if(invItems[i].equalsIgnoreCase("Food")){ //once it finds food
-                int fAmount = Inventory.getInventoryAmount(i);
-                foundFood = true;
-                System.out.println("Feeding pet...");
-                
-                ImageIcon imgIcon = new ImageIcon("Resources/messageIcons/FeedPetIcon.png"); //Get feed message icon
-                //Format icon to size:
-                Image img = imgIcon.getImage();
-                img = img.getScaledInstance(80, 67, java.awt.Image.SCALE_SMOOTH);
-                imgIcon = new ImageIcon(img);
-
-
-                String[] feedOptions = new String[fAmount]; //Initialize the list for the user to choose feed amount
-                for (int j=0; j<fAmount; j++){ //populate list with options
-                    feedOptions[j] = String.valueOf(j+1);
-                }
-                //Get amount to be fed:
-                Object selected = JOptionPane.showInputDialog(null,"How much food do you want to feed "+name+"?", "Feed "+name,JOptionPane.INFORMATION_MESSAGE, imgIcon,feedOptions, feedOptions[0]);
-                int amount=0; //initialize amount variable
-                //Get amount:
-                if (selected != null) {
-                    amount = Integer.parseInt(selected.toString());
-                } else {
-                    return;
-                }
-
-                Inventory.remove("Food", amount);
-                
-                double feed = (0.15*amount); //Max possible feed: 0.2/food | Min possible feed 0.1/food
-                satiety += feed;
-
-                if (satiety > 1.7) {
-                    killPet("gastrointestinal perforation");
-                }
-                
-                Main.action++;
-                JOptionPane.showMessageDialog(null, "You fed "+name+" "+amount+" food (+"+statDF.format(feed)+" satiety).\nCurrent Satiety: "+statDF.format(satiety), "Feed "+name, JOptionPane.INFORMATION_MESSAGE, imgIcon);
-                GameWindow.updateAllPanels();
-                return;
-            }
+        if (Inventory.isInInventory("Food")) {
+            JOptionPane.showMessageDialog(null, "You have no food :(", "No Food", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
-        if(!foundFood){
-            JOptionPane.showMessageDialog(null, "You have no food in your inventory","Feed "+name,JOptionPane.INFORMATION_MESSAGE);
-            //TODO - Add an option to visit shop and buy food
+        int f = Inventory.getItemReference("Food");
+        int fAmount = Inventory.getInventoryAmount(f);
+        System.out.println("Feeding pet...");
+
+        ImageIcon imgIcon = new ImageIcon("Resources/messageIcons/FeedPetIcon.png"); //Get feed message icon
+        //Format icon to size:
+        Image img = imgIcon.getImage();
+        img = img.getScaledInstance(80, 67, java.awt.Image.SCALE_SMOOTH);
+        imgIcon = new ImageIcon(img);
+
+        String[] feedOptions = new String[fAmount]; //Initialize the list for the user to choose feed amount
+        for (int j=0; j<fAmount; j++){ //populate list with options
+            feedOptions[j] = String.valueOf(j+1);
         }
+        //Get amount to be fed:
+        Object selected = JOptionPane.showInputDialog(null,"How much food do you want to feed "+name+"?", "Feed "+name,JOptionPane.INFORMATION_MESSAGE, imgIcon,feedOptions, feedOptions[0]);
+        int amount=0; //initialize amount variable
+        //Get amount:
+        if (selected != null) {
+            amount = Integer.parseInt(selected.toString());
+        } else {
+            return;
+        }
+
+        Inventory.remove("Food", amount);
+                
+        double feed = (0.15*amount); //Max possible feed: 0.2/food | Min possible feed 0.1/food
+        satiety += feed;
+
+        if (satiety > 1.7) {
+            killPet("gastrointestinal perforation");
+        }
+        
+        Main.action++;
+        JOptionPane.showMessageDialog(null, "You fed "+name+" "+amount+" food (+"+statDF.format(feed)+" satiety).\nCurrent Satiety: "+statDF.format(satiety), "Feed "+name, JOptionPane.INFORMATION_MESSAGE, imgIcon);
+        GameWindow.updateAllPanels();
+        return;
     }
 
     public void sleep(int hours){
