@@ -102,6 +102,13 @@ public class Shop {
         if (item.equals("Random Training Plan")) {
             for (int i=0; i<quantity; i++) {
                 randomTrainingPlan();
+                if(Inventory.getWallet() < Inventory.getItemPrice("Random Training Plan") && (i+1 != quantity)) {
+                    JOptionPane.showMessageDialog(null, "You can no longer afford this item.", "Not Enough Mon!", JOptionPane.INFORMATION_MESSAGE);
+                    updateHeader();
+                    items.refresh();
+                    deselectItem();
+                    return;
+                }
             }
         } else {
             Inventory.purchaseItem(item, quantity);
@@ -121,9 +128,9 @@ public class Shop {
         Exercise.unlockPlan(p);
         JOptionPane.showMessageDialog(null, "You recieved " + planItem + "!    ", "Training Plan Obtained", JOptionPane.INFORMATION_MESSAGE);
         int priceIncrease = (int) Math.round(Inventory.getItemPrice("Random Training Plan")*0.18);
-        Inventory.changeItemPrice(ref, priceIncrease);
         Inventory.changeItemStock(ref, -1);
         Inventory.changeMoney(-Inventory.getItemPrice(ref));
+        Inventory.changeItemPrice(ref, priceIncrease);
     }
 
 

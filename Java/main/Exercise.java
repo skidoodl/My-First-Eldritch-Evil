@@ -57,8 +57,18 @@ public class Exercise {
             return null;
         }
     }
-    public static int getSelectedPlanInt() {
-        return selectedPlan;
+    public static Integer getSelectedPlanInt() {
+        try {
+            return selectedPlan;
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+    public static void selectPlan(String plan) {
+        selectedPlan = getPlanReference(plan);
+    }
+    public static void selectPlan(int planReference) {
+        selectedPlan = planReference;
     }
 
     // TODO - Method that searches inventory for plans and compares them to the unlocked list in order to lock any plans the player doesn't own. Could run whenever the "View Plans" button set up is happening

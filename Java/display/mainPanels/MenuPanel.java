@@ -107,7 +107,6 @@ public class MenuPanel extends JPanel {
     }
 
     private void handleOptionClick(String option) {
-        // Add your logic here to handle the click for each option
         int sel = Lazy.findInArray(options, option);
         Menu.useMenu(sel);
     }

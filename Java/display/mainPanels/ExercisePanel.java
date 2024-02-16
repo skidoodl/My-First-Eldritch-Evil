@@ -2,6 +2,7 @@ package display.mainPanels;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -26,8 +27,21 @@ public class ExercisePanel extends JPanel {
     private static JButton bTrainNoPlan = new JButton("Train without Plan");
     
 
-    public ExercisePanel() {
+    private static boolean plansOpen = false;
+    public static boolean isPlansOpen() {
+        return plansOpen;
+    }
+    
+    /* TODO - Exercise Panel: Either figure out how to make
+     * this panel fill up the whole section, or figure out
+     * how to stop the bottom two buttons from vanishing
+     * when toggling "view plans" without having to set
+     * game feed's visibility to false. 
+     */
+
+    public ExercisePanel() { 
         setBounds(480, 360, 460, 180);
+        setPreferredSize(new Dimension(480, 360));
         setBackground(Color.gray);
         
         setLayout(new GridLayout(2, 2, 10, 20));
@@ -42,7 +56,15 @@ public class ExercisePanel extends JPanel {
                 if (Exercise.countUnlockedPlans() == 0) {
                     JOptionPane.showMessageDialog(null, "You don't own any training plans.", "No Training Plans", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                    if (!plansOpen) {
+                        plansOpen = true;
+                        GameWindow.showExercisePlans(true);
+                        setViewPlansButton();
+                    } else {
+                        plansOpen = false;
+                        GameWindow.showExercisePlans(false);
+                        setViewPlansButton();
+                    }
                 }
             }
             
@@ -127,6 +149,11 @@ public class ExercisePanel extends JPanel {
         if (Exercise.countUnlockedPlans() == 0) {
             bViewPlans.setForeground(Color.lightGray);
             bViewPlans.setBackground(Color.darkGray);
+        }
+        if (plansOpen) {
+            bViewPlans.setText("Hide Plans");
+        } else {
+            bViewPlans.setText("View Plans");
         }
     }
 

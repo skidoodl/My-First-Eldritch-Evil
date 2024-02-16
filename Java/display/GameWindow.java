@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
 
 import display.frames.GameFrame;
 import display.frames.InventoryFrame;
@@ -11,6 +12,7 @@ import display.mainPanels.ExerciseIconsPanel;
 import display.mainPanels.ExercisePanel;
 import display.mainPanels.MenuPanel;
 import display.mainPanels.StatsPanel;
+import display.mainPanels.TrainingPlansList;
 import display.petPanels.PetPanel;
 import display.petPanels.PetSleep;
 
@@ -22,6 +24,8 @@ import javax.swing.JButton;
 import utils.Lazy;
 
 public class GameWindow {
+    private static final CountDownLatch latch = new CountDownLatch(1);
+    
     private static GameFrame gFrame;
     InventoryFrame iFrame;
     boolean gameStart;
@@ -33,6 +37,7 @@ public class GameWindow {
     private static StatsPanel sPanel;
     private static PetPanel petPanel;
     private static PetSleep sleepPanel;
+    private static JPanel gameFeed;
 
     public GameWindow() {
         gFrame = new GameFrame();
@@ -54,7 +59,8 @@ public class GameWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameStart = true;
-                Lazy.playSound("shutup.wav");
+                // Sound temporarily disabled cuz it was ANNOYING - just remove the if statement to make it work
+                if (!gameStart) Lazy.playSound("shutup.wav");
             }
 
         });
@@ -92,7 +98,7 @@ public class GameWindow {
         petPanel = new PetPanel();
 
         // MFEE FEED
-        JPanel gameFeed = new JPanel(); // Where the game feed is displayed
+        gameFeed = new JPanel(); // Where the game feed is displayed
         gameFeed.setBackground(Color.gray);
         gameFeed.setBounds(480, 360, 480, 380);
 
@@ -105,10 +111,14 @@ public class GameWindow {
         gFrame.setVisible(true);
 
         try { // wait for mouse click
-            wait();
+            latch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            System.out.println("Interrupted");
         }
+    }
+    public static void signalMenuScreen() {
+        latch.countDown();
     }
 
     public static boolean statsVisible(boolean visible) { 
@@ -147,18 +157,11 @@ public class GameWindow {
         }
     }
 
-    public void petSleep() { // TODO - Convert this to static
-        sleepPanel = new PetSleep();
-        menuPanel.update();
-        gFrame.remove(petPanel);
-        gFrame.add(sleepPanel);
-        gFrame.revalidate();
-        gFrame.repaint();
-    }
-
+    //---EXERCISE---//
     private static boolean exercisePanelOpen;
     private static ExercisePanel exercisePanel = new ExercisePanel();
     private static ExerciseIconsPanel exerciseIcons = new ExerciseIconsPanel();
+    private static TrainingPlansList plansPanel = new TrainingPlansList();
 
     public static void toggleExercisePanel() {
         if (exercisePanelOpen) {
@@ -166,16 +169,47 @@ public class GameWindow {
             gFrame.remove(exercisePanel);
             gFrame.remove(exerciseIcons);
             exercisePanelOpen = false;
+            if (ExercisePanel.isPlansOpen()) showExercisePlans(false);
+            gameFeed.setVisible(true);
             gFrame.revalidate();
             gFrame.repaint();
             return;
         }
+        
         System.out.println("Adding exercise panels");
         exercisePanelOpen = true;
         gFrame.add(exerciseIcons);
         gFrame.add(exercisePanel);
         exerciseIcons.update();
+        if (ExercisePanel.isPlansOpen()) showExercisePlans(true);
+        gameFeed.setVisible(false);
         updateAllPanels();
+    }
+
+    public static void showExercisePlans(boolean b) {
+        if (b) {
+            gFrame.remove(petPanel);
+            plansPanel.update();
+            gFrame.add(plansPanel);
+        } else {
+            gFrame.remove(plansPanel);
+            gFrame.add(petPanel);
+        }
+        gFrame.revalidate();
+        gFrame.repaint();
+        updateAllPanels();
+        exercisePanel.update();
+    }
+
+
+    //---SLEEP---//
+    public void petSleep() { // TODO - Convert this to static
+        sleepPanel = new PetSleep();
+        menuPanel.update();
+        gFrame.remove(petPanel);
+        gFrame.add(sleepPanel);
+        gFrame.revalidate();
+        gFrame.repaint();
     }
 
     public void endSleep() {
