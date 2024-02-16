@@ -66,6 +66,9 @@ public class ShopList extends JPanel {
     public void refresh() {
         removeAllLabels();
         addLabels();
+
+        revalidate();
+        repaint();
     }
 
     private class OptionMouseListener extends MouseAdapter {

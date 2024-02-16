@@ -40,7 +40,7 @@ public class ExercisePanel extends JPanel {
      */
 
     public ExercisePanel() { 
-        setBounds(480, 360, 460, 180);
+        setBounds(480, 360, 464, 200);
         setPreferredSize(new Dimension(480, 360));
         setBackground(Color.gray);
         
@@ -143,6 +143,7 @@ public class ExercisePanel extends JPanel {
             bTrainPlan.setText("No Plan Selected");
         } else {
             bTrainPlan.setText("Train With Plan:\n"+Exercise.getSelectedPlanString());
+            bTrainPlan.setText("<html><center><p>Train With Plan: "+Exercise.getSelectedPlanString()+"</p></center><html>");
         }
     }
     private static void setViewPlansButton() {

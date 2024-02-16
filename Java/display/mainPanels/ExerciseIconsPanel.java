@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import main.Exercise;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 public class ExerciseIconsPanel extends JPanel {
@@ -14,7 +15,8 @@ public class ExerciseIconsPanel extends JPanel {
     
     public ExerciseIconsPanel() {
         setLayout(new FlowLayout());
-        setBounds(480, 640, 480, 60);
+        setBounds(480, 621, 480, 60);
+        setBackground(Color.gray);
     }
 
     public void update() {

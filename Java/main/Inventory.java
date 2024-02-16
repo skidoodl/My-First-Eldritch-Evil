@@ -320,10 +320,14 @@ public class Inventory {
     }
 
     public static boolean affordability(String item) {
+        System.out.print("Checking " + item + " affordability...");
         int i = getItemReference(item);
+        System.out.print("Wallet: " + wallet + " || item Price: " + itemPrice[i]);
         if (wallet >= itemPrice[i]) {
+            System.out.println("Affordable");
             return true;
         } else {
+            System.out.println("Not Affordable");
             return false;
         }
     }

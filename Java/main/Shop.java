@@ -94,6 +94,11 @@ public class Shop {
             itemStats.hideStats();
             
         }
+        try{ 
+            items.refresh();
+        } catch (NullPointerException e) {
+            
+        }
         sFrame.revalidate();
         sFrame.repaint();
     }

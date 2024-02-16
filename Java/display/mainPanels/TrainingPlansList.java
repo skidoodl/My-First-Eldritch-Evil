@@ -16,9 +16,10 @@ import java.awt.event.MouseEvent;
 
 public class TrainingPlansList extends JPanel {
     // Set up font details
-    private static final int FONT_SIZE = 22;
+    private static final int FONT_SIZE = 25;
     private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, FONT_SIZE);
-    private static final Font BOLD_FONT = new Font("Arial", Font.BOLD, FONT_SIZE+1);
+    private static final Font BOLD_FONT = new Font("Arial", Font.BOLD, FONT_SIZE);
+    private static final Color selColor = new Color(4, 133, 0);
 
     public TrainingPlansList() {
         setLayout(new GridLayout(Exercise.getPlanCount()+2, 1));
@@ -31,6 +32,7 @@ public class TrainingPlansList extends JPanel {
     public void update() {
         removeAllLabels();
         addLabels();
+        revalidate();
         repaint();
     }
 
@@ -55,9 +57,14 @@ public class TrainingPlansList extends JPanel {
             label.setBorder(BorderFactory.createEmptyBorder(10, 15, 0, 0));
             label.setFont(DEFAULT_FONT);
             label.setForeground(Color.black);
-            if (Exercise.getSelectedPlanInt() != null && i == Exercise.getSelectedPlanInt()) {
-                label.setForeground(Color.green);
+            try {
+                if (Exercise.getSelectedPlanString().equals(unlPlans[i])) {
+                    label.setForeground(selColor);
+                }
+            } catch (NullPointerException e) {
+
             }
+
             
             add(label);
         }
