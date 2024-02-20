@@ -60,7 +60,7 @@ public class GameWindow {
             public void actionPerformed(ActionEvent e) {
                 gameStart = true;
                 // Sound temporarily disabled cuz it was ANNOYING - just remove the if statement to make it work
-                if (!gameStart) Lazy.playSound("shutup.wav");
+                /* if (!gameStart)  */Lazy.playSound("shutup.wav");
             }
 
         });

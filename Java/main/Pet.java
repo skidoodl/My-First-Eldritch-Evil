@@ -26,36 +26,48 @@ public class Pet{
     private DecimalFormat statPctDF = new DecimalFormat("##");
 
     //---FITNESS STATS---//
-    private static int strength;
+    protected static int strength = 5;
     public static int getStrength() {
         return strength;
     }
 
-    private static int stamina;
+    protected static int stamina = 5;
     public static int getStamina() {
         return stamina;
     }
 
-    private static int speed;
+    protected static int speed = 5;
     public static int getSpeed() {
         return speed;
     }
 
-    private static int weight;
+    protected static int weight; // weight in lbs
     public static int getWeight() {
-        // TODO - Calculate weight
         return weight;
     }
 
-    private static int fat;
+    protected static int fat = 18; // percentage of weight that's fat
+    protected static int fatMin = 12; // the lowest fat pct can go
     public static int getFat() {
-        return fat;
+        return Math.round(weight/fat); // return weight of fat
+    }
+    public static int getFat(boolean returnPct) {
+        if (returnPct) return fat; // return percentage
+        return Math.round(weight/fat); // return weight of fat
+    }
+    public static int getFatMin() {
+        return fatMin;
     }
 
-    private static int muscle;
+    private static int muscle = 40; // percentage of weight that's muscle
     public static int getMuscle() {
-        return muscle;
+        return Math.round(weight/muscle); // return weight of muscle
     }
+    public static int getMuscle(boolean returnPct) {
+        if (returnPct) return muscle; // return percentage
+        return Math.round(weight/muscle); // return weight of muscle
+    }
+
 
     Random ran = new Random();
     
@@ -68,6 +80,8 @@ public class Pet{
         Inventory.setWallet(750);
         difficultyName = "Normal";
         mood = "normal";
+
+        weight = 48 + ran.nextInt(10);
     }
     public Pet(String name){
         this.name = name;
@@ -77,6 +91,8 @@ public class Pet{
         Inventory.setWallet(750);
         difficultyName = "Normal";
         mood = "normal";
+
+        weight = 48 + ran.nextInt(10);
     }
 
     public Pet(int difficulty){ //Difficulties: 0=Easy, 1=Normal, 2=Hard, 3=Impossible
@@ -303,7 +319,7 @@ public class Pet{
     // TODO - perhaps make a specific class extending this one for pet utilities?
     public String[] getStatsArray() {
         // Determine length of stats array
-        int s = 6; // age, energy, satiation, is healthy, health stat, exercise = 6
+        int s = 11; // age, energy, satiation, is healthy, health stat, strength, stamina, speed, weight = 9
         if (isEnergized){s++;}
         if (calming>0){s++;}
         if (evilCount>0){s++;}
@@ -327,19 +343,18 @@ public class Pet{
         }
         // Health Level
         stats[4] = name + "'s health is at "+statPctDF.format(health*100)+"%";
-        // Exercised
-        if (exercised <= -4) {
-            stats[5] = name + " is obese."; // TODO: Obese pet art?
-        } else if (exercised<0){
-            stats[5] = name + " is looking kinda chubby. Might wanna hit the gym...";
-        } else if (exercised < 7) {
-            stats[5] = name + " is looking nice and fit.";
-        } else {
-            stats[5] = name + " is looking crazy buff."; // TODO - Create buff pet art?
-        }
+        // Strength
+        stats[5] = "Strength: " + strength;
+        // Stamina
+        stats[6] = "Stamina: " + stamina;
+        // Speed
+        stats[7] = "Speed:" + speed;
+        // Weight
+        stats[8] = "Weight: " + weight;
+        
         // Conditional Stats
-        if (stats.length > 6) {
-            int i = 6;
+        if (stats.length > 8) {
+            int i = 8;
             // isEnergized
             if (isEnergized) {
                 stats[i] = name + " is energized.";
@@ -365,11 +380,10 @@ public class Pet{
     public void birthday(){
         this.age++;
         System.out.println("Happy Birthday! "+this.name+" is "+this.age+" years old! (+300 mon)"); //idea: gift feature
-        this.money += 300;
+        Inventory.addMoney(300);
     }
 
     // TO DO - if pet is already healthy...
-    // TODO - create seperate class extending this one specifically for item use?
     public void medicate(boolean isStrong){ //could be optimized, but we can do that later
         if (sleepBlock()) {
             return;

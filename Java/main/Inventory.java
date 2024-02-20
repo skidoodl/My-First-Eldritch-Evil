@@ -203,7 +203,7 @@ public class Inventory {
     public static void setWallet(int amount) {
         wallet = amount;
     }
-    public static void changeMoney(int amount) {
+    public static void addMoney(int amount) {
         wallet += amount;
     }
 
@@ -243,7 +243,7 @@ public class Inventory {
 
     public static void sell(String item, int quantity) {
         remove(item, quantity);
-        changeMoney((getItemPrice(item)/2)*quantity);
+        addMoney((getItemPrice(item)/2)*quantity);
     }
 
     public static String[] getItemStats(String item) {
@@ -320,14 +320,10 @@ public class Inventory {
     }
 
     public static boolean affordability(String item) {
-        System.out.print("Checking " + item + " affordability...");
         int i = getItemReference(item);
-        System.out.print("Wallet: " + wallet + " || item Price: " + itemPrice[i]);
         if (wallet >= itemPrice[i]) {
-            System.out.println("Affordable");
             return true;
         } else {
-            System.out.println("Not Affordable");
             return false;
         }
     }

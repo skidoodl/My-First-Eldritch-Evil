@@ -1,8 +1,10 @@
 package main;
 
+import java.util.Random;
+
 import utils.Lazy;
 
-public class Exercise {
+public class Exercise extends Pet {
     // Exercise Plans
     private static String[] trainingPlans = {
         "Weight Lifting",
@@ -37,6 +39,15 @@ public class Exercise {
             return plansUnlocked[plan];
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Error: Attempted to access unknown plan (# = " + plan + ")");
+            return false;
+        }
+    }
+    public static boolean isUnlocked (String plan) {
+        int p = getPlanReference(plan);
+        try {
+            return plansUnlocked[p];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Attempted to access unknown plan \"" + plan + "\"");
             return false;
         }
     }
@@ -104,10 +115,40 @@ public class Exercise {
         }
     }
 
+    private static int powderBuff(int effect) {
+        Random ran = new Random();
+        int i = ran.nextInt(100);
+        if (!proteinPowder) return effect; // no effect
+
+        if (i < 5) { // 5%
+            effect *= 2;
+        } else if (i < 45) { // 40%
+            effect += 2;
+        } else {
+            effect += 1;
+        }
+        return effect;
+    }
+
     // training plans
     private static void tStrength() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tStrength'");
+        int effect = 0;
+        Random ran = new Random();
+        if (!proteinPowder && ran.nextInt(10) == 0) {
+            System.out.println("Strength Training Unsuccessful");
+        } else {
+            int i = ran.nextInt(100);
+            if (i < 8) { // 8% chance
+                effect += 3;
+            } else if (i < 33) { // 25% chance
+                effect += 2;
+            } else {
+                effect += 1;
+            }
+            effect = powderBuff(effect);
+        }
+        strength += effect;
+        System.out.println("Strength effect: " + effect + "   Strength: " + strength);
     }
     private static void tMuscle() {
         // TODO Auto-generated method stub

@@ -72,7 +72,7 @@ public class Menu{
           Main.action = 3;
           break;
         case 8:
-          Inventory.changeMoney(500);
+          Inventory.addMoney(500);
           System.out.println("500 money added. Current balance: " + Inventory.getWallet());
           if(pet.mood == "hungry"){
             pet.mood = "normal";

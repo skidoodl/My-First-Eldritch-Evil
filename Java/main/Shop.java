@@ -97,7 +97,7 @@ public class Shop {
         try{ 
             items.refresh();
         } catch (NullPointerException e) {
-            
+
         }
         sFrame.revalidate();
         sFrame.repaint();
@@ -126,15 +126,19 @@ public class Shop {
         int ref = Inventory.getItemReference("Random Training Plan");
         Random ran = new Random();
         System.out.print("Getting random training plan...");
-        int p = ran.nextInt(Exercise.getPlanCount());
+        int p = -1;
+        while (Exercise.isUnlocked(p) || p == -1) { // get a plan that is unlocked
+            p = ran.nextInt(Exercise.getPlanCount());
+        }
+        
         String planItem = "Training Plan: " + Exercise.getPlanString(p);
         System.out.println("Random Int: " + p + " // Plan Item Name: " + planItem);
         Inventory.give(planItem, 1);
         Exercise.unlockPlan(p);
         JOptionPane.showMessageDialog(null, "You recieved " + planItem + "!    ", "Training Plan Obtained", JOptionPane.INFORMATION_MESSAGE);
-        int priceIncrease = (int) Math.round(Inventory.getItemPrice("Random Training Plan")*0.18);
+        int priceIncrease = (int) Math.round(Inventory.getItemPrice("Random Training Plan")*0.22);
         Inventory.changeItemStock(ref, -1);
-        Inventory.changeMoney(-Inventory.getItemPrice(ref));
+        Inventory.addMoney(-Inventory.getItemPrice(ref));
         Inventory.changeItemPrice(ref, priceIncrease);
     }
 
