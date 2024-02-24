@@ -1,4 +1,4 @@
-package display.mainPanels;
+package display.mainPanels; //TODO - Move this and other exercise related classes to dedicated Exercise package
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -58,13 +58,13 @@ public class TrainingPlansList extends JPanel {
             label.setFont(DEFAULT_FONT);
             label.setForeground(Color.black);
             try {
+                // Highlight selected training plan
                 if (Exercise.getSelectedPlanString().equals(unlPlans[i])) {
                     label.setForeground(selColor);
                 }
             } catch (NullPointerException e) {
-
+                System.out.println("No Plan Selected");
             }
-
             
             add(label);
         }
