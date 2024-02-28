@@ -147,24 +147,94 @@ public class Exercise extends Pet {
             }
             effect = powderBuff(effect);
         }
-        strength += effect;
+        Pet.strength += effect;
         System.out.println("Strength effect: " + effect + "   Strength: " + strength);
     }
     private static void tMuscle() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tMuscle'");
+        System.out.println("Training Muscle...");
+        int effect = 0;
+        Random ran = new Random();
+        if (!proteinPowder && ran.nextInt(10) == 0) {
+            System.out.println("Muscle Training Unsuccessful");
+        } else if (fat > muscle && (ran.nextInt(100) >= 5)) {
+            System.out.println("Muscle training failed: Fat mass too high");            
+        } else {
+            int i = ran.nextInt(100);
+            if (i < 8) { // 8% chance
+                effect += 3;
+            } else if (i < 33) { // 25% chance
+                effect += 2;
+            } else {
+                effect += 1;
+            }
+            effect = powderBuff(effect);
+        }
+        muscle += effect;
+        weight += Math.round((effect/75) * Pet.getMuscle()); // TODO - needs testing cuz idk if this is best way to implement
+        System.out.println("Muscle effect: " + effect + "   Muscle: " + muscle);
     }
     private static void weightLoss() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'weightLoss'");
+        System.out.println("Training Weight Loss...");
+        int effect = 0;
+        Random ran = new Random();
+        if (!proteinPowder && ran.nextInt(10) == 0) {
+            System.out.println("Weight Loss Unsuccessful");
+        } else if (fat <= fatMin) {
+            System.out.println("Weight loss failed: Cannot lose any more fat");            
+        } else {
+            int i = ran.nextInt(100);
+            if (i < 8) { // 8% chance
+                effect += 3;
+            } else if (i < 33) { // 25% chance
+                effect += 2;
+            } else {
+                effect += 1;
+            }
+            effect = powderBuff(effect);
+        }
+        fat -= effect;
+        weight -= Math.round((effect/50) * Pet.getFat()); // TODO - needs testing cuz idk if this is best way to implement
+        System.out.println("Weight loss effect: " + effect + "   Fat: " + fat);
     }
     private static void tStamina() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tStamina'");
+        System.out.println("Training Stamina...");
+        int effect = 0;
+        Random ran = new Random();
+        if (!proteinPowder && ran.nextInt(10) == 0) {
+            System.out.println("Stamina training Unsuccessful");
+        } else {
+            int i = ran.nextInt(100);
+            if (i < 8) { // 8% chance
+                effect += 3;
+            } else if (i < 33) { // 25% chance
+                effect += 2;
+            } else {
+                effect += 1;
+            }
+            effect = powderBuff(effect);
+        }
+        stamina += effect;
+        System.out.println("Stamina effect: " + effect + "   Stamina: " + stamina);
     }
     private static void tSpeed() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tSpeed'");
+        System.out.println("Training Speed...");
+        int effect = 0;
+        Random ran = new Random();
+        if (!proteinPowder && ran.nextInt(10) == 0) {
+            System.out.println("Speed training unsuccessful");
+        } else {
+            int i = ran.nextInt(100);
+            if (i < 8) { // 8% chance
+                effect += 3;
+            } else if (i < 33) { // 25% chance
+                effect += 2;
+            } else {
+                effect += 1;
+            }
+            effect = powderBuff(effect);
+        }
+        speed += effect;
+        System.out.println("Speed effect: " + effect + "   Speed: " + speed);
     }
     private static void tAttack() {
         // TODO Auto-generated method stub

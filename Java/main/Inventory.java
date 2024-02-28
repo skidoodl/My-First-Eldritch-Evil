@@ -88,6 +88,7 @@ public class Inventory {
     };
 
     private static String[] inventory = new String[items.length];
+    
     private static int[] itemInvAmount = new int[items.length];
 
     //-----OTHER STUFF-----//

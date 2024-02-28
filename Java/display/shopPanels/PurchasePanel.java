@@ -65,8 +65,13 @@ public class PurchasePanel extends JPanel implements ChangeListener {
 
         slider.addChangeListener(this);
 
+        String buyString = "Buy 1 " + item + " for " + Inventory.getItemPrice(item) + " mon.";
         button = new JButton("Buy 1 " + item + " for " + Inventory.getItemPrice(item) + " mon.");
-        button.setPreferredSize(new Dimension(260, 40));
+        int w = 230;
+        if (buyString.length() > 35) {
+            w = 300;
+        }
+        button.setPreferredSize(new Dimension(w, 40));
         button.setForeground(Color.black);
         button.setBackground(new Color(109,77,172));
         button.setFocusPainted(false);
@@ -102,7 +107,13 @@ public class PurchasePanel extends JPanel implements ChangeListener {
     public void stateChanged (ChangeEvent e) {
         int amount = slider.getValue();
         int cost = slider.getValue()*Inventory.getItemPrice(this.item);
-        button.setText("Buy " + amount + " " + this.item + " for " + cost + " mon.");
+        String buyString = "Buy " + amount + " " + this.item + " for " + cost + " mon.";
+        button.setText(buyString);
+        int w = 230;
+        if (buyString.length() > 35) {
+            w = 300;
+        }
+        button.setPreferredSize(new Dimension(w, 40));
     }
 
 }

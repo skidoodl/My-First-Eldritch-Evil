@@ -51,20 +51,20 @@ public class Pet{
     public static int getFat() {
         return Math.round(weight/fat); // return weight of fat
     }
-    public static int getFat(boolean returnPct) {
-        if (returnPct) return fat; // return percentage
+    public static int getFat(boolean return_percentage) {
+        if (return_percentage) return fat; // return percentage
         return Math.round(weight/fat); // return weight of fat
     }
     public static int getFatMin() {
         return fatMin;
     }
 
-    private static int muscle = 40; // percentage of weight that's muscle
+    protected static int muscle = 40; // percentage of weight that's muscle
     public static int getMuscle() {
         return Math.round(weight/muscle); // return weight of muscle
     }
-    public static int getMuscle(boolean returnPct) {
-        if (returnPct) return muscle; // return percentage
+    public static int getMuscle(boolean return_percentage) {
+        if (return_percentage) return muscle; // return percentage
         return Math.round(weight/muscle); // return weight of muscle
     }
 
@@ -219,7 +219,7 @@ public class Pet{
             JOptionPane.showMessageDialog(null, name+" is too full to eat.", "Feed "+name,JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        if (Inventory.isInInventory("Food")) {
+        if (!Inventory.isInInventory("Food")) {
             JOptionPane.showMessageDialog(null, "You have no food :(", "No Food", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
